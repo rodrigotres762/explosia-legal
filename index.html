@@ -5,26 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ExplosIA &mdash; Automatizaci&oacute;n empresarial con Inteligencia Artificial</title>
 <meta name="description" content="Agentes de inteligencia artificial que se hacen cargo del trabajo repetitivo de tu negocio: atender consultas, tomar pedidos, facturar, cargar datos, controlar stock y hacer seguimiento. Mart&iacute;nez, San Isidro, Buenos Aires.">
-<link rel="canonical" href="https://rodrigotres762.github.io/explosia-legal/">
+<link rel="canonical" href="">
 <link rel="icon" type="image/png" href="icono.png">
 <link rel="apple-touch-icon" href="icono.png">
 <meta name="theme-color" content="#070E1D">
-
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ExplosIA">
 <meta property="og:locale" content="es_AR">
-<meta property="og:url" content="https://rodrigotres762.github.io/explosia-legal/">
+<meta property="og:url" content="">
 <meta property="og:title" content="ExplosIA &mdash; Automatizaci&oacute;n empresarial con Inteligencia Artificial">
 <meta property="og:description" content="Agentes de inteligencia artificial que se hacen cargo del trabajo repetitivo de tu negocio: atender consultas, tomar pedidos, facturar, cargar datos, controlar stock y hacer seguimiento. Mart&iacute;nez, San Isidro, Buenos Aires.">
-<meta property="og:image" content="https://rodrigotres762.github.io/explosia-legal/og.jpg">
+<meta property="og:image" content="og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="ExplosIA &mdash; Automatizaci&oacute;n empresarial con IA">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="ExplosIA &mdash; Automatizaci&oacute;n empresarial con Inteligencia Artificial">
 <meta name="twitter:description" content="Agentes de inteligencia artificial que se hacen cargo del trabajo repetitivo de tu negocio: atender consultas, tomar pedidos, facturar, cargar datos, controlar stock y hacer seguimiento. Mart&iacute;nez, San Isidro, Buenos Aires.">
-<meta name="twitter:image" content="https://rodrigotres762.github.io/explosia-legal/og.jpg">
-
+<meta name="twitter:image" content="og.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Archivo+Narrow:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
@@ -468,7 +466,141 @@
     .glow{ transform: none !important; }
   }
 
-  /* ---------- versi&oacute;n para imprimir / guardar como PDF ---------- */
+    /* ================= TONOS: que no sea todo igual ================= */
+
+  :root{
+    --banda:      #0B1A34;   /* franja apenas m&aacute;s clara, para dar ritmo al scroll */
+    --banda-2:    #102243;   /* la m&aacute;s clara de todas */
+    --surface-3:  #1A3255;   /* tarjeta levantada */
+    --edge-vivo:  #2A4C78;
+  }
+
+  /* las secciones alternan de tono: as&iacute; se ve d&oacute;nde termina una y empieza otra */
+  .banda{ background: var(--banda); }
+  .banda-2{
+    background: linear-gradient(180deg, var(--banda-2) 0%, var(--banda) 100%);
+    border-block: 1px solid var(--edge-vivo);
+  }
+
+  /* las seis &aacute;reas de trabajo van del azul profundo al celeste */
+  .area:nth-child(1) .area-ico{ background: rgba(27,87,168,.24);  border-color: rgba(27,87,168,.62); }
+  .area:nth-child(2) .area-ico{ background: rgba(37,112,196,.24); border-color: rgba(37,112,196,.62); }
+  .area:nth-child(3) .area-ico{ background: rgba(61,155,224,.24); border-color: rgba(61,155,224,.62); }
+  .area:nth-child(4) .area-ico{ background: rgba(82,176,232,.24); border-color: rgba(82,176,232,.62); }
+  .area:nth-child(5) .area-ico{ background: rgba(104,194,239,.24);border-color: rgba(104,194,239,.62); }
+  .area:nth-child(6) .area-ico{ background: rgba(127,212,245,.24);border-color: rgba(127,212,245,.62); }
+  .area:nth-child(1) .area-ico svg{ color: #6FA8E8; }
+  .area:nth-child(2) .area-ico svg{ color: #7FBAEE; }
+  .area:nth-child(3) .area-ico svg{ color: #8FC9F2; }
+  .area:nth-child(4) .area-ico svg{ color: #9FD6F5; }
+  .area:nth-child(5) .area-ico svg{ color: #AFE0F8; }
+  .area:nth-child(6) .area-ico svg{ color: #C2EAFB; }
+  .area:nth-child(odd){ background: linear-gradient(180deg, var(--surface-3) 0%, var(--surface) 100%); }
+
+  /* las tarjetas de rubro alternan claro y oscuro */
+  .rubro:nth-child(even){ background: var(--surface-3); }
+  .rubro:nth-child(3n+2){ border-left-color: var(--brand-hot); }
+  .sense:nth-child(2){ background: linear-gradient(180deg, var(--surface-3) 0%, var(--ink-2) 100%); }
+
+  /* t&iacute;tulos m&aacute;s luminosos, y los pasos con su propio degrad&eacute; */
+  .head h2{ color: #F2F8FF; }
+  .eyebrow{ color: var(--brand-hot); }
+  .step:nth-child(2){ border-top-color: #52B0E8; }
+  .step:nth-child(3){ border-top-color: #68C2EF; }
+  .step:nth-child(4){ border-top-color: #7FD4F5; }
+  .step:nth-child(2) .n{ color: #52B0E8; }
+  .step:nth-child(3) .n{ color: #68C2EF; }
+  .step:nth-child(4) .n{ color: #7FD4F5; }
+
+  /* ================= NAVEGACI&Oacute;N POR PESTA&Ntilde;AS ================= */
+
+  .topbar .wrap{ flex-wrap: wrap; gap: 10px 14px; padding-block: 9px; }
+  .menu{ display: flex; gap: 3px; flex-wrap: wrap; order: 3; width: 100%; }
+  @media (min-width: 980px){
+    .menu{ order: 0; width: auto; margin-inline: auto 6px; gap: 4px; }
+  }
+  .menu button{
+    font-family: Archivo, Arial, sans-serif; font-weight: 600; font-size: 14.5px;
+    letter-spacing: -.01em;
+    background: transparent; color: var(--muted);
+    border: 1px solid transparent; border-radius: 999px;
+    padding: 8px 14px; cursor: pointer; white-space: nowrap;
+    transition: color .2s ease, background .2s ease, border-color .2s ease;
+    min-height: 40px;
+  }
+  .menu button:hover{ color: var(--text); background: rgba(61,155,224,.10); }
+  .menu button[aria-current="page"]{
+    color: #FFFFFF;
+    background: linear-gradient(180deg, rgba(61,155,224,.32) 0%, rgba(27,87,168,.32) 100%);
+    border-color: rgba(127,212,245,.55);
+  }
+  .menu button:focus-visible{ outline: 2px solid var(--brand-hot); outline-offset: 2px; }
+
+  /* sin JavaScript se ven todas las vistas, una abajo de la otra */
+  .vista{ display: block; }
+  body.pestanas .vista{ display: none; }
+  body.pestanas .vista.activa{ display: block; }
+
+  /* al pie de cada vista, para seguir sin volver arriba */
+  .siguiente{
+    display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between;
+    border-top: 1px solid var(--edge-vivo);
+    padding-top: 26px;
+  }
+  .siguiente span{
+    font-family: "Archivo Narrow", Arial, sans-serif; font-size: 14px;
+    letter-spacing: .04em; color: var(--dim); text-transform: uppercase;
+  }
+  .siguiente button{
+    font-family: Archivo, Arial, sans-serif; font-weight: 700; font-size: 15px;
+    background: transparent; color: var(--brand-hot);
+    border: 1px solid var(--edge-vivo); border-radius: 999px;
+    padding: 11px 20px; cursor: pointer; min-height: 44px;
+    display: inline-flex; align-items: center; gap: 9px;
+    transition: border-color .2s ease, background .2s ease;
+  }
+  .siguiente button:hover{ border-color: var(--brand); background: rgba(61,155,224,.12); }
+  .siguiente button svg{ width: 16px; height: 16px; }
+
+  /* ================= CONTACTO CON &Iacute;CONOS ================= */
+  .contactos{ display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+  .contacto{
+    display: inline-flex; align-items: center; gap: 11px;
+    text-decoration: none; color: var(--text);
+    background: var(--surface-3);
+    border: 1px solid var(--edge-vivo); border-radius: 999px;
+    padding: 10px 22px 10px 11px;
+    font-family: Archivo, Arial, sans-serif; font-size: 15px;
+    transition: border-color .2s ease, background .2s ease, transform .2s ease;
+    min-height: 48px; text-align: left;
+  }
+  .contacto:hover{ border-color: var(--brand); background: #1F3D66; transform: translateY(-1px); }
+  .contacto-ico{
+    width: 32px; height: 32px; border-radius: 50%; flex: none;
+    display: grid; place-items: center;
+  }
+  .contacto-ico svg{ width: 18px; height: 18px; color: #FFFFFF; }
+  .contacto-mail .contacto-ico{ background: linear-gradient(140deg, #EA4335 0%, #C5221F 100%); }
+  .contacto-ig   .contacto-ico{ background: linear-gradient(45deg, #F9CE34 0%, #EE2A7B 52%, #6228D7 100%); }
+  .contacto small{
+    display: block; font-family: "Archivo Narrow", Arial, sans-serif;
+    font-weight: 500; font-size: 12.5px; color: var(--muted); line-height: 1.3;
+  }
+  .contacto b{ display: block; font-weight: 700; line-height: 1.3; }
+
+  @media print{
+    /* en papel no hay pesta&ntilde;as: se imprime todo */
+    body.pestanas .vista{ display: block !important; }
+    .menu, .siguiente{ display: none !important; }
+    .banda, .banda-2{ background: #fff !important; border-block: 0 !important; }
+    .area:nth-child(odd), .rubro:nth-child(even), .sense:nth-child(2){ background: #fff !important; }
+    .head h2{ color: #0B1420 !important; }
+    .contacto{ background: #fff !important; border-color: #B9C7D8 !important; color: #0B1420 !important; }
+    .contacto small{ color: #3B4B5C !important; }
+  }
+
+
+/* ---------- versi&oacute;n para imprimir / guardar como PDF ---------- */
   @media print{
     :root{
       --ink:#FFFFFF; --ink-2:#FFFFFF; --surface:#FFFFFF; --surface-2:#FFFFFF;
@@ -504,7 +636,6 @@
 </style>
 </head>
 <body>
-
 <style>
   /* ---------- el problema, en dos frentes ---------- */
   .dos-frentes{ display: grid; gap: 34px; }
@@ -591,6 +722,13 @@
       <img src="data:image/webp;base64,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" alt="">
       <b>explos<i>IA</i></b>
     </span>
+    <nav class="menu" aria-label="Secciones">
+      <button type="button" data-vista="inicio">Inicio</button>
+      <button type="button" data-vista="hacemos">Qu&eacute; hacemos</button>
+      <button type="button" data-vista="funciona">C&oacute;mo funciona</button>
+      <button type="button" data-vista="ejemplos">Ejemplos</button>
+      <button type="button" data-vista="hablemos">Hablemos</button>
+    </nav>
     <a class="btn" href="https://wa.me/5491130270119?text=Hola!%20Vi%20la%20presentaci%C3%B3n%20de%20ExplosIA%20y%20quiero%20saber%20qu%C3%A9%20se%20puede%20automatizar%20en%20mi%20negocio." target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.23 8.23 0 0 1 8.24 8.24c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.78.97-.14.16-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
       Escribinos
@@ -600,7 +738,8 @@
 
 <main>
 
-  <!-- ===================== PORTADA ===================== -->
+<div class="vista" id="v-inicio">
+<!-- ===================== PORTADA ===================== -->
   <section class="hero">
     <span class="grid-bg" aria-hidden="true"></span>
     <span class="glow glow-a" aria-hidden="true"></span>
@@ -620,9 +759,7 @@
     </div>
   </section>
 
-  <hr class="rule">
-
-  <!-- ===================== EL PROBLEMA ===================== -->
+<!-- ===================== EL PROBLEMA ===================== -->
   <section>
     <div class="wrap stack-lg">
       <div class="head" style="margin-bottom:0">
@@ -663,10 +800,8 @@
     </div>
   </section>
 
-  <hr class="rule">
-
-  <!-- ===================== QU&Eacute; ES ===================== -->
-  <section>
+<!-- ===================== QU&Eacute; ES ===================== -->
+  <section class="banda">
     <div class="wrap stack-lg">
       <div class="head" style="margin-bottom:0">
         <p class="eyebrow">Qu&eacute; es</p>
@@ -761,10 +896,17 @@
     </div>
   </section>
 
-  <hr class="rule">
 
-  <!-- ===================== D&Oacute;NDE PUEDE TRABAJAR ===================== -->
-  <section>
+  <div class="wrap"><div class="siguiente">
+    <span>Segu&iacute; leyendo</span>
+    <button type="button" data-ir="hacemos">Qu&eacute; hacemos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></button>
+  </div></div>
+
+</div><!-- /inicio -->
+
+<div class="vista" id="v-hacemos">
+<!-- ===================== D&Oacute;NDE PUEDE TRABAJAR ===================== -->
+  <section class="banda-2">
     <div class="wrap stack-lg">
       <div class="head" style="margin-bottom:0">
         <p class="eyebrow">D&oacute;nde puede trabajar</p>
@@ -848,9 +990,45 @@
     </div>
   </section>
 
-  <hr class="rule">
+<!-- ===================== QU&Eacute; ENTIENDE ===================== -->
+  <section class="banda">
+    <div class="wrap stack-lg">
+      <div class="head" style="margin-bottom:0">
+        <p class="eyebrow">Qu&eacute; entiende</p>
+        <h2>El trabajo llega desprolijo. As&iacute; es como llega de verdad</h2>
+        <p>Nadie escribe un pedido en formato de formulario. Mandan audios manejando, sacan una foto del remito en vez de tipearlo, cortan la idea en cuatro mensajes. Todo eso lo entiende.</p>
+      </div>
 
-  <!-- ===================== C&Oacute;MO FUNCIONA ===================== -->
+      <div class="senses">
+        <div class="sense">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          <h3>Texto</h3>
+          <p>Con faltas de ortograf&iacute;a, abreviaturas, condiciones metidas en el medio o la idea partida en varios mensajes cortos.</p>
+        </div>
+        <div class="sense">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/></svg>
+          <h3>Audios</h3>
+          <p>Los escucha y los entiende. Alguien manda su nota de voz de un minuto y el trabajo queda hecho como si la hubiera escrito.</p>
+        </div>
+        <div class="sense">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2.5"/><circle cx="8.8" cy="9.6" r="1.8"/><path d="m3.5 17.5 4.6-4.3a2 2 0 0 1 2.7 0l3 2.8"/><path d="m14 15 2.2-2a2 2 0 0 1 2.7 0l2.1 1.9"/></svg>
+          <h3>Fotos y papeles</h3>
+          <p>Mira la imagen y lee lo que hay adentro: un remito, una lista escrita a mano, la etiqueta de un producto, un comprobante, una captura de pantalla.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <div class="wrap"><div class="siguiente">
+    <span>Segu&iacute; leyendo</span>
+    <button type="button" data-ir="funciona">C&oacute;mo funciona <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></button>
+  </div></div>
+
+</div><!-- /hacemos -->
+
+<div class="vista" id="v-funciona">
+<!-- ===================== C&Oacute;MO FUNCIONA ===================== -->
   <section>
     <div class="wrap stack-lg">
       <div class="head" style="margin-bottom:0">
@@ -915,10 +1093,160 @@
     </div>
   </section>
 
-  <hr class="rule">
+<!-- ===================== 24 HORAS ===================== -->
+  <section class="banda">
+    <div class="wrap stack-lg">
+      <div class="head" style="margin-bottom:0">
+        <p class="eyebrow">Disponibilidad</p>
+        <h2>Trabaja cuando el negocio est&aacute; cerrado</h2>
+        <p>El trabajo no aparece s&oacute;lo en horario de atenci&oacute;n, y las tareas de todos los d&iacute;as no tienen por qu&eacute; esperar a que alguien las haga.</p>
+      </div>
 
-  <!-- ===================== EJEMPLO 1: PEDIDO -> FACTURA ===================== -->
+      <figure>
+        <div class="fig">
+          <svg viewBox="0 0 880 250" role="img" aria-label="Franja de 24 horas: hoy el trabajo s&oacute;lo avanza en el horario del local y el resto se acumula; con un agente, la franja completa queda cubierta.">
+            <text x="20" y="24" font-family="Archivo Narrow, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="1.4" fill="currentColor" fill-opacity=".5">UN D&Iacute;A CUALQUIERA</text>
+
+            <g font-family="Archivo Narrow, Arial, sans-serif" font-size="11.5" fill="currentColor" fill-opacity=".5" text-anchor="middle">
+              <text x="80" y="52">00</text>
+              <text x="220" y="52">06</text>
+              <text x="360" y="52">12</text>
+              <text x="500" y="52">18</text>
+              <text x="640" y="52">24</text>
+            </g>
+            <g stroke="currentColor" stroke-opacity=".18">
+              <line x1="80" y1="60" x2="80" y2="196"/>
+              <line x1="220" y1="60" x2="220" y2="196"/>
+              <line x1="360" y1="60" x2="360" y2="196"/>
+              <line x1="500" y1="60" x2="500" y2="196"/>
+              <line x1="640" y1="60" x2="640" y2="196"/>
+            </g>
+
+            <text x="20" y="94" font-family="Archivo, Arial, sans-serif" font-size="13" font-weight="700" fill="currentColor" fill-opacity=".75">Hoy</text>
+            <rect x="80" y="76" width="560" height="34" rx="6" fill="currentColor" fill-opacity=".07" stroke="currentColor" stroke-opacity=".22"/>
+            <rect x="290" y="76" width="210" height="34" rx="6" fill="currentColor" fill-opacity=".22"/>
+            <text x="395" y="98" text-anchor="middle" font-size="12" fill="currentColor" fill-opacity=".95">se trabaja</text>
+            <text x="185" y="98" text-anchor="middle" font-size="12" fill="currentColor" fill-opacity=".45">se acumula</text>
+            <text x="570" y="98" text-anchor="middle" font-size="12" fill="currentColor" fill-opacity=".45">se acumula</text>
+
+            <text x="20" y="158" font-family="Archivo, Arial, sans-serif" font-size="13" font-weight="700" fill="#3D9BE0">Con un agente</text>
+            <rect x="80" y="140" width="560" height="34" rx="6" fill="#3D9BE0" fill-opacity=".24" stroke="#3D9BE0"/>
+            <text x="360" y="162" text-anchor="middle" font-size="12" font-weight="600" fill="currentColor">el trabajo avanza igual</text>
+
+            <g fill="#7FD4F5">
+              <circle cx="128" cy="196" r="3.4"/>
+              <circle cx="196" cy="196" r="3.4"/>
+              <circle cx="330" cy="196" r="3.4"/>
+              <circle cx="418" cy="196" r="3.4"/>
+              <circle cx="556" cy="196" r="3.4"/>
+              <circle cx="604" cy="196" r="3.4"/>
+            </g>
+            <text x="20" y="200" font-family="Archivo Narrow, Arial, sans-serif" font-size="11.5" fill="currentColor" fill-opacity=".5">entra trabajo</text>
+            <text x="128" y="224" text-anchor="middle" font-family="Archivo Narrow, Arial, sans-serif" font-size="11" fill="currentColor" fill-opacity=".55">01:45</text>
+            <text x="604" y="224" text-anchor="middle" font-family="Archivo Narrow, Arial, sans-serif" font-size="11" fill="currentColor" fill-opacity=".55">22:10</text>
+
+            <line x1="672" y1="70" x2="672" y2="180" stroke="currentColor" stroke-opacity=".18"/>
+            <text x="694" y="96" font-family="Archivo Narrow, Arial, sans-serif" font-size="12" fill="currentColor" fill-opacity=".65">Y tambi&eacute;n</text>
+            <text x="694" y="116" font-size="13" fill="currentColor" fill-opacity=".9">s&aacute;bados,</text>
+            <text x="694" y="136" font-size="13" fill="currentColor" fill-opacity=".9">domingos</text>
+            <text x="694" y="156" font-size="13" fill="currentColor" fill-opacity=".9">y feriados.</text>
+          </svg>
+        </div>
+        <figcaption>El gr&aacute;fico compara franjas horarias de trabajo, no vol&uacute;menes de venta. Lo que hoy cae fuera del horario no desaparece: espera a que alguien lo agarre a la ma&ntilde;ana siguiente.</figcaption>
+      </figure>
+
+      <div class="col">
+        <p>El agente adem&aacute;s <b>sabe qu&eacute; hora y qu&eacute; d&iacute;a es</b>. No promete que algo sale ma&ntilde;ana si ma&ntilde;ana es domingo, y las tareas que tienen que correr a una hora fija corren solas a esa hora.</p>
+      </div>
+    </div>
+  </section>
+
+<!-- ===================== VOS SEGU&Iacute;S AL MANDO ===================== -->
   <section>
+    <div class="wrap stack-lg">
+      <div class="head" style="margin-bottom:0">
+        <p class="eyebrow">El control</p>
+        <h2>Vos segu&iacute;s al mando de todo</h2>
+        <p>El agente no es una caja cerrada que hace cosas por su cuenta. Ves lo que hizo, y entr&aacute;s cuando quer&eacute;s.</p>
+      </div>
+
+      <figure>
+        <div class="fig narrow">
+          <svg viewBox="0 0 820 210" role="img" aria-label="El agente trabaja solo, te avisa cuando hace falta, vos resolv&eacute;s, y cuando termin&aacute;s el agente retoma.">
+            <defs>
+              <marker id="ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="#3D9BE0"/>
+              </marker>
+            </defs>
+
+            <rect x="16" y="60" width="164" height="66" rx="11" fill="#3D9BE0" fill-opacity=".13" stroke="#3D9BE0"/>
+            <text x="98" y="88" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-size="14" font-weight="700" fill="currentColor">El agente</text>
+            <text x="98" y="108" text-anchor="middle" font-size="12.5" fill="currentColor" fill-opacity=".8">trabaja solo</text>
+
+            <path d="M 180 93 L 234 93" stroke="#3D9BE0" stroke-width="1.6" marker-end="url(#ar3)" fill="none"/>
+            <text x="207" y="82" text-anchor="middle" font-family="Archivo Narrow, Arial, sans-serif" font-size="11" fill="#3D9BE0">te avisa</text>
+
+            <rect x="238" y="60" width="164" height="66" rx="11" fill="currentColor" fill-opacity=".07" stroke="currentColor" stroke-opacity=".28"/>
+            <text x="320" y="88" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-size="14" font-weight="700" fill="currentColor">Te llega el aviso</text>
+            <text x="320" y="108" text-anchor="middle" font-size="12.5" fill="currentColor" fill-opacity=".8">con el resumen</text>
+
+            <path d="M 402 93 L 456 93" stroke="#3D9BE0" stroke-width="1.6" marker-end="url(#ar3)" fill="none"/>
+            <text x="429" y="82" text-anchor="middle" font-family="Archivo Narrow, Arial, sans-serif" font-size="11" fill="#3D9BE0">entr&aacute;s</text>
+
+            <rect x="460" y="60" width="164" height="66" rx="11" fill="currentColor" fill-opacity=".07" stroke="currentColor" stroke-opacity=".28"/>
+            <text x="542" y="88" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-size="14" font-weight="700" fill="currentColor">Resolv&eacute;s vos</text>
+            <text x="542" y="108" text-anchor="middle" font-size="12.5" fill="currentColor" fill-opacity=".8">el agente espera</text>
+
+            <path d="M 624 93 L 678 93" stroke="#3D9BE0" stroke-width="1.6" marker-end="url(#ar3)" fill="none"/>
+            <text x="651" y="82" text-anchor="middle" font-family="Archivo Narrow, Arial, sans-serif" font-size="11" fill="#3D9BE0">termin&aacute;s</text>
+
+            <rect x="682" y="60" width="122" height="66" rx="11" fill="#3D9BE0" fill-opacity=".13" stroke="#3D9BE0"/>
+            <text x="743" y="88" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-size="14" font-weight="700" fill="currentColor">Retoma</text>
+            <text x="743" y="108" text-anchor="middle" font-size="12.5" fill="currentColor" fill-opacity=".8">y sigue trabajando</text>
+
+            <path d="M 743 126 L 743 168 L 98 168 L 98 126" stroke="#3D9BE0" stroke-opacity=".55" stroke-width="1.4" stroke-dasharray="5 5" fill="none" marker-end="url(#ar3)"/>
+            <text x="420" y="188" text-anchor="middle" font-family="Archivo Narrow, Arial, sans-serif" font-size="11.5" fill="currentColor" fill-opacity=".55">Sin cortes ni saltos para el que est&aacute; del otro lado</text>
+
+            <text x="16" y="34" font-family="Archivo Narrow, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="1.4" fill="currentColor" fill-opacity=".5">EL PASE A UNA PERSONA</text>
+          </svg>
+        </div>
+        <figcaption>Cuando entr&aacute;s vos, el agente se hace a un lado en ese caso puntual &mdash;nunca act&uacute;an los dos a la vez&mdash; y cuando termin&aacute;s, retoma.</figcaption>
+      </figure>
+
+      <div class="col">
+        <ul class="ticks">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            <span><b>Ves todo lo que hizo</b>, incluido lo que resolvi&oacute; solo mientras vos no estabas.</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            <span><b>Lo fren&aacute;s cuando quer&eacute;s</b>, en un caso puntual o en todo, y lo volv&eacute;s a soltar cuando te parece.</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            <span><b>Hay cosas que quedan siempre en tus manos.</b> Lo que se aprueba, lo que se firma, lo que se cobra: se define desde el principio qu&eacute; toca y qu&eacute; no.</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            <span><b>Se le pone por escrito qu&eacute; no puede hacer.</b> Precios que cerr&aacute;s vos, descuentos, condiciones especiales: ah&iacute; no se mete.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+  <div class="wrap"><div class="siguiente">
+    <span>Segu&iacute; leyendo</span>
+    <button type="button" data-ir="ejemplos">Ejemplos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></button>
+  </div></div>
+
+</div><!-- /funciona -->
+
+<div class="vista" id="v-ejemplos">
+<!-- ===================== EJEMPLO 1: PEDIDO -> FACTURA ===================== -->
+  <section class="banda">
     <div class="wrap stack-lg">
       <div class="head" style="margin-bottom:0">
         <p class="eyebrow">Ejemplo &middot; Puertas adentro</p>
@@ -961,10 +1289,8 @@
     </div>
   </section>
 
-  <hr class="rule">
-
-  <!-- ===================== EJEMPLO 2: ATENCI&Oacute;N ===================== -->
-  <section>
+<!-- ===================== EJEMPLO 2: ATENCI&Oacute;N ===================== -->
+  <section class="banda-2">
     <div class="wrap">
       <div class="head">
         <p class="eyebrow">Ejemplo &middot; De cara al cliente</p>
@@ -1045,188 +1371,8 @@
     </div>
   </section>
 
-  <hr class="rule">
-
-  <!-- ===================== QU&Eacute; ENTIENDE ===================== -->
-  <section>
-    <div class="wrap stack-lg">
-      <div class="head" style="margin-bottom:0">
-        <p class="eyebrow">Qu&eacute; entiende</p>
-        <h2>El trabajo llega desprolijo. As&iacute; es como llega de verdad</h2>
-        <p>Nadie escribe un pedido en formato de formulario. Mandan audios manejando, sacan una foto del remito en vez de tipearlo, cortan la idea en cuatro mensajes. Todo eso lo entiende.</p>
-      </div>
-
-      <div class="senses">
-        <div class="sense">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-          <h3>Texto</h3>
-          <p>Con faltas de ortograf&iacute;a, abreviaturas, condiciones metidas en el medio o la idea partida en varios mensajes cortos.</p>
-        </div>
-        <div class="sense">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/></svg>
-          <h3>Audios</h3>
-          <p>Los escucha y los entiende. Alguien manda su nota de voz de un minuto y el trabajo queda hecho como si la hubiera escrito.</p>
-        </div>
-        <div class="sense">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2.5"/><circle cx="8.8" cy="9.6" r="1.8"/><path d="m3.5 17.5 4.6-4.3a2 2 0 0 1 2.7 0l3 2.8"/><path d="m14 15 2.2-2a2 2 0 0 1 2.7 0l2.1 1.9"/></svg>
-          <h3>Fotos y papeles</h3>
-          <p>Mira la imagen y lee lo que hay adentro: un remito, una lista escrita a mano, la etiqueta de un producto, un comprobante, una captura de pantalla.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="rule">
-
-  <!-- ===================== 24 HORAS ===================== -->
-  <section>
-    <div class="wrap stack-lg">
-      <div class="head" style="margin-bottom:0">
-        <p class="eyebrow">Disponibilidad</p>
-        <h2>Trabaja cuando el negocio est&aacute; cerrado</h2>
-        <p>El trabajo no aparece s&oacute;lo en horario de atenci&oacute;n, y las tareas de todos los d&iacute;as no tienen por qu&eacute; esperar a que alguien las haga.</p>
-      </div>
-
-      <figure>
-        <div class="fig">
-          <svg viewBox="0 0 880 250" role="img" aria-label="Franja de 24 horas: hoy el trabajo s&oacute;lo avanza en el horario del local y el resto se acumula; con un agente, la franja completa queda cubierta.">
-            <text x="20" y="24" font-family="Archivo Narrow, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="1.4" fill="currentColor" fill-opacity=".5">UN D&Iacute;A CUALQUIERA</text>
-
-            <g font-family="Archivo Narrow, Arial, sans-serif" font-size="11.5" fill="currentColor" fill-opacity=".5" text-anchor="middle">
-              <text x="80" y="52">00</text>
-              <text x="220" y="52">06</text>
-              <text x="360" y="52">12</text>
-              <text x="500" y="52">18</text>
-              <text x="640" y="52">24</text>
-            </g>
-            <g stroke="currentColor" stroke-opacity=".18">
-              <line x1="80" y1="60" x2="80" y2="196"/>
-              <line x1="220" y1="60" x2="220" y2="196"/>
-              <line x1="360" y1="60" x2="360" y2="196"/>
-              <line x1="500" y1="60" x2="500" y2="196"/>
-              <line x1="640" y1="60" x2="640" y2="196"/>
-            </g>
-
-            <text x="20" y="94" font-family="Archivo, Arial, sans-serif" font-size="13" font-weight="700" fill="currentColor" fill-opacity=".75">Hoy</text>
-            <rect x="80" y="76" width="560" height="34" rx="6" fill="currentColor" fill-opacity=".07" stroke="currentColor" stroke-opacity=".22"/>
-            <rect x="290" y="76" width="210" height="34" rx="6" fill="currentColor" fill-opacity=".22"/>
-            <text x="395" y="98" text-anchor="middle" font-size="12" fill="currentColor" fill-opacity=".95">se trabaja</text>
-            <text x="185" y="98" text-anchor="middle" font-size="12" fill="currentColor" fill-opacity=".45">se acumula</text>
-            <text x="570" y="98" text-anchor="middle" font-size="12" fill="currentColor" fill-opacity=".45">se acumula</text>
-
-            <text x="20" y="158" font-family="Archivo, Arial, sans-serif" font-size="13" font-weight="700" fill="#3D9BE0">Con un agente</text>
-            <rect x="80" y="140" width="560" height="34" rx="6" fill="#3D9BE0" fill-opacity=".24" stroke="#3D9BE0"/>
-            <text x="360" y="162" text-anchor="middle" font-size="12" font-weight="600" fill="currentColor">el trabajo avanza igual</text>
-
-            <g fill="#7FD4F5">
-              <circle cx="128" cy="196" r="3.4"/>
-              <circle cx="196" cy="196" r="3.4"/>
-              <circle cx="330" cy="196" r="3.4"/>
-              <circle cx="418" cy="196" r="3.4"/>
-              <circle cx="556" cy="196" r="3.4"/>
-              <circle cx="604" cy="196" r="3.4"/>
-            </g>
-            <text x="20" y="200" font-family="Archivo Narrow, Arial, sans-serif" font-size="11.5" fill="currentColor" fill-opacity=".5">entra trabajo</text>
-            <text x="128" y="224" text-anchor="middle" font-family="Archivo Narrow, Arial, sans-serif" font-size="11" fill="currentColor" fill-opacity=".55">01:45</text>
-            <text x="604" y="224" text-anchor="middle" font-family="Archivo Narrow, Arial, sans-serif" font-size="11" fill="currentColor" fill-opacity=".55">22:10</text>
-
-            <line x1="672" y1="70" x2="672" y2="180" stroke="currentColor" stroke-opacity=".18"/>
-            <text x="694" y="96" font-family="Archivo Narrow, Arial, sans-serif" font-size="12" fill="currentColor" fill-opacity=".65">Y tambi&eacute;n</text>
-            <text x="694" y="116" font-size="13" fill="currentColor" fill-opacity=".9">s&aacute;bados,</text>
-            <text x="694" y="136" font-size="13" fill="currentColor" fill-opacity=".9">domingos</text>
-            <text x="694" y="156" font-size="13" fill="currentColor" fill-opacity=".9">y feriados.</text>
-          </svg>
-        </div>
-        <figcaption>El gr&aacute;fico compara franjas horarias de trabajo, no vol&uacute;menes de venta. Lo que hoy cae fuera del horario no desaparece: espera a que alguien lo agarre a la ma&ntilde;ana siguiente.</figcaption>
-      </figure>
-
-      <div class="col">
-        <p>El agente adem&aacute;s <b>sabe qu&eacute; hora y qu&eacute; d&iacute;a es</b>. No promete que algo sale ma&ntilde;ana si ma&ntilde;ana es domingo, y las tareas que tienen que correr a una hora fija corren solas a esa hora.</p>
-      </div>
-    </div>
-  </section>
-
-  <hr class="rule">
-
-  <!-- ===================== VOS SEGU&Iacute;S AL MANDO ===================== -->
-  <section>
-    <div class="wrap stack-lg">
-      <div class="head" style="margin-bottom:0">
-        <p class="eyebrow">El control</p>
-        <h2>Vos segu&iacute;s al mando de todo</h2>
-        <p>El agente no es una caja cerrada que hace cosas por su cuenta. Ves lo que hizo, y entr&aacute;s cuando quer&eacute;s.</p>
-      </div>
-
-      <figure>
-        <div class="fig narrow">
-          <svg viewBox="0 0 820 210" role="img" aria-label="El agente trabaja solo, te avisa cuando hace falta, vos resolv&eacute;s, y cuando termin&aacute;s el agente retoma.">
-            <defs>
-              <marker id="ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-                <path d="M 0 0 L 10 5 L 0 10 z" fill="#3D9BE0"/>
-              </marker>
-            </defs>
-
-            <rect x="16" y="60" width="164" height="66" rx="11" fill="#3D9BE0" fill-opacity=".13" stroke="#3D9BE0"/>
-            <text x="98" y="88" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-size="14" font-weight="700" fill="currentColor">El agente</text>
-            <text x="98" y="108" text-anchor="middle" font-size="12.5" fill="currentColor" fill-opacity=".8">trabaja solo</text>
-
-            <path d="M 180 93 L 234 93" stroke="#3D9BE0" stroke-width="1.6" marker-end="url(#ar3)" fill="none"/>
-            <text x="207" y="82" text-anchor="middle" font-family="Archivo Narrow, Arial, sans-serif" font-size="11" fill="#3D9BE0">te avisa</text>
-
-            <rect x="238" y="60" width="164" height="66" rx="11" fill="currentColor" fill-opacity=".07" stroke="currentColor" stroke-opacity=".28"/>
-            <text x="320" y="88" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-size="14" font-weight="700" fill="currentColor">Te llega el aviso</text>
-            <text x="320" y="108" text-anchor="middle" font-size="12.5" fill="currentColor" fill-opacity=".8">con el resumen</text>
-
-            <path d="M 402 93 L 456 93" stroke="#3D9BE0" stroke-width="1.6" marker-end="url(#ar3)" fill="none"/>
-            <text x="429" y="82" text-anchor="middle" font-family="Archivo Narrow, Arial, sans-serif" font-size="11" fill="#3D9BE0">entr&aacute;s</text>
-
-            <rect x="460" y="60" width="164" height="66" rx="11" fill="currentColor" fill-opacity=".07" stroke="currentColor" stroke-opacity=".28"/>
-            <text x="542" y="88" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-size="14" font-weight="700" fill="currentColor">Resolv&eacute;s vos</text>
-            <text x="542" y="108" text-anchor="middle" font-size="12.5" fill="currentColor" fill-opacity=".8">el agente espera</text>
-
-            <path d="M 624 93 L 678 93" stroke="#3D9BE0" stroke-width="1.6" marker-end="url(#ar3)" fill="none"/>
-            <text x="651" y="82" text-anchor="middle" font-family="Archivo Narrow, Arial, sans-serif" font-size="11" fill="#3D9BE0">termin&aacute;s</text>
-
-            <rect x="682" y="60" width="122" height="66" rx="11" fill="#3D9BE0" fill-opacity=".13" stroke="#3D9BE0"/>
-            <text x="743" y="88" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-size="14" font-weight="700" fill="currentColor">Retoma</text>
-            <text x="743" y="108" text-anchor="middle" font-size="12.5" fill="currentColor" fill-opacity=".8">y sigue trabajando</text>
-
-            <path d="M 743 126 L 743 168 L 98 168 L 98 126" stroke="#3D9BE0" stroke-opacity=".55" stroke-width="1.4" stroke-dasharray="5 5" fill="none" marker-end="url(#ar3)"/>
-            <text x="420" y="188" text-anchor="middle" font-family="Archivo Narrow, Arial, sans-serif" font-size="11.5" fill="currentColor" fill-opacity=".55">Sin cortes ni saltos para el que est&aacute; del otro lado</text>
-
-            <text x="16" y="34" font-family="Archivo Narrow, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="1.4" fill="currentColor" fill-opacity=".5">EL PASE A UNA PERSONA</text>
-          </svg>
-        </div>
-        <figcaption>Cuando entr&aacute;s vos, el agente se hace a un lado en ese caso puntual &mdash;nunca act&uacute;an los dos a la vez&mdash; y cuando termin&aacute;s, retoma.</figcaption>
-      </figure>
-
-      <div class="col">
-        <ul class="ticks">
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-            <span><b>Ves todo lo que hizo</b>, incluido lo que resolvi&oacute; solo mientras vos no estabas.</span>
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-            <span><b>Lo fren&aacute;s cuando quer&eacute;s</b>, en un caso puntual o en todo, y lo volv&eacute;s a soltar cuando te parece.</span>
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-            <span><b>Hay cosas que quedan siempre en tus manos.</b> Lo que se aprueba, lo que se firma, lo que se cobra: se define desde el principio qu&eacute; toca y qu&eacute; no.</span>
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-            <span><b>Se le pone por escrito qu&eacute; no puede hacer.</b> Precios que cerr&aacute;s vos, descuentos, condiciones especiales: ah&iacute; no se mete.</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <hr class="rule">
-
-  <!-- ===================== RUBROS ===================== -->
-  <section>
+<!-- ===================== RUBROS ===================== -->
+  <section class="banda">
     <div class="wrap stack-lg">
       <div class="head" style="margin-bottom:0">
         <p class="eyebrow">Ejemplos por rubro</p>
@@ -1267,9 +1413,16 @@
     </div>
   </section>
 
-  <hr class="rule">
 
-  <!-- ===================== C&Oacute;MO TRABAJAMOS ===================== -->
+  <div class="wrap"><div class="siguiente">
+    <span>Segu&iacute; leyendo</span>
+    <button type="button" data-ir="hablemos">Hablemos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></button>
+  </div></div>
+
+</div><!-- /ejemplos -->
+
+<div class="vista" id="v-hablemos">
+<!-- ===================== C&Oacute;MO TRABAJAMOS ===================== -->
   <section>
     <div class="wrap stack-lg">
       <div class="head" style="margin-bottom:0">
@@ -1302,10 +1455,8 @@
     </div>
   </section>
 
-  <hr class="rule">
-
-  <!-- ===================== FAQ ===================== -->
-  <section>
+<!-- ===================== FAQ ===================== -->
+  <section class="banda">
     <div class="wrap">
       <div class="head">
         <p class="eyebrow">Preguntas</p>
@@ -1341,7 +1492,7 @@
     </div>
   </section>
 
-  <!-- ===================== CIERRE ===================== -->
+<!-- ===================== CIERRE ===================== -->
   <section class="close">
     <div class="wrap">
       <p class="eyebrow">Hablemos</p>
@@ -1352,12 +1503,20 @@
         Escribinos por WhatsApp
       </a>
       <a class="wa-number" href="https://wa.me/5491130270119" target="_blank" rel="noopener">+54 9 11 3027-0119</a>
-      <div class="contact-alt">
-        <a href="mailto:explosia.automatizacion@gmail.com">explosia.automatizacion@gmail.com</a>
-        <a href="https://instagram.com/explosia.automatizacion" target="_blank" rel="noopener">@explosia.automatizacion</a>
+      <div class="contactos">
+        <a class="contacto contacto-mail" href="mailto:explosia.automatizacion@gmail.com">
+          <span class="contacto-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3 7 8.2 6.1a1.4 1.4 0 0 0 1.6 0L21 7"/></svg></span>
+          <span><b>Mandanos un mail</b><small>explosia.automatizacion@gmail.com</small></span>
+        </a>
+        <a class="contacto contacto-ig" href="https://instagram.com/explosia.automatizacion" target="_blank" rel="noopener">
+          <span class="contacto-ico"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16Zm0 1.98c-3.15 0-3.5.01-4.74.07-1.14.05-1.76.24-2.17.4-.55.21-.94.47-1.35.88-.41.41-.67.8-.88 1.35-.16.41-.35 1.03-.4 2.17-.06 1.24-.07 1.59-.07 4.74s.01 3.5.07 4.74c.05 1.14.24 1.76.4 2.17.21.55.47.94.88 1.35.41.41.8.67 1.35.88.41.16 1.03.35 2.17.4 1.24.06 1.6.07 4.74.07s3.5-.01 4.74-.07c1.14-.05 1.76-.24 2.17-.4.55-.21.94-.47 1.35-.88.41-.41.67-.8.88-1.35.16-.41.35-1.03.4-2.17.06-1.24.07-1.59.07-4.74s-.01-3.5-.07-4.74c-.05-1.14-.24-1.76-.4-2.17a3.64 3.64 0 0 0-.88-1.35 3.64 3.64 0 0 0-1.35-.88c-.41-.16-1.03-.35-2.17-.4-1.24-.06-1.59-.07-4.74-.07Zm0 3.37a5.49 5.49 0 1 1 0 10.98 5.49 5.49 0 0 1 0-10.98Zm0 1.98a3.51 3.51 0 1 0 0 7.02 3.51 3.51 0 0 0 0-7.02Zm5.71-3.53a1.28 1.28 0 1 1 0 2.57 1.28 1.28 0 0 1 0-2.57Z"/></svg></span>
+          <span><b>Segu&iacute;nos en Instagram</b><small>@explosia.automatizacion</small></span>
+        </a>
       </div>
     </div>
   </section>
+
+</div><!-- /hablemos -->
 
 </main>
 
@@ -1374,54 +1533,112 @@
 
 
 <script>
+/* ============================================================
+   1. LAS PESTANAS
+   Van primero y no dependen de nada: si la libreria de animacion
+   no carga, la navegacion sigue funcionando igual.
+   Sin JavaScript no se agrega la clase "pestanas" y entonces se
+   ven todas las vistas una abajo de la otra, como antes.
+   ============================================================ */
+var Pestanas = (function () {
+  var vistas  = [].slice.call(document.querySelectorAll(".vista"));
+  var botones = [].slice.call(document.querySelectorAll(".menu button[data-vista]"));
+  if (!vistas.length || !botones.length) return null;
+
+  document.body.classList.add("pestanas");
+
+  var alCambiar = null;
+
+  function ir(id, mover) {
+    var destino = document.getElementById("v-" + id);
+    if (!destino) return;
+
+    vistas.forEach(function (v) { v.classList.toggle("activa", v === destino); });
+    botones.forEach(function (b) {
+      if (b.dataset.vista === id) b.setAttribute("aria-current", "page");
+      else b.removeAttribute("aria-current");
+    });
+
+    if (history.replaceState) history.replaceState(null, "", "#" + id);
+
+    if (mover) {
+      var suave = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({ top: 0, behavior: suave ? "smooth" : "auto" });
+    }
+    if (alCambiar) alCambiar(destino);
+  }
+
+  botones.forEach(function (b) {
+    b.addEventListener("click", function () { ir(b.dataset.vista, true); });
+  });
+  [].slice.call(document.querySelectorAll("[data-ir]")).forEach(function (b) {
+    b.addEventListener("click", function () { ir(b.dataset.ir, true); });
+  });
+  window.addEventListener("hashchange", function () {
+    ir((location.hash || "").replace("#", "") || vistas[0].id.replace("v-", ""), false);
+  });
+
+  // Arranque: si el link traia una pestana, se abre esa.
+  var inicial = (location.hash || "").replace("#", "");
+  if (!document.getElementById("v-" + inicial)) inicial = vistas[0].id.replace("v-", "");
+  ir(inicial, false);
+
+  return { ir: ir, alCambiar: function (fn) { alCambiar = fn; } };
+})();
+
+/* ============================================================
+   2. EL MOVIMIENTO
+   Todo lo de abajo es decoracion. Si falta, la pagina funciona.
+   ============================================================ */
 (function () {
-  // Si la libreria no carga, la pagina queda tal cual: entera y legible.
-  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
-  gsap.registerPlugin(ScrollTrigger);
+  if (typeof gsap === "undefined") return;
+  if (typeof ScrollTrigger !== "undefined") gsap.registerPlugin(ScrollTrigger);
 
   var mm = gsap.matchMedia();
 
-  // Todo el movimiento vive aca dentro: si el visitante pidio menos animacion,
-  // este bloque no corre y la pagina se ve directamente en su estado final.
   mm.add("(prefers-reduced-motion: no-preference)", function () {
 
-    /* --- 1. entrada de la portada --- */
-    var portada = gsap.timeline({ defaults: { ease: "expo.out" } });
-    portada
-      .from(".hero-logo", { opacity: 0, y: 26, scale: .9, duration: .9 })
+    /* --- entrada de la portada --- */
+    gsap.timeline({ defaults: { ease: "expo.out" } })
+      .from(".hero-logo",     { opacity: 0, y: 26, scale: .9, duration: .9 })
       .from(".hero .eyebrow", { opacity: 0, y: 14, duration: .6 }, "-=.55")
-      .from(".hero h1", { opacity: 0, y: 22, duration: .8 }, "-=.45")
-      .from(".hero-sub", { opacity: 0, y: 18, duration: .7 }, "-=.55")
-      .from(".hero-cta > *", { opacity: 0, y: 14, duration: .6, stagger: .09 }, "-=.45");
+      .from(".hero h1",       { opacity: 0, y: 22, duration: .8 }, "-=.45")
+      .from(".hero-sub",      { opacity: 0, y: 18, duration: .7 }, "-=.55")
+      .from(".hero-cta > *",  { opacity: 0, y: 14, duration: .6, stagger: .09 }, "-=.45");
 
-    /* --- 2. parallax de las capas de fondo (nunca sobre el texto) --- */
-    gsap.utils.toArray(".glow").forEach(function (capa, i) {
-      gsap.to(capa, {
-        yPercent: (i + 1) * 9,
-        ease: "none",
+    /* --- cada vista se presenta al abrirse --- */
+    if (Pestanas) {
+      Pestanas.alCambiar(function (vista) {
+        var piezas = vista.querySelectorAll(".head, .fig, .senses > *, .rubros > *, .mapa > *, " +
+                                           ".flujo > *, .dos-frentes > *, .steps > *, .qa, " +
+                                           ".chat-grid > *, .col");
+        if (!piezas.length) return;
+        gsap.killTweensOf(piezas);
+        gsap.set(piezas, { clearProps: "opacity,transform" });
+        gsap.from(piezas, {
+          opacity: 0, y: 20, duration: .55, ease: "expo.out",
+          stagger: { each: .05, amount: Math.min(piezas.length * .05, .45) },
+          onComplete: function () { gsap.set(piezas, { clearProps: "opacity,transform" }); }
+        });
+        if (typeof ScrollTrigger !== "undefined") ScrollTrigger.refresh();
+      });
+    }
+
+    /* --- parallax de las capas de fondo (nunca sobre el texto) --- */
+    if (typeof ScrollTrigger !== "undefined") {
+      gsap.utils.toArray(".glow").forEach(function (capa, i) {
+        gsap.to(capa, {
+          yPercent: (i + 1) * 9, ease: "none",
+          scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: .5 }
+        });
+      });
+      gsap.to(".grid-bg", {
+        yPercent: 6, ease: "none",
         scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: .5 }
       });
-    });
-    gsap.to(".grid-bg", {
-      yPercent: 6, ease: "none",
-      scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: .5 }
-    });
+    }
 
-    /* --- 3. cada seccion se presenta al llegar --- */
-    gsap.utils.toArray("section:not(.hero)").forEach(function (sec) {
-      var titulo = sec.querySelector(".head");
-      var cuerpo = sec.querySelectorAll(".fig, .senses > *, .rubros > *, .mapa > *, .flujo > *, .dos-frentes > *, .steps > *, .qa, .pains li, .chat-grid > *, .ticks li");
-      var tl = gsap.timeline({
-        scrollTrigger: { trigger: sec, start: "top 78%", once: true }
-      });
-      if (titulo) tl.from(titulo, { opacity: 0, y: 26, duration: .7, ease: "expo.out" });
-      if (cuerpo.length) tl.from(cuerpo, {
-        opacity: 0, y: 22, duration: .6, ease: "expo.out",
-        stagger: { each: .06, amount: Math.min(cuerpo.length * .06, .5) }
-      }, titulo ? "-=.45" : 0);
-    });
-
-    /* --- 4. el logo mira hacia donde esta el puntero --- */
+    /* --- el logo mira hacia donde esta el puntero --- */
     var logo = document.querySelector(".hero-logo");
     var hero = document.querySelector(".hero");
     if (logo && hero && window.matchMedia("(hover: hover)").matches) {
@@ -1435,50 +1652,54 @@
       hero.addEventListener("pointerleave", function () { rx(0); ry(0); });
     }
 
-    /* --- 5. las tarjetas se inclinan bajo el puntero --- */
+    /* --- las tarjetas se inclinan bajo el puntero --- */
     if (window.matchMedia("(hover: hover)").matches) {
       gsap.utils.toArray(".sense, .rubro, .task, .area").forEach(function (card) {
         var tx = gsap.quickTo(card, "rotationX", { duration: .5, ease: "power3.out" });
         var ty = gsap.quickTo(card, "rotationY", { duration: .5, ease: "power3.out" });
         var tz = gsap.quickTo(card, "z",         { duration: .5, ease: "power3.out" });
-        function mover(e) {
+        card.addEventListener("pointermove", function (e) {
           var r = card.getBoundingClientRect();
-          var px = (e.clientX - r.left) / r.width;
-          var py = (e.clientY - r.top) / r.height;
+          var px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
           card.style.setProperty("--mx", (px * 100) + "%");
           card.style.setProperty("--my", (py * 100) + "%");
           tx(gsap.utils.clamp(-6, 6, -(py - .5) * 12));
           ty(gsap.utils.clamp(-6, 6,  (px - .5) * 12));
           tz(18);
-        }
-        function salir() { tx(0); ty(0); tz(0); }
-        card.addEventListener("pointermove", mover);
-        card.addEventListener("pointerleave", salir);
+        });
+        card.addEventListener("pointerleave", function () { tx(0); ty(0); tz(0); });
       });
     }
   });
 
-  // Las fuentes y el logo cambian las alturas al terminar de cargar: hay que
-  // recalcular donde arranca cada seccion, si no las animaciones disparan tarde.
-  window.addEventListener("load", function () { ScrollTrigger.refresh(); });
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(function () { ScrollTrigger.refresh(); });
+  // Las fuentes y el logo cambian las alturas al terminar de cargar.
+  if (typeof ScrollTrigger !== "undefined") {
+    window.addEventListener("load", function () { ScrollTrigger.refresh(); });
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () { ScrollTrigger.refresh(); });
+    }
   }
 
-  // Red de seguridad: pase lo que pase, a los 4 segundos no puede quedar
-  // un solo bloque invisible. Preferimos perder una animacion que perder texto.
+  // Red de seguridad: a los 4 segundos no puede quedar un bloque invisible.
+  // Preferimos perder una animacion antes que perder texto.
   setTimeout(function () {
-    document.querySelectorAll("section, .fig, .qa, .sense, .rubro, .task, .area, .flujo-paso, .step, .pains li, .ticks li, .chat-grid > *")
+    document.querySelectorAll(".vista.activa section, .vista.activa .fig, .vista.activa .qa, " +
+                             ".vista.activa .sense, .vista.activa .rubro, .vista.activa .area, " +
+                             ".vista.activa .flujo-paso, .vista.activa .step, .vista.activa .head")
       .forEach(function (el) {
-        if (parseFloat(getComputedStyle(el).opacity) < .98) gsap.set(el, { clearProps: "opacity,transform" });
+        if (parseFloat(getComputedStyle(el).opacity) < .98) {
+          gsap.set(el, { clearProps: "opacity,transform" });
+        }
       });
   }, 4000);
 
-  // Al imprimir o guardar como PDF: nada a medio animar, todo en su estado final.
+  // Al imprimir o guardar como PDF: se muestran TODAS las vistas y nada a medio animar.
   window.addEventListener("beforeprint", function () {
-    ScrollTrigger.getAll().forEach(function (t) { t.kill(false); });
+    if (typeof ScrollTrigger !== "undefined") {
+      ScrollTrigger.getAll().forEach(function (t) { t.kill(false); });
+    }
     gsap.globalTimeline.progress(1);
-    gsap.set(".hero-logo, .sense, .rubro, .task, .area, .phone, .glow, .grid-bg",
+    gsap.set(".hero-logo, .sense, .rubro, .task, .area, .flujo-paso, .head, .fig, .phone, .glow, .grid-bg",
              { clearProps: "all" });
   });
 })();
