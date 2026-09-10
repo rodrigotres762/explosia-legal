@@ -6,3 +6,13 @@ node_modules/
 Thumbs.db
 desktop.ini
 .DS_Store
+
+# El dominio propio, apagado a proposito.
+# explosia.com.ar NO existe en el DNS (comprobado el 9/9/2026: sin
+# registros A, sin servidores de nombres, ni contra el DNS local ni
+# contra el publico de Google). Si este archivo se publica como
+# "CNAME", GitHub manda a los visitantes a un dominio que no responde
+# y el sitio se cae. Cuando el dominio este registrado y apuntando a
+# GitHub, se renombra a CNAME y se saca esta regla.
+CNAME
+CNAME.desactivado
