@@ -1,0 +1,8 @@
+# Dependencias instaladas con npm. Se reinstalan con "npm install",
+# no tienen por que viajar al repo ni publicarse en el sitio.
+node_modules/
+
+# Sistema
+Thumbs.db
+desktop.ini
+.DS_Store

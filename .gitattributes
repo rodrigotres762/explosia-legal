@@ -1,0 +1,8 @@
+# Los scripts de shell SIEMPRE con finales de linea de Unix. Con CRLF
+# el interprete falla con "No such file or directory" sobre un archivo
+# que esta ahi: un error que apunta al lado equivocado y cuesta horas.
+*.sh text eol=lf
+
+# Los .min.js son generados: que git no los trate como texto editable
+# ni ensucie los diffs.
+*.min.js -text -diff

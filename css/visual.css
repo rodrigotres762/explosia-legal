@@ -1,0 +1,149 @@
+/* ============================================================
+   LA CAPA VISUAL
+   Todo lo que agrega el 3D y la portada nueva. Esta aparte a
+   proposito: si algo de aca molesta, se saca el <link> y el
+   sitio vuelve a como estaba, entero.
+   ============================================================ */
+
+/* ---------- el lienzo del 3D ----------
+   Ocupa toda la pantalla y vive detras de todo. No recibe
+   clics: la pagina se usa igual que siempre. */
+
+#escena{
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .9s ease;
+}
+
+html.con-3d #escena{ opacity: 1; }
+
+/* El contenido siempre por encima del lienzo. */
+main{ position: relative; z-index: 1; }
+.topbar{ z-index: 50; }
+
+/* Con el 3D andando, los resplandores de CSS bajan un punto
+   para no sumar niebla sobre niebla. */
+html.con-3d .glow{ opacity: .34; }
+html.con-3d .grid-bg{ opacity: .18; }
+
+/* ---------- la portada ---------- */
+
+.hero{
+  /* Pantalla completa menos la barra de arriba, que ocupa lugar
+     real. Sin restarla, el aviso de "desliza" cae justo fuera de
+     la vista y nadie lo ve. */
+  min-height: min(calc(100svh - 66px), 900px);
+  display: flex;
+  align-items: center;
+}
+
+.hero-grid{
+  display: grid;
+  gap: clamp(18px, 3.5vw, 44px);
+  align-items: center;
+}
+
+.hero-visual{
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: clamp(200px, 40vw, 400px);
+}
+
+/* El logo deja de tener margen propio: ahora lo centra la grilla. */
+.hero-visual .hero-logo{
+  margin-bottom: 0;
+  width: clamp(124px, 22vw, 210px);
+}
+
+/* En pantalla angosta el anillo va arriba, como estaba el logo
+   antes: se ve apenas entra, y el titular queda enseguida abajo.
+   Nada de pantalla completa forzada, que empujaria el boton de
+   WhatsApp fuera de la vista. */
+@media (max-width: 919px){
+  .hero{ min-height: 0; }
+  .hero-visual{
+    order: -1;
+    min-height: clamp(132px, 38vw, 200px);
+  }
+}
+
+@media (min-width: 920px){
+  /* En pantalla grande el texto vive a la izquierda, asi que ahi
+     las particulas se desvanecen. El anillo puede ser grande sin
+     pelearse nunca con lo que hay que leer. */
+  #escena{
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.30) 27%, #000 47%);
+            mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.30) 27%, #000 47%);
+  }
+
+  .hero-grid{ grid-template-columns: 1.06fr .94fr; }
+  .hero-texto{  grid-column: 1; grid-row: 1; }
+  .hero-visual{ grid-column: 2; grid-row: 1; }
+  .hero h1{ max-width: 15ch; }
+}
+
+/* ---------- el aviso de que hay mas abajo ---------- */
+
+.hero-cue{
+  position: absolute;
+  left: 50%;
+  bottom: clamp(14px, 2.5vw, 26px);
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: "Archivo Narrow", Arial, sans-serif;
+  font-size: 13px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--dim);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.hero-cue i{
+  width: 1px;
+  height: 26px;
+  background: linear-gradient(to bottom, transparent, var(--brand));
+  animation: caer 2.1s ease-in-out infinite;
+}
+
+@keyframes caer{
+  0%, 100% { opacity: .25; transform: scaleY(.6); transform-origin: top; }
+  50%      { opacity: 1;   transform: scaleY(1);  transform-origin: top; }
+}
+
+@media (max-height: 620px){
+  .hero-cue{ display: none; }
+  .hero{ min-height: 0; }
+}
+
+/* ---------- menos movimiento ----------
+   Quien pidio menos animaciones en su sistema no ve el 3D ni
+   la linea que late. El texto y el diseno quedan intactos. */
+
+@media (prefers-reduced-motion: reduce){
+  #escena{ display: none; }
+  /* La unica forma de que el 3D aparezca igual es pidiendolo a
+     proposito con ?3d=si, que es lo que agrega esta clase. */
+  html.con-3d #escena{ display: block; }
+  .hero-cue i{ animation: none; }
+}
+
+/* ---------- impresion ----------
+   En papel no hay 3D ni portada de pantalla completa. */
+
+@media print{
+  #escena{ display: none !important; }
+  .hero-cue{ display: none !important; }
+  .hero{ min-height: 0; display: block; }
+  .hero-grid{ display: block; }
+  .hero-visual{ min-height: 0; }
+}
