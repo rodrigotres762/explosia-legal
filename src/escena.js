@@ -187,6 +187,10 @@ export function iniciar(opciones) {
   if (!lienzo) return null;
 
   var liviano = !!opciones.liviano;
+  // Modo quieto: se dibuja la figura ya armada y no se mueve nada.
+  // Es para quien pidio menos animaciones en su sistema: apagar el
+  // movimiento no tiene por que dejarlo sin el dibujo.
+  var estatico = !!opciones.estatico;
   var cantidad = opciones.cantidad || (liviano ? 5200 : 17000);
   var radio = 4.1;
 
@@ -290,7 +294,7 @@ export function iniciar(opciones) {
     fuerzaDestino = 0;
   }
 
-  if (hayPuntero && !liviano) {
+  if (hayPuntero && !liviano && !estatico) {
     window.addEventListener("pointermove", alMover, { passive: true });
     window.addEventListener("pointerleave", alSalir);
     document.addEventListener("mouseleave", alSalir);
@@ -301,7 +305,7 @@ export function iniciar(opciones) {
   var giroDestinoY = 0;
   var giroDestinoX = 0;
 
-  if (hayPuntero && !liviano) {
+  if (hayPuntero && !liviano && !estatico) {
     window.addEventListener("pointermove", function (e) {
       giroDestinoY = ((e.clientX / ancho) * 2 - 1) * 0.22;
       giroDestinoX = ((e.clientY / alto) * 2 - 1) * 0.14;
@@ -319,6 +323,29 @@ export function iniciar(opciones) {
   var acumulado = 0;
 
   function actualizar(delta) {
+    if (estatico) {
+      // Nada de tiempo, giro ni inercia: la figura aparece armada y
+      // se queda donde esta. Solo sigue al bloque de la portada, que
+      // es lo mismo que hace cualquier imagen de la pagina.
+      // Y solo se vuelve a dibujar si de verdad cambio algo: repintar
+      // la misma imagen 60 veces por segundo es gastar bateria al
+      // pedo, justo a quien suele tener el ahorro activado.
+      var cambio = nube.position.x !== destinoX ||
+                   nube.position.y !== destinoY ||
+                   nube.scale.x !== escalaDestino ||
+                   uniforms.uOpacidad.value !== opacidadDestino ||
+                   uniforms.uOrden.value !== 1;
+      if (!cambio) return;
+
+      uniforms.uOrden.value = 1;
+      uniforms.uOpacidad.value = opacidadDestino;
+      nube.position.x = destinoX;
+      nube.position.y = destinoY;
+      nube.scale.set(escalaDestino, escalaDestino, escalaDestino);
+      renderizador.render(escena, camara);
+      return;
+    }
+
     tiempo += delta;
     uniforms.uTiempo.value = tiempo;
 

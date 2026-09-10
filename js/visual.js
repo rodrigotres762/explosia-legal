@@ -23,28 +23,40 @@
 
   var forzado = /[?&]3d=si/.test(location.search);
 
-  function puedeCon3D() {
-    if (forzado) return true;
-    if (menosMovimiento) return false;
+  // Devuelve null si se puede, o el motivo por el que no. Guardar el
+  // motivo importa: sin el, "no se ve el 3D" es un misterio que se
+  // diagnostica a ciegas. Queda en window.__porQueNoHay3D.
+  function motivoSinTresD() {
+    if (forzado) return null;
 
     var con = navigator.connection;
     if (con) {
-      if (con.saveData) return false;
-      if (/(^|-)2g$/.test(con.effectiveType || "")) return false;
+      if (con.saveData) return "ahorro de datos activado";
+      if (/(^|-)2g$/.test(con.effectiveType || "")) return "conexion 2G";
     }
-    if (typeof navigator.deviceMemory === "number" && navigator.deviceMemory < 3) return false;
-    if (typeof navigator.hardwareConcurrency === "number" && navigator.hardwareConcurrency < 4) return false;
+    if (typeof navigator.deviceMemory === "number" && navigator.deviceMemory < 3) {
+      return "poca memoria (" + navigator.deviceMemory + " GB)";
+    }
+    if (typeof navigator.hardwareConcurrency === "number" && navigator.hardwareConcurrency < 4) {
+      return "pocos nucleos (" + navigator.hardwareConcurrency + ")";
+    }
 
     try {
       var prueba = document.createElement("canvas");
       var gl = prueba.getContext("webgl2") || prueba.getContext("webgl");
-      if (!gl) return false;
+      if (!gl) return "el navegador no soporta graficos 3D";
       var perder = gl.getExtension("WEBGL_lose_context");
       if (perder) perder.loseContext();
     } catch (e) {
-      return false;
+      return "fallo al probar los graficos 3D: " + e.message;
     }
-    return true;
+    return null;
+  }
+
+  function puedeCon3D() {
+    var motivo = motivoSinTresD();
+    window.__porQueNoHay3D = motivo;
+    return motivo === null;
   }
 
   // Version liviana: menos particulas, menos resolucion, sin puntero.
@@ -57,6 +69,11 @@
 
   var api = null;
   var visual = null;   // el hueco de la portada donde vive el anillo
+
+  // Quieto = hay 3D, pero sin una sola animacion. Se respeta la
+  // preferencia del sistema sin castigar a la persona quitandole
+  // el dibujo. Si lo pidio a proposito con ?3d=si, se mueve.
+  var quieto = menosMovimiento && !forzado;
 
   function centroDe(el) {
     if (!el) return null;
@@ -93,9 +110,10 @@
   function opacidadSegunScroll() {
     if (!api) return;
     var c = centroDe(visual);
-    if (!c) { api.opacidad(0.22); return; }
+    if (!c) { api.opacidad(quieto ? 0 : 0.22); return; }
     var alto = window.innerHeight || 1;
     // 1 arriba de todo, se va apagando al dejar atras la portada
+    if (quieto) { api.opacidad(1); return; }
     var f = Math.max(0, Math.min(1, 1 - (window.scrollY || 0) / (alto * 0.85)));
     api.opacidad(0.28 + f * 0.72);
   }
@@ -115,7 +133,7 @@
     if (!window.EscenaExplosIA || !window.EscenaExplosIA.iniciar) return;
 
     try {
-      api = window.EscenaExplosIA.iniciar({ liviano: liviano });
+      api = window.EscenaExplosIA.iniciar({ liviano: liviano, estatico: quieto });
     } catch (e) {
       api = null;
     }
@@ -133,7 +151,11 @@
 
     // El orden no aparece de golpe: las particulas se acomodan
     // solas mientras la persona esta mirando. Es el mensaje.
-    if (window.gsap) {
+    // Salvo en modo quieto, donde aparece ya armado.
+    if (quieto) {
+      api.orden(1);
+      api.opacidad(1);
+    } else if (window.gsap) {
       var estado = { v: 0 };
       window.gsap.to(estado, {
         v: 1,

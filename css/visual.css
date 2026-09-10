@@ -130,9 +130,10 @@ html.con-3d .grid-bg{ opacity: .18; }
    la linea que late. El texto y el diseno quedan intactos. */
 
 @media (prefers-reduced-motion: reduce){
-  #escena{ display: none; }
-  /* La unica forma de que el 3D aparezca igual es pidiendolo a
-     proposito con ?3d=si, que es lo que agrega esta clase. */
+  /* Quien pidio menos animaciones igual ve el anillo: lo que no ve
+     es una sola cosa moverse. Ni siquiera la aparicion del lienzo,
+     asi que la transicion tambien se apaga. */
+  #escena{ display: none; transition: none; }
   html.con-3d #escena{ display: block; }
   .hero-cue i{ animation: none; }
 }
