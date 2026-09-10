@@ -187,7 +187,7 @@
   }
 
   function revelar(vista) {
-    if (!window.gsap || menosMovimiento) return;
+    if (!window.gsap || (menosMovimiento && !forzado)) return;
     var gsap = window.gsap;
     var hayST = typeof window.ScrollTrigger !== "undefined";
 
