@@ -191,6 +191,11 @@ export function iniciar(opciones) {
   // Es para quien pidio menos animaciones en su sistema: apagar el
   // movimiento no tiene por que dejarlo sin el dibujo.
   var estatico = !!opciones.estatico;
+  // Modo suave: tambien pidio menos animaciones, pero esta en una
+  // computadora. El anillo gira lento y respira, y nada mas: no sigue
+  // al puntero ni se arrastra con el scroll. Nada reacciona a lo que
+  // la persona hace.
+  var suave = !!opciones.suave && !estatico;
   var cantidad = opciones.cantidad || (liviano ? 5200 : 17000);
   var radio = 4.1;
 
@@ -294,7 +299,7 @@ export function iniciar(opciones) {
     fuerzaDestino = 0;
   }
 
-  if (hayPuntero && !liviano && !estatico) {
+  if (hayPuntero && !liviano && !estatico && !suave) {
     window.addEventListener("pointermove", alMover, { passive: true });
     window.addEventListener("pointerleave", alSalir);
     document.addEventListener("mouseleave", alSalir);
@@ -305,7 +310,7 @@ export function iniciar(opciones) {
   var giroDestinoY = 0;
   var giroDestinoX = 0;
 
-  if (hayPuntero && !liviano && !estatico) {
+  if (hayPuntero && !liviano && !estatico && !suave) {
     window.addEventListener("pointermove", function (e) {
       giroDestinoY = ((e.clientX / ancho) * 2 - 1) * 0.22;
       giroDestinoX = ((e.clientY / alto) * 2 - 1) * 0.14;
@@ -348,6 +353,18 @@ export function iniciar(opciones) {
 
     tiempo += delta;
     uniforms.uTiempo.value = tiempo;
+
+    if (suave) {
+      // Gira y respira, pero sin inercia: se planta donde tiene que
+      // estar, igual que en el modo quieto.
+      uniforms.uOpacidad.value = opacidadDestino;
+      nube.position.x = destinoX;
+      nube.position.y = destinoY;
+      nube.scale.set(escalaDestino, escalaDestino, escalaDestino);
+      nube.rotation.z += delta * 0.045;
+      renderizador.render(escena, camara);
+      return;
+    }
 
     // todo lo que se mueve, se mueve siguiendo a su destino sin saltos
     uniforms.uOpacidad.value += (opacidadDestino - uniforms.uOpacidad.value) * Math.min(delta * 2.2, 1);

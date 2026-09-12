@@ -83,10 +83,13 @@ html.con-3d .grid-bg{ opacity: .18; }
             mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.30) 27%, #000 47%);
   }
 
-  .hero-grid{ grid-template-columns: 1.06fr .94fr; }
+  .hero-grid{ grid-template-columns: minmax(0, 1.18fr) minmax(0, .82fr); }
   .hero-texto{  grid-column: 1; grid-row: 1; }
   .hero-visual{ grid-column: 2; grid-row: 1; }
-  .hero h1{ max-width: 15ch; }
+  /* Aca habia un ".hero h1{ max-width: 15ch }" pensado para el titular
+     grande, pero el h1 es el renglon chico de arriba ("Agencia de...")
+     y lo partia en cinco renglones. Las medidas de la portada en
+     computadora viven al final del index. */
 }
 
 /* ---------- el aviso de que hay mas abajo ---------- */

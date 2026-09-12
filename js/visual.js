@@ -70,10 +70,18 @@
   var api = null;
   var visual = null;   // el hueco de la portada donde vive el anillo
 
-  // Quieto = hay 3D, pero sin una sola animacion. Se respeta la
-  // preferencia del sistema sin castigar a la persona quitandole
-  // el dibujo. Si lo pidio a proposito con ?3d=si, se mueve.
-  var quieto = menosMovimiento && !forzado;
+  // Menos movimiento pedido en el sistema. Si lo pidio a proposito con
+  // ?3d=si, se mueve igual.
+  // - En el celular: quieto. Hay 3D pero sin una sola animacion, y solo
+  //   se redibuja si algo cambio. Ahi lo suele activar el ahorro de
+  //   bateria, y repintar 30 veces por segundo es gastarle bateria justo
+  //   a quien quiere ahorrarla.
+  // - En la computadora: suave. Windows lo activa con solo apagar los
+  //   "Efectos de animacion", y un anillo congelado se leia como un
+  //   sitio roto. Gira lento y respira, sin puntero ni inercia.
+  var reducido = menosMovimiento && !forzado;
+  var quieto = reducido && liviano;
+  var suave = reducido && !liviano;
 
   function centroDe(el) {
     if (!el) return null;
@@ -133,7 +141,7 @@
     if (!window.EscenaExplosIA || !window.EscenaExplosIA.iniciar) return;
 
     try {
-      api = window.EscenaExplosIA.iniciar({ liviano: liviano, estatico: quieto });
+      api = window.EscenaExplosIA.iniciar({ liviano: liviano, estatico: quieto, suave: suave });
     } catch (e) {
       api = null;
     }
@@ -151,10 +159,10 @@
 
     // El orden no aparece de golpe: las particulas se acomodan
     // solas mientras la persona esta mirando. Es el mensaje.
-    // Salvo en modo quieto, donde aparece ya armado.
-    if (quieto) {
+    // Salvo con menos movimiento, donde aparece ya armado.
+    if (quieto || suave) {
       api.orden(1);
-      api.opacidad(1);
+      if (quieto) api.opacidad(1);
     } else if (window.gsap) {
       var estado = { v: 0 };
       window.gsap.to(estado, {
