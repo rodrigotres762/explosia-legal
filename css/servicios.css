@@ -89,6 +89,9 @@ section{ padding-block: clamp(48px, 8vw, 88px); }
 }
 .btn svg{ width: 18px; height: 18px; flex: none; }
 .btn-lg{ font-size: 17px; padding: 15px 26px; }
+@media (max-width: 480px){
+  .btn{ white-space: normal; text-align: center; max-width: 100%; }
+}
 a:focus-visible, .btn:focus-visible{ outline: 2px solid var(--brand-hot); outline-offset: 3px; }
 
 /* ---------- hero de servicio ---------- */
