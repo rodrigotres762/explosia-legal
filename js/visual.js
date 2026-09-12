@@ -199,7 +199,8 @@
      ============================================================ */
 
   var PIEZAS = ".head, .fig, .senses > *, .rubros > *, .mapa > *, .flujo > *, " +
-               ".dos-frentes > *, .steps > *, .qa, .chat-grid > *, .col, .siguiente";
+               ".dos-frentes > *, .steps > *, .qa, .chat-grid > *, .col, .siguiente, " +
+               ".diag, .recursos > *";
 
   var disparadores = [];
 

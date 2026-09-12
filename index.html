@@ -61,10 +61,21 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Archivo+Narrow:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
-<link rel="stylesheet" href="css/visual.css?v=13">
+<link rel="stylesheet" href="css/visual.css?v=14">
 <script src="vendor/gsap.min.js"></script>
 <script src="vendor/ScrollTrigger.min.js"></script>
-<script src="js/visual.js?v=13" defer></script>
+<script src="js/visual.js?v=14" defer></script>
+<script src="js/cta-movil.js" defer></script>
+<script type="speculationrules">
+{
+  "prerender": [
+    { "where": { "or": [ { "href_matches": "/servicios/*" }, { "href_matches": "/blog/*" } ] }, "eagerness": "moderate" }
+  ],
+  "prefetch": [
+    { "where": { "href_matches": "/*" }, "eagerness": "moderate" }
+  ]
+}
+</script>
 <style>
   :root{
     /* Paleta muestreada del logo: azul-noche, azul el&eacute;ctrico del anillo, cromo */
@@ -180,6 +191,9 @@
   @media (max-width: 480px){
     .btn{ white-space: normal; text-align: center; max-width: 100%; }
   }
+  @media (max-width: 360px){
+    .btn-lg{ font-size: 16px; padding: 14px 20px; }
+  }
   .btn-ghost{
     background: transparent; color: var(--text);
     border: 1px solid var(--edge); box-shadow: none;
@@ -248,6 +262,143 @@
     font-family: Archivo, Arial, sans-serif; font-weight: 700; font-size: 14px;
     color: var(--chrome); border: 1px solid var(--edge-soft); border-radius: 999px;
     padding: 8px 18px; background: var(--surface);
+  }
+
+  /* ---------- diagnostico ---------- */
+  .diag{
+    display: grid; gap: 28px;
+    background: linear-gradient(180deg, var(--surface) 0%, var(--ink-2) 100%);
+    border: 1px solid var(--edge-soft); border-radius: 20px;
+    padding: clamp(16px, 4vw, 36px);
+  }
+  @media (min-width: 900px){
+    .diag{ grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+  }
+  .diag-campo{ border: 0; margin: 0 0 26px; padding: 0; min-width: 0; }
+  .diag-campo:last-child{ margin-bottom: 0; }
+  .diag-campo legend{
+    font-family: Archivo, Arial, sans-serif; font-weight: 700; font-size: 17px; line-height: 1.3;
+    color: var(--text); margin-bottom: 14px; padding: 0;
+  }
+  .chips{ display: flex; flex-wrap: wrap; gap: 10px; }
+  .chip{ position: relative; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .chip input{ position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; pointer-events: none; }
+  .chip span{
+    position: relative; isolation: isolate;
+    display: inline-flex; align-items: center; gap: 8px; min-height: 44px;
+    padding: 10px 16px 10px 12px; border-radius: 999px;
+    border: 1px solid var(--edge); background: var(--ink-2);
+    font-family: Archivo, Arial, sans-serif; font-weight: 600; font-size: 14.5px; line-height: 1.2;
+    color: var(--chrome);
+    -webkit-user-select: none; user-select: none;
+    transition: border-color .25s ease, color .25s ease, transform .2s cubic-bezier(.22,1,.36,1);
+  }
+  .chip span::after{
+    content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit;
+    background: linear-gradient(180deg, rgba(61,155,224,.42) 0%, rgba(27,87,168,.42) 100%);
+    opacity: 0; transition: opacity .25s ease;
+  }
+  .chip span::before{
+    content: ""; flex: none; width: 14px; height: 14px;
+    background-color: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center / contain no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center / contain no-repeat;
+    opacity: .35; transform: scale(.7);
+    transition: opacity .25s ease, transform .35s cubic-bezier(.34,1.56,.64,1), background-color .25s ease;
+  }
+  .chip:hover span{ border-color: var(--brand); color: var(--text); }
+  .chip:active span{ transform: scale(.97); }
+  .chip input:checked + span{ color: #FFFFFF; border-color: rgba(127,212,245,.7); }
+  .chip input:checked + span::after{ opacity: 1; }
+  .chip input:checked + span::before{ opacity: 1; transform: scale(1); background-color: var(--brand-hot); }
+  .chip input:focus-visible + span{ outline: 2px solid var(--brand-hot); outline-offset: 2px; }
+
+  .diag-res{
+    display: flex; flex-direction: column; gap: 14px;
+    border: 1px solid var(--edge-vivo); border-radius: 16px;
+    background: rgba(7,14,29,.55);
+    padding: clamp(18px, 3vw, 26px);
+  }
+  @media (min-width: 900px){ .diag-res{ position: sticky; top: 96px; } }
+  @media (max-width: 599px){
+    .diag-res{ padding: 22px 0 0; border: 0; border-top: 1px solid var(--edge-soft); border-radius: 0; background: none; }
+  }
+  .diag-rotulo{
+    font-family: "Archivo Narrow", Arial, sans-serif; font-weight: 700; font-size: 12.5px;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--brand-hot);
+  }
+  .diag-num{
+    display: flex; align-items: baseline; gap: 12px;
+    font-family: Archivo, Arial, sans-serif; font-weight: 600; font-size: 16px; line-height: 1.3; color: var(--chrome);
+  }
+  .diag-num b{
+    display: inline-block; min-width: 1ch;
+    font-size: 46px; font-weight: 800; line-height: 1; letter-spacing: -0.03em; color: #FFFFFF;
+  }
+  .diag-vacio{ font-size: 15.5px; line-height: 1.6; color: var(--muted); }
+  .diag-lista{ list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .diag-lista:empty{ display: none; }
+  .diag-lista li{
+    display: flex; flex-direction: column; gap: 3px;
+    padding: 12px 14px; border-radius: 12px;
+    background: var(--surface); border: 1px solid var(--edge-soft);
+    animation: diagEntra .45s cubic-bezier(.22,1,.36,1) both;
+  }
+  .diag-lista b{ font-family: Archivo, Arial, sans-serif; font-size: 15px; font-weight: 700; color: var(--text); }
+  .diag-lista span{ font-size: 15px; line-height: 1.55; color: var(--muted); }
+  @keyframes diagEntra{ from{ opacity: 0; transform: translateY(8px); } to{ opacity: 1; transform: none; } }
+  .diag-equipo{ font-size: 15.5px; line-height: 1.6; color: var(--chrome); border-left: 2px solid var(--brand); padding-left: 12px; }
+  .diag-cta{ align-self: flex-start; margin-top: 4px; }
+  @media (max-width: 599px){ .diag-cta{ align-self: stretch; justify-content: center; font-size: 16px; padding: 14px 16px; } }
+  .diag-nota{ font-family: "Archivo Narrow", Arial, sans-serif; font-size: 13px; color: var(--dim); }
+
+  /* ---------- recursos ---------- */
+  .recursos{ display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+  .recurso{
+    display: flex; flex-direction: column; gap: 10px;
+    text-decoration: none; color: inherit;
+    border: 1px solid var(--edge-soft); border-radius: 16px;
+    background: linear-gradient(180deg, var(--surface) 0%, var(--ink-2) 100%);
+    padding: 22px 24px;
+    transition: border-color .25s ease, transform .3s cubic-bezier(.22,1,.36,1);
+  }
+  .recurso:hover{ border-color: var(--brand); transform: translateY(-3px); }
+  .recurso small{
+    font-family: "Archivo Narrow", Arial, sans-serif; font-weight: 700; font-size: 12px;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--brand-hot);
+  }
+  .recurso h3{ font-size: 18px; font-weight: 700; line-height: 1.25; color: var(--text); }
+  .recurso p{ font-size: 15.5px; line-height: 1.6; color: var(--muted); }
+  .recurso .leer{ margin-top: auto; font-family: Archivo, Arial, sans-serif; font-weight: 700; font-size: 14px; color: var(--brand-hot); }
+  .recursos-todos{ font-family: Archivo, Arial, sans-serif; font-weight: 700; font-size: 15px; }
+  .recursos-todos a{ text-decoration: none; }
+
+  /* ---------- barra de WhatsApp en el celular ---------- */
+  .barra-cta{ display: none; }
+  @media (max-width: 767px){
+    .barra-cta{
+      display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+      padding: 14px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+      background: linear-gradient(180deg, rgba(7,14,29,0) 0%, rgba(7,14,29,.88) 38%, rgba(7,14,29,.96) 100%);
+      pointer-events: none;
+      transform: translateY(115%); visibility: hidden;
+      transition: transform .5s cubic-bezier(.22,1,.36,1), visibility 0s linear .5s;
+    }
+    .barra-cta.visible{
+      transform: translateY(0); visibility: visible;
+      transition: transform .5s cubic-bezier(.22,1,.36,1), visibility 0s;
+    }
+    .barra-cta .btn{
+      display: flex; width: 100%; justify-content: center;
+      font-size: 15.5px; padding: 14px 16px; pointer-events: auto;
+    }
+    .barra-cta.visible .btn svg{ animation: barraPop .6s cubic-bezier(.34,1.56,.64,1) .25s both; }
+    body footer{ padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px)); }
+  }
+  @keyframes barraPop{
+    0%{ transform: scale(.6); }
+    60%{ transform: scale(1.18); }
+    100%{ transform: scale(1); }
   }
 
   /* ---------- t&iacute;tulos de secci&oacute;n ---------- */
@@ -667,7 +818,7 @@
   @media print{
     /* en papel no hay pesta&ntilde;as: se imprime todo */
     body.pestanas .vista{ display: block !important; }
-    .menu, .siguiente{ display: none !important; }
+    .menu, .siguiente, .barra-cta{ display: none !important; }
     .banda, .banda-2{ background: #fff !important; border-block: 0 !important; }
     .area:nth-child(odd), .rubro:nth-child(even), .sense:nth-child(2){ background: #fff !important; }
     .head h2{ color: #0B1420 !important; }
@@ -828,7 +979,7 @@
       <h2 class="hero-title">El trabajo repetitivo de tu negocio <em>puede hacerse solo</em>.</h2>
       <p class="hero-sub">Armamos agentes de inteligencia artificial que se hacen cargo de lo que hoy te come el d&iacute;a: atender consultas, tomar pedidos, facturar, cargar datos, controlar stock, hacer seguimiento. Trabajan con las herramientas que ya us&aacute;s, a la hora que sea, y te avisan s&oacute;lo cuando hace falta que decidas vos.</p>
       <div class="hero-cta">
-        <a class="btn btn-lg" href="https://wa.me/5491130270119?text=Hola!%20Vi%20la%20presentaci%C3%B3n%20de%20ExplosIA%20y%20quiero%20saber%20qu%C3%A9%20se%20puede%20automatizar%20en%20mi%20negocio." target="_blank" rel="noopener noreferrer" aria-label="Ped&iacute; tu diagn&oacute;stico gratis por WhatsApp sobre automatizaci&oacute;n con IA">
+        <a class="btn btn-lg" data-oculta-barra href="https://wa.me/5491130270119?text=Hola!%20Vi%20la%20presentaci%C3%B3n%20de%20ExplosIA%20y%20quiero%20saber%20qu%C3%A9%20se%20puede%20automatizar%20en%20mi%20negocio." target="_blank" rel="noopener noreferrer" aria-label="Ped&iacute; tu diagn&oacute;stico gratis por WhatsApp sobre automatizaci&oacute;n con IA">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.23 8.23 0 0 1 8.24 8.24c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.78.97-.14.16-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
           Ped&iacute; tu diagn&oacute;stico gratis
         </a>
@@ -837,7 +988,7 @@
       <p class="hero-trust">Sin compromiso &middot; Te respondemos por WhatsApp &middot; Primera charla sin costo</p>
       </div>
       <div class="hero-visual">
-      <img class="hero-logo" src="img/logo-hero.webp" width="360" height="360" alt="Automatizaci&oacute;n de procesos empresariales con IA en Buenos Aires - ExplosIA">
+      <img class="hero-logo" src="img/logo-hero.webp" width="360" height="360" fetchpriority="high" alt="Automatizaci&oacute;n de procesos empresariales con IA en Buenos Aires - ExplosIA">
       </div>
     </div>
     <span class="hero-cue" aria-hidden="true"><i></i>Desliz&aacute; para ver c&oacute;mo</span>
@@ -994,6 +1145,58 @@
         </div>
         <figcaption>Un sistema com&uacute;n s&oacute;lo sabe recibir lo que viene en el formato que espera: cualquier cosa escrita en criollo cae afuera y termina carg&aacute;ndola una persona. El agente lee la frase entera, saca de ah&iacute; el producto, la cantidad y a qui&eacute;n facturar, y sigue el circuito hasta el final. Lo mismo vale para un turno, un reclamo o un remito.</figcaption>
       </figure>
+    </div>
+  </section>
+
+
+<!-- ===================== DIAGNOSTICO ===================== -->
+  <section class="banda-2" id="diagnostico">
+    <div class="wrap stack-lg">
+      <div class="head" style="margin-bottom:0">
+        <p class="eyebrow">Diagn&oacute;stico en un minuto</p>
+        <h2>Calcul&aacute; el potencial de automatizaci&oacute;n de tu empresa</h2>
+        <p>Marc&aacute; lo que se repite en tu negocio y te mostramos qu&eacute; parte de ese trabajo puede hacerse solo. Si te sirve, lo mand&aacute;s por WhatsApp y lo vemos juntos.</p>
+      </div>
+
+      <form class="diag" id="diag" aria-label="Diagn&oacute;stico de automatizaci&oacute;n">
+        <div class="diag-campos">
+          <fieldset class="diag-campo">
+            <legend>&iquest;Cu&aacute;ntas personas trabajan en tu negocio?</legend>
+            <div class="chips">
+              <label class="chip"><input type="radio" name="equipo" value="solo" data-msg="solo yo" data-texto="Trabajando solo, cada tarea que sale de tus manos es tiempo que vuelve directo a vos."><span>Solo yo</span></label>
+              <label class="chip"><input type="radio" name="equipo" value="chico" data-msg="de 2 a 5 personas" data-texto="En un equipo chico, lo repetitivo suele caer siempre en las mismas personas. Sac&aacute;rselo de encima las deja para lo que necesita criterio."><span>2 a 5</span></label>
+              <label class="chip"><input type="radio" name="equipo" value="mediano" data-msg="de 6 a 20 personas" data-texto="Con varias personas, lo repetitivo se reparte y cuesta verlo entero. Ordenarlo en un circuito autom&aacute;tico lo vuelve parejo y visible."><span>6 a 20</span></label>
+              <label class="chip"><input type="radio" name="equipo" value="grande" data-msg="m&aacute;s de 20 personas" data-texto="En un equipo grande, cada tarea repetitiva se multiplica por muchas manos: automatizarla una vez se nota en todos."><span>M&aacute;s de 20</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="diag-campo">
+            <legend>&iquest;Qu&eacute; tareas se repiten todos los d&iacute;as?</legend>
+            <div class="chips">
+              <label class="chip"><input type="checkbox" name="tarea" value="consultas" data-hace="Responde las preguntas de siempre con la informaci&oacute;n real de tu negocio, a la hora que sea."><span>Responder consultas</span></label>
+              <label class="chip"><input type="checkbox" name="tarea" value="pedidos" data-hace="Entiende el pedido aunque venga escrito de cualquier forma y lo deja cargado donde lo llev&aacute;s hoy."><span>Tomar pedidos</span></label>
+              <label class="chip"><input type="checkbox" name="tarea" value="turnos" data-hace="Da y reprograma turnos seg&uacute;n tu agenda real, sin superponer horarios."><span>Dar turnos</span></label>
+              <label class="chip"><input type="checkbox" name="tarea" value="facturas" data-hace="Prepara facturas, remitos y presupuestos con datos que ya existen; vos s&oacute;lo revis&aacute;s y aprob&aacute;s."><span>Facturar y hacer remitos</span></label>
+              <label class="chip"><input type="checkbox" name="tarea" value="planillas" data-hace="Pasa la informaci&oacute;n entre tus sistemas y planillas, sin copiar y pegar ni errores de tipeo."><span>Cargar datos en planillas</span></label>
+              <label class="chip"><input type="checkbox" name="tarea" value="stock" data-hace="Vigila el stock y te avisa antes de que falte."><span>Controlar stock</span></label>
+              <label class="chip"><input type="checkbox" name="tarea" value="seguimiento" data-hace="Retoma presupuestos sin respuesta y vuelve a contactar al cliente que compr&oacute; y no volvi&oacute;."><span>Hacer seguimiento a clientes</span></label>
+              <label class="chip"><input type="checkbox" name="tarea" value="cobranzas" data-hace="Recuerda pagos y vencimientos, sin quedar pesado."><span>Cobrar y recordar pagos</span></label>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="diag-res">
+          <p class="diag-rotulo">Tu diagn&oacute;stico</p>
+          <p class="diag-num" aria-live="polite" aria-atomic="true"><b id="diag-cuenta">0</b> <span id="diag-cuenta-txt">tareas marcadas</span></p>
+          <p class="diag-vacio" id="diag-vacio">Marc&aacute; las tareas que se repiten en tu negocio y ac&aacute; vas a ver qu&eacute; parte de ese trabajo puede hacerse solo.</p>
+          <ul class="diag-lista" id="diag-lista"></ul>
+          <p class="diag-equipo" id="diag-equipo" hidden></p>
+          <a class="btn btn-lg diag-cta" id="diag-cta" data-oculta-barra href="https://wa.me/5491130270119?text=Hola!%20Quiero%20hacer%20un%20diagn%C3%B3stico%20de%20automatizaci%C3%B3n%20para%20mi%20negocio." target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.23 8.23 0 0 1 8.24 8.24c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.78.97-.14.16-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
+            Enviar mi diagn&oacute;stico
+          </a>
+          <p class="diag-nota">Esta p&aacute;gina no guarda lo que marc&aacute;s: el mensaje sale desde tu WhatsApp.</p>
+        </div>
+      </form>
     </div>
   </section>
 
@@ -1624,13 +1827,45 @@
     </div>
   </section>
 
+<!-- ===================== RECURSOS ===================== -->
+  <section>
+    <div class="wrap stack-lg">
+      <div class="head" style="margin-bottom:0">
+        <p class="eyebrow">Recursos</p>
+        <h2>Para leer con m&aacute;s calma</h2>
+        <p>Art&iacute;culos cortos y sin tecnicismos para entender qu&eacute; se puede automatizar en tu negocio antes de hablar con nadie.</p>
+      </div>
+      <div class="recursos">
+        <a class="recurso" href="blog/que-es-un-agente-de-ia/">
+          <small>Conceptos</small>
+          <h3>Qu&eacute; es un agente de inteligencia artificial (y en qu&eacute; se diferencia de un chatbot)</h3>
+          <p>La palabra est&aacute; en todos lados. Qu&eacute; hace, qu&eacute; no hace y cu&aacute;ndo le sirve a un negocio, explicado sin vueltas.</p>
+          <span class="leer">Leer art&iacute;culo &rarr;</span>
+        </a>
+        <a class="recurso" href="blog/que-tareas-se-pueden-automatizar/">
+          <small>Gu&iacute;a pr&aacute;ctica</small>
+          <h3>C&oacute;mo saber si una tarea de tu negocio se puede automatizar</h3>
+          <p>Dos preguntas alcanzan para saberlo. Con ejemplos de atenci&oacute;n, pedidos, facturaci&oacute;n, datos y stock.</p>
+          <span class="leer">Leer art&iacute;culo &rarr;</span>
+        </a>
+        <a class="recurso" href="blog/automatizar-whatsapp-negocio/">
+          <small>WhatsApp</small>
+          <h3>Automatizar WhatsApp en tu negocio: qu&eacute; se puede hacer y qu&eacute; conviene saber antes</h3>
+          <p>La diferencia con la app Business, la regla de las 24 horas y buenas pr&aacute;cticas para no perder clientes.</p>
+          <span class="leer">Leer art&iacute;culo &rarr;</span>
+        </a>
+      </div>
+      <p class="recursos-todos"><a href="blog/">Ver todos los recursos &rarr;</a></p>
+    </div>
+  </section>
+
 <!-- ===================== CIERRE ===================== -->
   <section class="close">
     <div class="wrap">
       <p class="eyebrow">Hablemos</p>
       <h2>Contanos qu&eacute; hac&eacute;s todos los d&iacute;as y te decimos qu&eacute; se puede automatizar</h2>
       <p>Escribinos por WhatsApp. La primera charla no tiene costo ni compromiso &mdash; y si no te conviene, te lo vamos a decir.</p>
-      <a class="btn btn-lg btn-print-show" href="https://wa.me/5491130270119?text=Hola!%20Vi%20la%20presentaci%C3%B3n%20de%20ExplosIA%20y%20quiero%20saber%20qu%C3%A9%20se%20puede%20automatizar%20en%20mi%20negocio." target="_blank" rel="noopener noreferrer" aria-label="Ped&iacute; tu diagn&oacute;stico gratis por WhatsApp">
+      <a class="btn btn-lg btn-print-show" data-oculta-barra href="https://wa.me/5491130270119?text=Hola!%20Vi%20la%20presentaci%C3%B3n%20de%20ExplosIA%20y%20quiero%20saber%20qu%C3%A9%20se%20puede%20automatizar%20en%20mi%20negocio." target="_blank" rel="noopener noreferrer" aria-label="Ped&iacute; tu diagn&oacute;stico gratis por WhatsApp">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.23 8.23 0 0 1 8.24 8.24c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.78.97-.14.16-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
         Ped&iacute; tu diagn&oacute;stico gratis
       </a>
@@ -1659,6 +1894,7 @@
       <a href="servicios/whatsapp-ia/">Automatizaci&oacute;n de WhatsApp</a>
       <a href="servicios/automatizacion-crm/">Automatizaci&oacute;n de CRM</a>
       <a href="servicios/integracion-n8n/">Integraci&oacute;n de sistemas</a>
+      <a href="blog/">Recursos</a>
     </span>
     <span class="legal-links">
       <a href="privacidad.html" target="_blank" rel="noopener noreferrer">Privacidad</a>
@@ -1667,6 +1903,13 @@
     </span>
   </div>
 </footer>
+
+<div class="barra-cta">
+  <a class="btn" href="https://wa.me/5491130270119?text=Hola!%20Quiero%20agendar%20un%20diagn%C3%B3stico%20gratis%20de%20automatizaci%C3%B3n%20para%20mi%20negocio." target="_blank" rel="noopener noreferrer" aria-label="Agendar diagn&oacute;stico gratis por WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.23 8.23 0 0 1 8.24 8.24c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.78.97-.14.16-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
+    Agendar diagn&oacute;stico gratis
+  </a>
+</div>
 
 
 <script>
@@ -1749,7 +1992,7 @@ var Pestanas = (function () {
       Pestanas.alCambiar(function (vista) {
         var piezas = vista.querySelectorAll(".head, .fig, .senses > *, .rubros > *, .mapa > *, " +
                                            ".flujo > *, .dos-frentes > *, .steps > *, .qa, " +
-                                           ".chat-grid > *, .col");
+                                           ".chat-grid > *, .col, .diag, .recursos > *");
         if (!piezas.length) return;
         gsap.killTweensOf(piezas);
         gsap.set(piezas, { clearProps: "opacity,transform" });
@@ -1823,7 +2066,8 @@ var Pestanas = (function () {
   setTimeout(function () {
     document.querySelectorAll(".vista.activa section, .vista.activa .fig, .vista.activa .qa, " +
                              ".vista.activa .sense, .vista.activa .rubro, .vista.activa .area, " +
-                             ".vista.activa .flujo-paso, .vista.activa .step, .vista.activa .head")
+                             ".vista.activa .flujo-paso, .vista.activa .step, .vista.activa .head, " +
+                             ".vista.activa .diag, .vista.activa .recurso")
       .forEach(function (el) {
         // Solo se rescata lo que YA deberia verse. Lo que esta mas
         // abajo puede estar esperando su turno para aparecer al
@@ -1842,9 +2086,105 @@ var Pestanas = (function () {
       ScrollTrigger.getAll().forEach(function (t) { t.kill(false); });
     }
     gsap.globalTimeline.progress(1);
-    gsap.set(".hero-logo, .sense, .rubro, .task, .area, .flujo-paso, .head, .fig, .phone, .glow, .grid-bg",
+    gsap.set(".hero-logo, .sense, .rubro, .task, .area, .flujo-paso, .head, .fig, .phone, .glow, .grid-bg, .diag, .recurso",
              { clearProps: "all" });
   });
+})();
+</script>
+
+<script>
+/* ============================================================
+   3. EL DIAGNOSTICO
+   Arma el mensaje de WhatsApp con lo que la persona marco. No
+   manda nada a ningun lado: el mensaje sale desde su telefono.
+   Sin JavaScript el boton igual funciona, con un mensaje general.
+   ============================================================ */
+(function () {
+  var form = document.getElementById("diag");
+  if (!form) return;
+
+  var cuenta    = document.getElementById("diag-cuenta");
+  var cuentaTxt = document.getElementById("diag-cuenta-txt");
+  var vacio     = document.getElementById("diag-vacio");
+  var lista     = document.getElementById("diag-lista");
+  var equipoTxt = document.getElementById("diag-equipo");
+  var cta       = document.getElementById("diag-cta");
+  var quieto    = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var NUMERO    = "5491130270119";
+  var items     = {};   // valor de la tarea -> su renglon en la lista
+
+  function etiqueta(input) {
+    return input.nextElementSibling ? input.nextElementSibling.textContent.trim() : input.value;
+  }
+
+  function renglon(input) {
+    var li = document.createElement("li");
+    var b = document.createElement("b");
+    var s = document.createElement("span");
+    b.textContent = etiqueta(input);
+    s.textContent = input.getAttribute("data-hace") || "";
+    li.appendChild(b);
+    li.appendChild(s);
+    return li;
+  }
+
+  function actualizar(animar) {
+    var equipo = form.querySelector('input[name="equipo"]:checked');
+    var tareas = [].slice.call(form.querySelectorAll('input[name="tarea"]:checked'));
+    var n = tareas.length;
+
+    if (cuenta.textContent !== String(n)) {
+      cuenta.textContent = n;
+      if (animar && !quieto && cuenta.animate) {
+        cuenta.animate(
+          [{ transform: "scale(1.28)" }, { transform: "scale(1)" }],
+          { duration: 380, easing: "cubic-bezier(.34,1.56,.64,1)" }
+        );
+      }
+    }
+    cuentaTxt.textContent = n === 0 ? "tareas marcadas"
+                          : n === 1 ? "tarea que se puede automatizar"
+                          : "tareas que se pueden automatizar";
+    vacio.hidden = n > 0;
+
+    // Se sacan las desmarcadas y se agregan las nuevas en su lugar,
+    // sin mover las que ya estaban: asi no se reanima toda la lista.
+    var elegidas = {};
+    tareas.forEach(function (t) { elegidas[t.value] = true; });
+    Object.keys(items).forEach(function (v) {
+      if (!elegidas[v]) { lista.removeChild(items[v]); delete items[v]; }
+    });
+    tareas.forEach(function (t, i) {
+      if (items[t.value]) return;
+      var ref = null;
+      for (var j = i + 1; j < tareas.length; j++) {
+        if (items[tareas[j].value]) { ref = items[tareas[j].value]; break; }
+      }
+      items[t.value] = lista.insertBefore(renglon(t), ref);
+    });
+
+    if (equipo) {
+      equipoTxt.textContent = equipo.getAttribute("data-texto") || "";
+      equipoTxt.hidden = false;
+    } else {
+      equipoTxt.hidden = true;
+    }
+
+    var lineas = ["Hola! Hice el diagn\u00f3stico en la web de ExplosIA."];
+    if (equipo) lineas.push("Equipo: " + equipo.getAttribute("data-msg") + ".");
+    if (n) {
+      lineas.push("Lo que m\u00e1s se repite:");
+      tareas.forEach(function (t) { lineas.push("\u2022 " + etiqueta(t)); });
+    }
+    lineas.push("Quiero ver qu\u00e9 se puede automatizar.");
+    cta.href = "https://wa.me/" + NUMERO + "?text=" + encodeURIComponent(lineas.join("\n"));
+  }
+
+  form.addEventListener("submit", function (e) { e.preventDefault(); });
+  form.addEventListener("change", function () { actualizar(true); });
+  // por si el navegador recordo lo marcado al volver atras
+  window.addEventListener("pageshow", function () { actualizar(false); });
+  actualizar(false);
 })();
 </script>
 

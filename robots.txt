@@ -1,0 +1,5 @@
+# explosia.com.ar
+User-agent: *
+Allow: /
+
+Sitemap: https://explosia.com.ar/sitemap.xml
