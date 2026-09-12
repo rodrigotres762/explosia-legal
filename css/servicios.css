@@ -1,0 +1,165 @@
+:root{
+  --ink:        #070E1D;
+  --ink-2:      #0A1428;
+  --surface:    #0D1A33;
+  --surface-2:  #122340;
+  --edge:       #1D3358;
+  --edge-soft:  #16294A;
+
+  --brand:      #3D9BE0;
+  --brand-hot:  #7FD4F5;
+  --brand-deep: #1B57A8;
+  --chrome:     #A8BDD4;
+
+  --text:       #E6EFF9;
+  --muted:      #93A8C2;
+  --dim:        #6E86A3;
+
+  --measure: 62ch;
+  --gutter: clamp(20px, 5vw, 40px);
+
+  color-scheme: dark;
+}
+
+*{ box-sizing: border-box; }
+
+body{
+  margin: 0;
+  background: var(--ink);
+  color: var(--text);
+  font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+  font-size: 18px;
+  line-height: 1.72;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,h2,h3{
+  font-family: Archivo, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+p{ margin: 0; }
+a{ color: var(--brand-hot); }
+
+.wrap{
+  width: 100%;
+  max-width: 900px;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.col{ max-width: var(--measure); }
+
+section{ padding-block: clamp(48px, 8vw, 88px); }
+.stack{ display: flex; flex-direction: column; gap: 20px; }
+
+.eyebrow{
+  font-family: "Archivo Narrow", Arial, sans-serif;
+  font-weight: 700; font-size: 13px; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--brand); line-height: 1.4;
+}
+
+/* ---------- header ---------- */
+.topbar{
+  background: rgba(7,14,29,.9);
+  border-bottom: 1px solid var(--edge-soft);
+}
+.topbar .wrap{ display: flex; align-items: center; gap: 14px; min-height: 62px; }
+.mark{ display: flex; align-items: center; gap: 11px; margin-right: auto; text-decoration: none; }
+.mark img{ width: 30px; height: 30px; display: block; }
+.mark b{ font-family: Archivo, Arial, sans-serif; font-weight: 800; font-size: 18px; color: var(--text); }
+.mark b i{ font-style: normal; color: var(--brand-hot); }
+.volver{
+  font-family: "Archivo Narrow", Arial, sans-serif; font-size: 13.5px;
+  color: var(--muted); text-decoration: none;
+}
+.volver:hover{ color: var(--brand-hot); }
+
+/* ---------- boton ---------- */
+.btn{
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: Archivo, Arial, sans-serif; font-weight: 700; font-size: 15px;
+  text-decoration: none; padding: 12px 20px; border-radius: 999px;
+  background: linear-gradient(180deg, var(--brand) 0%, var(--brand-deep) 100%);
+  color: #FFFFFF; border: 1px solid rgba(127,212,245,.45);
+  box-shadow: 0 0 0 1px rgba(7,14,29,.6), 0 8px 26px -10px rgba(61,155,224,.75);
+  white-space: nowrap;
+}
+.btn svg{ width: 18px; height: 18px; flex: none; }
+.btn-lg{ font-size: 17px; padding: 15px 26px; }
+a:focus-visible, .btn:focus-visible{ outline: 2px solid var(--brand-hot); outline-offset: 3px; }
+
+/* ---------- hero de servicio ---------- */
+.shero{
+  background: radial-gradient(60% 70% at 50% 0%, rgba(61,155,224,.16) 0%, rgba(27,87,168,.06) 45%, transparent 75%);
+  padding-block: clamp(44px, 7vw, 76px) clamp(40px, 6vw, 64px);
+}
+.shero h1{ font-size: clamp(30px, 5.4vw, 48px); max-width: 18ch; margin-block: 18px 16px; }
+.shero h1 em{ font-style: normal; color: var(--brand-hot); }
+.shero p{ font-size: clamp(17px, 2vw, 19px); color: var(--chrome); max-width: 56ch; }
+.strust{
+  font-family: "Archivo Narrow", Arial, sans-serif; font-size: 13.5px; color: var(--dim);
+  margin-top: 14px;
+}
+.scta{ display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-top: 30px; }
+
+/* ---------- titulo de seccion ---------- */
+.shead{ display: flex; flex-direction: column; gap: 12px; margin-bottom: 34px; }
+.shead h2{ font-size: clamp(24px, 3.6vw, 32px); max-width: 22ch; }
+.shead p{ color: var(--muted); max-width: var(--measure); }
+.rule{ border: 0; border-top: 1px solid var(--edge-soft); margin: 0; }
+
+/* ---------- listas de beneficios ---------- */
+.ticks{ list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.ticks li{ display: flex; gap: 13px; align-items: flex-start; color: var(--chrome); }
+.ticks li svg{ flex: none; width: 20px; height: 20px; margin-top: 5px; color: var(--brand); }
+.ticks li b{ color: var(--text); font-weight: 600; }
+
+/* ---------- pasos ---------- */
+.spasos{ display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+.spaso{ display: flex; flex-direction: column; gap: 8px; padding-top: 18px; border-top: 2px solid var(--edge); }
+.spaso:first-child{ border-top-color: var(--brand); }
+.spaso .n{ font-family: Archivo, Arial, sans-serif; font-weight: 800; font-size: 12.5px; letter-spacing: .12em; color: var(--brand); }
+.spaso h3{ font-size: 16.5px; font-weight: 700; }
+.spaso p{ font-size: 15.5px; color: var(--muted); line-height: 1.6; }
+
+/* ---------- faq ---------- */
+.sfaq{ display: grid; gap: 0; }
+.sqa{ padding: 22px 0; border-bottom: 1px solid var(--edge-soft); }
+.sqa:first-child{ border-top: 1px solid var(--edge-soft); }
+.sqa h3{ font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+.sqa p{ color: var(--muted); max-width: var(--measure); }
+
+/* ---------- relacionados ---------- */
+.relacionados{ display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+.rel{
+  display: block; text-decoration: none;
+  border: 1px solid var(--edge-soft); border-radius: 14px;
+  padding: 20px 22px; background: var(--surface);
+}
+.rel:hover{ border-color: var(--brand); }
+.rel b{ display: block; color: var(--text); font-family: Archivo, Arial, sans-serif; font-size: 16px; margin-bottom: 6px; }
+.rel span{ display: block; color: var(--muted); font-size: 15px; }
+
+.banda{ background: var(--surface); border-top: 1px solid var(--edge-soft); border-bottom: 1px solid var(--edge-soft); }
+.close{ text-align: left; }
+.close h2{ font-size: clamp(24px, 4vw, 34px); max-width: 22ch; margin-bottom: 14px; }
+.close p{ color: var(--muted); max-width: 56ch; margin-bottom: 26px; }
+
+/* ---------- footer ---------- */
+footer{ border-top: 1px solid var(--edge-soft); padding-block: 26px; }
+footer .wrap{
+  display: flex; flex-wrap: wrap; gap: 10px 24px; align-items: center; justify-content: space-between;
+  font-family: "Archivo Narrow", Arial, sans-serif; font-size: 13.5px; color: var(--dim);
+}
+footer a{ color: var(--dim); text-decoration: none; }
+footer a:hover{ color: var(--brand-hot); }
+.legal-links a{ margin-left: 14px; }
+.legal-links a:first-child{ margin-left: 0; }
+
+@media (max-width: 720px){
+  footer .wrap{ flex-direction: column; align-items: flex-start; }
+  .legal-links a{ margin-left: 0; margin-right: 14px; }
+}
