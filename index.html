@@ -248,20 +248,42 @@
   }
 
   /* ---------- stack tecnologico ---------- */
-  .stack-tec{ padding-block: 30px; border-block: 1px solid var(--edge-soft); }
+  .stack-tec{ padding-block: 30px 34px; border-block: 1px solid var(--edge-soft); }
   .stack-tec-label{
     font-family: "Archivo Narrow", Arial, sans-serif; font-weight: 700; font-size: 12.5px;
     letter-spacing: .1em; text-transform: uppercase; color: var(--dim);
     text-align: center; margin-bottom: 18px;
   }
   .stack-tec-grid{
-    list-style: none; margin: 0; padding: 0;
-    display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;
+    list-style: none; margin: 0 auto; padding: 0; max-width: 980px;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 12px;
   }
   .stack-tec-grid li{
-    font-family: Archivo, Arial, sans-serif; font-weight: 700; font-size: 14px;
+    display: inline-flex; align-items: center; gap: 9px;
+    font-family: Archivo, Arial, sans-serif; font-weight: 700; font-size: 14px; line-height: 1.2;
     color: var(--chrome); border: 1px solid var(--edge-soft); border-radius: 999px;
-    padding: 8px 18px; background: var(--surface);
+    padding: 7px 16px 7px 10px; background: var(--surface);
+  }
+  .stack-tec-grid img{ width: 20px; height: 20px; object-fit: contain; flex: none; }
+  .stack-tec-grid img.marca-palabra{ width: auto; height: 11px; }
+  .stack-tec-mas{
+    max-width: 640px; margin: 24px auto 0; text-align: center; text-wrap: pretty;
+    font-size: 16px; line-height: 1.6; color: var(--muted);
+  }
+  .stack-tec-mas strong{
+    display: block; margin-bottom: 4px; text-wrap: balance;
+    font-family: Archivo, "Helvetica Neue", Arial, sans-serif; font-weight: 800; font-size: 18px;
+    letter-spacing: -0.01em; color: var(--text);
+  }
+  .stack-tec-mas a{ font-weight: 600; white-space: nowrap; }
+  @media (max-width: 599px){
+    /* compacta: con 19 marcas, en celular son 8 filas en vez de 9-11 */
+    .stack-tec-grid{ gap: 6px; }
+    .stack-tec-grid li{ font-size: 12.5px; gap: 6px; padding: 5px 10px 5px 7px; }
+    .stack-tec-grid img{ width: 17px; height: 17px; }
+    .stack-tec-grid img.marca-palabra{ height: 9.5px; }
+    .stack-tec-mas{ font-size: 15px; }
+    .stack-tec-mas strong{ font-size: 17px; }
   }
 
   /* ---------- diagnostico ---------- */
@@ -841,6 +863,7 @@
     .topbar{ display: none; }
     .hero::before, .close::before{ display: none; }
     .hero-logo{ filter: none; width: 118px; }
+    .stack-tec-grid img.claro{ filter: brightness(0); } /* logos blancos: en papel blanco no se verian */
     .btn{ display: none; }
     .close .btn-print-show{
       display: inline-flex; background: none; color: #12558F;
@@ -1064,15 +1087,31 @@
   <section class="stack-tec">
     <div class="wrap">
       <p class="stack-tec-label">Se integra con las herramientas que ya us&aacute;s</p>
+      <!-- Solo herramientas del CLIENTE, nunca las internas (n8n, Gemini...). Ordenadas por
+           para que se usan: hablar con clientes, vender, cobrar, facturar, planillas y agenda.
+           Los logos son los oficiales de cada marca y viven en img/marcas/. -->
       <ul class="stack-tec-grid">
-        <li>WhatsApp</li>
-        <li>Instagram</li>
-        <li>Mercado Libre</li>
-        <li>Mercado Pago</li>
-        <li>Google Sheets</li>
-        <li>Tango Gesti&oacute;n</li>
-        <li>ARCA</li>
+        <li><img src="img/marcas/whatsapp.svg" width="20" height="20" alt="" decoding="async">WhatsApp</li>
+        <li><img src="img/marcas/instagram.svg" width="20" height="20" alt="" decoding="async">Instagram</li>
+        <li><img src="img/marcas/facebook.svg" width="20" height="20" alt="" decoding="async">Facebook</li>
+        <li><img src="img/marcas/gmail.svg" width="20" height="20" alt="" decoding="async">Gmail</li>
+        <li><img src="img/marcas/outlook.svg" width="20" height="20" alt="" decoding="async">Outlook</li>
+        <li><img src="img/marcas/mercadolibre.svg" width="20" height="20" alt="" decoding="async">Mercado Libre</li>
+        <li><img src="img/marcas/tiendanube.webp" width="20" height="20" alt="" decoding="async">Tiendanube</li>
+        <li><img src="img/marcas/shopify.svg" width="20" height="20" alt="" decoding="async">Shopify</li>
+        <li><img src="img/marcas/woocommerce.webp" width="20" height="20" alt="" decoding="async">WooCommerce</li>
+        <li><img src="img/marcas/mercadopago.svg" width="20" height="20" alt="" decoding="async">Mercado Pago</li>
+        <li><img src="img/marcas/arca.webp" width="20" height="20" alt="" decoding="async">ARCA</li>
+        <li><img class="marca-palabra claro" src="img/marcas/tango.svg" width="52" height="11" alt="Tango" decoding="async">Gesti&oacute;n</li>
+        <li><img src="img/marcas/contabilium.webp" width="20" height="20" alt="" decoding="async">Contabilium</li>
+        <li><img class="claro" src="img/marcas/xubio.svg" width="20" height="20" alt="" decoding="async">Xubio</li>
+        <li><img src="img/marcas/colppy.svg" width="20" height="20" alt="" decoding="async">Colppy</li>
+        <li><img src="img/marcas/googlesheets.svg" width="20" height="20" alt="" decoding="async">Google Sheets</li>
+        <li><img src="img/marcas/excel.svg" width="20" height="20" alt="" decoding="async">Excel</li>
+        <li><img src="img/marcas/googledrive.svg" width="20" height="20" alt="" decoding="async">Google Drive</li>
+        <li><img src="img/marcas/googlecalendar.svg" width="20" height="20" alt="" decoding="async">Google Calendar</li>
       </ul>
+      <p class="stack-tec-mas"><strong>&iquest;Tu sistema no est&aacute; en la lista? Tambi&eacute;n se puede automatizar.</strong> Estas son s&oacute;lo algunas de las herramientas con las que trabajamos: nos adaptamos a lo que ya us&aacute;s en tu negocio, sin que tengas que cambiar de sistema. <a href="https://wa.me/5491130270119?text=Hola!%20Vi%20la%20lista%20de%20herramientas%20en%20la%20p%C3%A1gina%20de%20ExplosIA.%20Uso%20otro%20sistema%20y%20quiero%20saber%20c%C3%B3mo%20se%20puede%20automatizar.%20El%20sistema%20es%3A%20" target="_blank" rel="noopener noreferrer" aria-label="Contanos por WhatsApp qu&eacute; sistema us&aacute;s">Contanos cu&aacute;l us&aacute;s &rarr;</a></p>
     </div>
   </section>
 
