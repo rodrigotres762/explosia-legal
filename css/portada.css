@@ -246,12 +246,13 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
 .hero-visual{
   position: relative; order: -1;
   display: grid; place-items: center;
-  /* el anillo mide 2,15 veces el logo: el hueco tiene que alcanzarle */
-  min-height: clamp(214px, 60vw, 300px);
+  /* el anillo mide 2,15 veces el logo: el hueco crece con el logo
+     para que el aire alrededor no cambie al agrandarlo */
+  min-height: clamp(240px, 68vw, 320px);
   perspective: 1000px;
 }
 .hero-logo{
-  width: clamp(92px, 25vw, 130px); height: auto; display: block;
+  width: clamp(118px, 33vw, 150px); height: auto; display: block;
   border-radius: 50%;
   box-shadow: 0 0 0 6px rgba(255,255,255,.75), 0 26px 50px -18px rgba(12,26,48,.6);
   transform-style: preserve-3d; will-change: transform;
