@@ -196,7 +196,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
   transition: transform .18s ease, box-shadow .18s ease;
 }
 .btn:hover{ transform: translateY(-1px); box-shadow: inset 0 1px 0 rgba(255,255,255,.22), 0 16px 30px -12px rgba(27,87,168,.95); }
-.btn .ico{ width: 19px; height: 19px; }
+/* tambien los svg sin clase: el boton del diagnostico viene de la pagina vieja */
+.btn .ico, .btn > svg{ width: 19px; height: 19px; flex: none; }
 .btn-lg{ font-size: 17px; padding: 15px 26px; }
 .btn::after{
   content: ""; position: absolute; top: 0; bottom: 0; width: 42%; left: -60%;
@@ -208,6 +209,21 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
 .btn-blanco{ background: #FFFFFF; color: var(--brand-deep); box-shadow: 0 14px 30px -14px rgba(12,26,48,.55); }
 .btn-blanco:hover{ box-shadow: 0 18px 34px -14px rgba(12,26,48,.65); }
 .btn-top{ padding: 9px 16px; font-size: 14.5px; }
+
+/* Todo boton que abre WhatsApp va con el verde del logo de WhatsApp y
+   el icono y el texto en blanco, igual que el boton flotante. Se elige
+   por el link y no por una clase: el del diagnostico cambia de mensaje
+   pero siempre va a wa.me, y uno nuevo queda verde sin acordarse. */
+.btn[href*="wa.me"]{
+  background: var(--wa);
+  color: #FFFFFF;
+  text-shadow: 0 1px 1px rgba(0,0,0,.14);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.25), 0 10px 24px -12px rgba(18,140,126,.8);
+}
+.btn[href*="wa.me"]:hover{
+  background: var(--wa-deep);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 16px 30px -12px rgba(18,140,126,.9);
+}
 @media (max-width: 480px){
   .btn{ white-space: normal; text-align: center; max-width: 100%; }
   .btn-top{ white-space: nowrap; }
@@ -322,7 +338,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
   font-family: var(--display); font-size: 16px; line-height: 1.5; color: var(--muted);
 }
 .stack-tec-mas strong{ color: var(--tinta); font-weight: 700; }
-.stack-tec-mas a{ font-weight: 700; white-space: nowrap; text-decoration: none; }
+.stack-tec-mas a{ font-weight: 700; white-space: nowrap; text-decoration: none; color: var(--ok); }
+.stack-tec-mas a .wa-logo{ width: 22px; height: 22px; margin-right: 6px; vertical-align: -5px; }
+.stack-tec-mas a .wa-logo .ico{ width: 13px; height: 13px; }
 .stack-tec-mas a:hover{ text-decoration: underline; }
 @media (max-width: 599px){
   .stack-tec-grid{ gap: 6px; }
@@ -960,8 +978,15 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
 .cierre p{ color: rgba(255,255,255,.88); max-width: 52ch; }
 .cierre .eyebrow{ color: var(--neon); }
 .cierre-corto{ padding-block: clamp(48px, 7vw, 76px); }
+/* el logo de WhatsApp dibujado: circulo verde, telefono blanco */
+.wa-logo{
+  display: inline-grid; place-items: center; flex: none;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--wa); color: #FFFFFF;
+}
+.wa-logo .ico{ width: 26px; height: 26px; }
 .wa-number{
-  display: inline-block; text-decoration: none; color: #FFFFFF;
+  display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: #FFFFFF;
   font-family: var(--display); font-weight: 800; font-size: clamp(26px, 5.2vw, 40px);
   letter-spacing: -.02em; font-variant-numeric: tabular-nums;
 }

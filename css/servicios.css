@@ -101,6 +101,21 @@ section{ padding-block: clamp(48px, 8vw, 88px); }
 }
 a:focus-visible, .btn:focus-visible{ outline: 3px solid #3D9BE0; outline-offset: 3px; }
 
+/* Todo boton que abre WhatsApp va con el verde del logo de WhatsApp y
+   el icono y el texto en blanco, igual que el boton flotante. Se elige
+   por el link y no por una clase: el del diagnostico cambia de mensaje
+   pero siempre va a wa.me, y uno nuevo queda verde sin acordarse. */
+.btn[href*="wa.me"]{
+  background: var(--wa);
+  color: #FFFFFF;
+  text-shadow: 0 1px 1px rgba(0,0,0,.14);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.25), 0 10px 24px -12px rgba(18,140,126,.8);
+}
+.btn[href*="wa.me"]:hover{
+  background: var(--wa-deep);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 16px 30px -12px rgba(18,140,126,.9);
+}
+
 /* ---------- hero de servicio ---------- */
 .shero{
   background: radial-gradient(60% 70% at 50% 0%, rgba(61,155,224,.16) 0%, rgba(27,87,168,.06) 45%, transparent 75%);
