@@ -1011,6 +1011,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
 .contacto-ico svg{ width: 19px; height: 19px; color: #FFFFFF; }
 .contacto-mail .contacto-ico{ background: linear-gradient(140deg, #EA4335 0%, #C5221F 100%); }
 .contacto-ig   .contacto-ico{ background: linear-gradient(45deg, #F9CE34 0%, #EE2A7B 52%, #6228D7 100%); }
+.contacto-fb   .contacto-ico{ background: #1877F2; }
+/* la "f" es angosta y alta: no va cuadrada como los demas iconos */
+.contacto-fb .contacto-ico svg{ width: auto; height: 20px; }
 /* el dato (el mail, el arroba) es la linea grande; el rotulo va chico arriba */
 .contacto small{
   display: block; font-family: var(--narrow); font-weight: 600; font-size: 11px;
@@ -1403,6 +1406,7 @@ footer .pie-red:hover{
 .pie-red-ico svg{ display: block; }
 .pie-red-wa   .pie-red-ico{ background: var(--wa); }
 .pie-red-ig   .pie-red-ico{ background: linear-gradient(45deg, #F9CE34 0%, #EE2A7B 52%, #6228D7 100%); }
+.pie-red-fb   .pie-red-ico{ background: #1877F2; }
 .pie-red-mail .pie-red-ico{ background: linear-gradient(140deg, #EA4335 0%, #C5221F 100%); }
 .pie-red-txt{ display: block; min-width: 0; }
 .pie-red-txt small{

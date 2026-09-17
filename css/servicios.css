@@ -217,6 +217,7 @@ footer .pie-red:hover{
 .pie-red-ico svg{ display: block; }
 .pie-red-wa   .pie-red-ico{ background: var(--wa); }
 .pie-red-ig   .pie-red-ico{ background: linear-gradient(45deg, #F9CE34 0%, #EE2A7B 52%, #6228D7 100%); }
+.pie-red-fb   .pie-red-ico{ background: #1877F2; }
 .pie-red-mail .pie-red-ico{ background: linear-gradient(140deg, #EA4335 0%, #C5221F 100%); }
 .pie-red-txt{ display: block; min-width: 0; }
 .pie-red-txt small{
