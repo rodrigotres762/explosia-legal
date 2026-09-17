@@ -1,0 +1,18 @@
+# Configuracion del sitio para GitHub Pages (Jekyll).
+#
+# Lo unico que hace: NO publicar los archivos que solo sirven para trabajar.
+# Antes se descargaban desde el sitio (package.json, subir-version.sh, src/...)
+# y le contaban a cualquiera como esta armado esto. Siguen en el repositorio,
+# pero ya no forman parte del sitio.
+#
+# OJO: esta lista REEMPLAZA la que Jekyll trae por defecto. Si algun dia se
+# agrega una carpeta que no deba publicarse (node_modules, por ejemplo), hay
+# que sumarla aca a mano.
+#
+# La carpeta vendor/ NO va aca: de ahi salen gsap, ScrollTrigger y la escena 3D,
+# y el sitio se rompe sin ellos.
+exclude:
+  - package.json
+  - package-lock.json
+  - subir-version.sh
+  - src/
