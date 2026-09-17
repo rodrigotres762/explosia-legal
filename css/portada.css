@@ -991,21 +991,45 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
   letter-spacing: -.02em; font-variant-numeric: tabular-nums;
 }
 .contactos{ display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+/* el "o si preferis" que separa el boton de WhatsApp de los otros contactos */
+.cierre .cierre-o{
+  margin: -2px 0 -8px; color: rgba(255,255,255,.72);
+  font-family: var(--narrow); font-weight: 600; font-size: 12.5px;
+  letter-spacing: .1em; text-transform: uppercase;
+}
+.contacto-txt{ display: block; min-width: 0; }
 .contacto{
-  display: inline-flex; align-items: center; gap: 11px; min-height: 48px;
-  padding: 9px 22px 9px 10px; border-radius: 999px;
+  display: inline-flex; align-items: center; gap: 11px; min-height: 52px;
+  padding: 8px 22px 8px 9px; border-radius: 999px;
   text-decoration: none; text-align: left; color: var(--tinta);
   font-family: var(--display); font-size: 15px;
   background: #FFFFFF; box-shadow: 0 10px 24px -14px rgba(12,26,48,.6);
   transition: transform .2s ease;
 }
 .contacto:hover{ transform: translateY(-2px); }
-.contacto-ico{ width: 32px; height: 32px; border-radius: 50%; flex: none; display: grid; place-items: center; }
-.contacto-ico svg{ width: 18px; height: 18px; color: #FFFFFF; }
+.contacto-ico{ width: 34px; height: 34px; border-radius: 50%; flex: none; display: grid; place-items: center; }
+.contacto-ico svg{ width: 19px; height: 19px; color: #FFFFFF; }
 .contacto-mail .contacto-ico{ background: linear-gradient(140deg, #EA4335 0%, #C5221F 100%); }
 .contacto-ig   .contacto-ico{ background: linear-gradient(45deg, #F9CE34 0%, #EE2A7B 52%, #6228D7 100%); }
-.contacto small{ display: block; font-family: var(--narrow); font-weight: 500; font-size: 12.5px; line-height: 1.3; color: var(--muted); }
-.contacto b{ display: block; font-weight: 700; line-height: 1.3; }
+/* el dato (el mail, el arroba) es la linea grande; el rotulo va chico arriba */
+.contacto small{
+  display: block; font-family: var(--narrow); font-weight: 600; font-size: 11px;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--dim); line-height: 1.25;
+}
+.contacto b{ display: block; font-weight: 700; font-size: 15.5px; letter-spacing: -.01em; line-height: 1.3; }
+@media (max-width: 560px){
+  /* en el celular los dos contactos se apilan y quedan del mismo ancho */
+  .contactos{ flex-direction: column; align-self: stretch; }
+  .contacto{ width: 100%; }
+}
+@media (max-width: 400px){
+  /* el mail tiene 33 letras y en un celular angosto no entra: en vez de
+     achicarlo hasta que no se lea, pasa a la tipografia angosta */
+  .contacto{ padding-right: 14px; }
+  .contacto-mail b, footer .pie-red-mail .pie-red-txt b{
+    font-family: var(--narrow); font-size: 15px; letter-spacing: 0;
+  }
+}
 
 /* ================= LAS OTRAS PESTANAS ================= */
 
@@ -1345,9 +1369,59 @@ footer .wrap{ display: flex; flex-wrap: wrap; align-items: center; justify-conte
 footer a{ color: var(--muted); text-decoration: none; }
 footer a:hover{ color: var(--brand); text-decoration: underline; }
 .legal-links{ display: flex; flex-wrap: wrap; gap: 8px 20px; }
+
+/* --- Contacto directo: el dato se lee sin hacer clic, y ademas es un link.
+       Ocupa una fila entera del pie (por eso el flex-basis del 100%). --- */
+.pie-contacto{
+  flex: 1 0 100%;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px;
+  margin-bottom: 22px; padding-bottom: 22px;
+  border-bottom: 1px solid var(--edge-soft);
+}
+.pie-contacto-tit{
+  margin: 0; flex: none;
+  font-family: var(--display); font-weight: 700; font-size: 15px; color: var(--tinta);
+}
+.pie-redes{ display: flex; flex-wrap: wrap; gap: 10px; }
+.pie-red{
+  display: inline-flex; align-items: center; gap: 10px;
+  min-height: 48px; padding: 7px 18px 7px 7px;
+  border: 1px solid var(--edge); border-radius: 999px;
+  background: var(--cielo);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
+}
+footer .pie-red{ color: var(--tinta); text-decoration: none; }
+footer .pie-red:hover{
+  color: var(--tinta); text-decoration: none;
+  background: var(--papel); border-color: var(--brand);
+  box-shadow: var(--sombra-1); transform: translateY(-2px);
+}
+.pie-red-ico{
+  width: 34px; height: 34px; border-radius: 50%; flex: none;
+  display: grid; place-items: center; color: #FFFFFF;
+}
+.pie-red-ico svg{ display: block; }
+.pie-red-wa   .pie-red-ico{ background: var(--wa); }
+.pie-red-ig   .pie-red-ico{ background: linear-gradient(45deg, #F9CE34 0%, #EE2A7B 52%, #6228D7 100%); }
+.pie-red-mail .pie-red-ico{ background: linear-gradient(140deg, #EA4335 0%, #C5221F 100%); }
+.pie-red-txt{ display: block; min-width: 0; }
+.pie-red-txt small{
+  display: block; font-family: var(--narrow); font-weight: 600; font-size: 11px;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--dim); line-height: 1.25;
+}
+.pie-red-txt b{
+  display: block; font-family: var(--display); font-weight: 700; font-size: 15px;
+  letter-spacing: -.01em; line-height: 1.3; color: var(--tinta);
+}
+
 @media (max-width: 767px){
   /* que el boton flotante no tape los links del pie */
   footer{ padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px)); }
+  /* en el celular cada contacto ocupa su propia fila, a lo ancho */
+  .pie-contacto{ flex-direction: column; align-items: stretch; gap: 12px; }
+  .pie-redes{ flex-direction: column; }
+  .pie-red{ width: 100%; }
+  .pie-red-txt b{ font-size: 14.5px; }
 }
 
 /* ================= BOTON FLOTANTE DE WHATSAPP ================= */
@@ -1413,6 +1487,7 @@ footer a:hover{ color: var(--brand); text-decoration: underline; }
   .btn:hover::after{ animation: none; }
   .btn:hover, .cambio-btn:hover, .ir-card:hover, .rubro:hover, .recurso:hover,
   .stack-tec-grid li:hover, .demo-cap:hover, .contacto:hover{ transform: none; }
+  footer .pie-red:hover{ transform: none; }
   .cambio-txts > span, .cambio-pie > span{ transform: none !important; }
   .diag-lista li{ animation: none; }
   .interruptor::before{ transition: background-color .2s ease; }
