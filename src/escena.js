@@ -18,6 +18,7 @@ import {
   Points,
   ShaderMaterial,
   AdditiveBlending,
+  NormalBlending,
   Color,
   Vector3,
   Matrix4
@@ -165,6 +166,7 @@ var FRAGMENT = [
   "uniform vec3 uMedio;",
   "uniform vec3 uCaliente;",
   "uniform float uOpacidad;",
+  "uniform float uClaro;",
   "varying float vTono;",
   "varying float vBrillo;",
   "void main() {",
@@ -175,7 +177,8 @@ var FRAGMENT = [
   "  alfa = pow(alfa, 1.7);",
   "  vec3 col = mix(uFrio, uMedio, smoothstep(0.0, 0.55, vTono));",
   "  col = mix(col, uCaliente, smoothstep(0.55, 1.0, vTono));",
-  "  gl_FragColor = vec4(col * vBrillo, alfa * uOpacidad);",
+  "  vec3 luz = mix(col * vBrillo, col * (0.72 + 0.28 * vBrillo), uClaro);",
+  "  gl_FragColor = vec4(luz, alfa * uOpacidad * mix(1.0, 0.9, uClaro));",
   "}"
 ].join("\n");
 
@@ -196,6 +199,9 @@ export function iniciar(opciones) {
   // al puntero ni se arrastra con el scroll. Nada reacciona a lo que
   // la persona hace.
   var suave = !!opciones.suave && !estatico;
+  // Fondo claro: sumar luz sobre blanco no se ve (queda blanco), asi
+  // que las particulas se pintan encima con azules mas profundos.
+  var claro = !!opciones.claro;
   var cantidad = opciones.cantidad || (liviano ? 5200 : 17000);
   var radio = 4.1;
 
@@ -231,9 +237,10 @@ export function iniciar(opciones) {
     uFuerzaPuntero: { value: 0 },
     uPuntero: { value: new Vector3(0, 0, 0) },
     uOpacidad: { value: 0 },
-    uFrio: { value: new Color(0x1b57a8) },
-    uMedio: { value: new Color(0x3d9be0) },
-    uCaliente: { value: new Color(0x7fd4f5) }
+    uClaro: { value: claro ? 1 : 0 },
+    uFrio: { value: new Color(claro ? 0x0e3a78 : 0x1b57a8) },
+    uMedio: { value: new Color(claro ? 0x1b6fc8 : 0x3d9be0) },
+    uCaliente: { value: new Color(claro ? 0x3d9be0 : 0x7fd4f5) }
   };
 
   var material = new ShaderMaterial({
@@ -243,7 +250,7 @@ export function iniciar(opciones) {
     transparent: true,
     depthWrite: false,
     depthTest: false,
-    blending: AdditiveBlending
+    blending: claro ? NormalBlending : AdditiveBlending
   });
 
   var nube = new Points(geometria, material);

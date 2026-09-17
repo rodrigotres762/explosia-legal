@@ -118,7 +118,9 @@
   function opacidadSegunScroll() {
     if (!api) return;
     var c = centroDe(visual);
-    if (!c) { api.opacidad(quieto ? 0 : 0.22); return; }
+    // Vista sin portada: sobre fondo claro las particulas se leen como
+    // ruido encima del texto, asi que ahi el anillo se apaga del todo.
+    if (!c) { api.opacidad(0); return; }
     var alto = window.innerHeight || 1;
     // 1 arriba de todo, se va apagando al dejar atras la portada
     if (quieto) { api.opacidad(1); return; }
@@ -141,7 +143,7 @@
     if (!window.EscenaExplosIA || !window.EscenaExplosIA.iniciar) return;
 
     try {
-      api = window.EscenaExplosIA.iniciar({ liviano: liviano, estatico: quieto, suave: suave });
+      api = window.EscenaExplosIA.iniciar({ liviano: liviano, estatico: quieto, suave: suave, claro: true });
     } catch (e) {
       api = null;
     }
@@ -206,9 +208,9 @@
      estas por ver.
      ============================================================ */
 
-  var PIEZAS = ".head, .fig, .senses > *, .rubros > *, .mapa > *, .flujo > *, " +
-               ".dos-frentes > *, .steps > *, .qa, .chat-grid > *, .col, .siguiente, " +
-               ".diag, .recursos > *";
+  var PIEZAS = ".head, .sec-head, .fig, .senses > *, .rubros > *, .mapa > *, .flujo > *, " +
+               ".dos-frentes > *, .pasos > *, .qa, .chat-grid > *, .col, .siguiente, " +
+               ".diag, .recursos > *, .demo, .cambios > *, .explora > *, .pista";
 
   var disparadores = [];
 

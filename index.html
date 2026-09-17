@@ -8,7 +8,7 @@
 <link rel="canonical" href="https://explosia.com.ar/">
 <link rel="icon" type="image/png" href="icono.png">
 <link rel="apple-touch-icon" href="icono.png">
-<meta name="theme-color" content="#070E1D">
+<meta name="theme-color" content="#F3F8FE">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ExplosIA">
 <meta property="og:locale" content="es_AR">
@@ -60,12 +60,13 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Archivo+Narrow:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
-<link rel="stylesheet" href="css/visual.css?v=15">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..800&family=Archivo+Narrow:wght@500;600;700&family=Caveat:wght@600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="css/visual.css?v=16">
+<link rel="stylesheet" href="css/portada.css?v=16">
 <script src="vendor/gsap.min.js"></script>
 <script src="vendor/ScrollTrigger.min.js"></script>
-<script src="js/visual.js?v=15" defer></script>
-<script src="js/cta-movil.js" defer></script>
+<script src="js/visual.js?v=16" defer></script>
+<script src="js/portada.js?v=16" defer></script>
 <script type="speculationrules">
 {
   "prerender": [
@@ -76,979 +77,59 @@
   ]
 }
 </script>
-<style>
-  :root{
-    /* Paleta muestreada del logo: azul-noche, azul el&eacute;ctrico del anillo, cromo */
-    --ink:        #070E1D;
-    --ink-2:      #0A1428;
-    --surface:    #0D1A33;
-    --surface-2:  #122340;
-    --edge:       #1D3358;
-    --edge-soft:  #16294A;
-
-    --brand:      #3D9BE0;
-    --brand-hot:  #7FD4F5;
-    --brand-deep: #1B57A8;
-    --chrome:     #A8BDD4;
-
-    --text:       #E6EFF9;
-    --muted:      #93A8C2;
-    --dim:        #6E86A3;
-
-    --chat-in:    #16232F;
-    --chat-out:   #0F4C3A;
-
-    --measure: 63ch;
-    --gutter: clamp(20px, 5vw, 40px);
-
-    color-scheme: dark;
-  }
-
-  *{ box-sizing: border-box; }
-
-  body{
-    margin: 0;
-    background: var(--ink);
-    color: var(--text);
-    font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
-    font-size: 18px;
-    line-height: 1.72;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
-
-  h1,h2,h3,h4{
-    font-family: Archivo, "Helvetica Neue", Arial, sans-serif;
-    font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    text-wrap: balance;
-    margin: 0;
-  }
-
-  p{ margin: 0; }
-  a{ color: var(--brand-hot); }
-
-  .eyebrow{
-    font-family: "Archivo Narrow", Arial, sans-serif;
-    font-weight: 700;
-    font-size: 13px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--brand);
-    line-height: 1.4;
-  }
-
-  .wrap{
-    width: 100%;
-    max-width: 1120px;
-    margin-inline: auto;
-    padding-inline: var(--gutter);
-  }
-  .col{ max-width: var(--measure); }
-
-  section{ padding-block: clamp(56px, 9vw, 104px); }
-  .stack{ display: flex; flex-direction: column; gap: 22px; }
-  .stack-lg{ display: flex; flex-direction: column; gap: 40px; }
-
-  /* ---------- barra superior ---------- */
-  .topbar{
-    position: sticky; top: 0; z-index: 50;
-    background: rgba(7,14,29,.82);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--edge-soft);
-  }
-  .topbar .wrap{
-    display: flex; align-items: center; gap: 14px;
-    min-height: 62px;
-  }
-  .mark{ display: flex; align-items: center; gap: 11px; margin-right: auto; }
-  .mark img{ width: 34px; height: 34px; display: block; }
-  .mark b{
-    font-family: Archivo, Arial, sans-serif; font-weight: 800;
-    font-size: 19px; letter-spacing: -0.015em;
-  }
-  .mark b i{ font-style: normal; color: var(--brand-hot); }
-
-  /* ---------- bot&oacute;n ---------- */
-  .btn{
-    display: inline-flex; align-items: center; gap: 10px;
-    font-family: Archivo, Arial, sans-serif; font-weight: 700; font-size: 15px;
-    letter-spacing: -0.01em;
-    text-decoration: none;
-    padding: 12px 20px;
-    border-radius: 999px;
-    background: linear-gradient(180deg, var(--brand) 0%, var(--brand-deep) 100%);
-    color: #FFFFFF;
-    border: 1px solid rgba(127,212,245,.45);
-    box-shadow: 0 0 0 1px rgba(7,14,29,.6), 0 8px 26px -10px rgba(61,155,224,.75);
-    transition: transform .18s ease, box-shadow .18s ease;
-    white-space: nowrap;
-  }
-  .btn:hover{ transform: translateY(-1px); box-shadow: 0 0 0 1px rgba(7,14,29,.6), 0 12px 32px -10px rgba(61,155,224,.95); }
-  .btn svg{ width: 18px; height: 18px; flex: none; }
-  .btn-lg{ font-size: 17px; padding: 15px 26px; }
-  @media (max-width: 480px){
-    .btn{ white-space: normal; text-align: center; max-width: 100%; }
-  }
-  @media (max-width: 360px){
-    .btn-lg{ font-size: 16px; padding: 14px 20px; }
-  }
-  .btn-ghost{
-    background: transparent; color: var(--text);
-    border: 1px solid var(--edge); box-shadow: none;
-  }
-  .btn-ghost:hover{ border-color: var(--brand); box-shadow: none; }
-
-  a:focus-visible, .btn:focus-visible{
-    outline: 2px solid var(--brand-hot); outline-offset: 3px;
-  }
-
-  /* ---------- portada ---------- */
-  .hero{
-    position: relative;
-    padding-block: clamp(44px, 7vw, 82px) clamp(52px, 8vw, 96px);
-    overflow: hidden;
-  }
-  .hero::before{
-    content: ""; position: absolute; inset: -20% -10% auto -10%; height: 620px;
-    background: radial-gradient(52% 60% at 50% 32%, rgba(61,155,224,.20) 0%, rgba(27,87,168,.09) 42%, transparent 72%);
-    pointer-events: none;
-  }
-  .hero .wrap{ position: relative; }
-  .hero-logo{
-    width: clamp(132px, 26vw, 178px); height: auto; display: block;
-    filter: drop-shadow(0 0 44px rgba(61,155,224,.42));
-    margin-bottom: 30px;
-  }
-  .hero-h1{
-    font-family: Archivo, Arial, sans-serif;
-    font-weight: 700;
-    font-size: clamp(15px, 1.8vw, 17px);
-    letter-spacing: -0.005em;
-    color: var(--chrome);
-    max-width: 30ch;
-    margin-bottom: 10px;
-  }
-  .hero .hero-title{
-    font-size: clamp(34px, 6.4vw, 60px);
-    max-width: 17ch;
-    margin-bottom: 22px;
-  }
-  .hero .hero-title em{ font-style: normal; color: var(--brand-hot); }
-  .hero-sub{ font-size: clamp(18px, 2.3vw, 21px); color: var(--chrome); max-width: 56ch; }
-  .hero-cta{ display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-top: 34px; }
-  .hero-loc{
-    font-family: "Archivo Narrow", Arial, sans-serif; font-size: 14px;
-    letter-spacing: .04em; color: var(--dim); text-transform: uppercase;
-  }
-  .hero-trust{
-    font-family: "Archivo Narrow", Arial, sans-serif; font-size: 13.5px;
-    color: var(--dim); margin-top: 14px;
-  }
-
-  /* ---------- stack tecnologico ---------- */
-  .stack-tec{ padding-block: 30px 34px; border-block: 1px solid var(--edge-soft); }
-  .stack-tec-label{
-    font-family: "Archivo Narrow", Arial, sans-serif; font-weight: 700; font-size: 12.5px;
-    letter-spacing: .1em; text-transform: uppercase; color: var(--dim);
-    text-align: center; margin-bottom: 18px;
-  }
-  .stack-tec-grid{
-    list-style: none; margin: 0 auto; padding: 0; max-width: 980px;
-    display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 12px;
-  }
-  .stack-tec-grid li{
-    display: inline-flex; align-items: center; gap: 9px;
-    font-family: Archivo, Arial, sans-serif; font-weight: 700; font-size: 14px; line-height: 1.2;
-    color: var(--chrome); border: 1px solid var(--edge-soft); border-radius: 999px;
-    padding: 7px 16px 7px 10px; background: var(--surface);
-  }
-  .stack-tec-grid img{ width: 20px; height: 20px; object-fit: contain; flex: none; }
-  .stack-tec-grid img.marca-palabra{ width: auto; height: 11px; }
-  .stack-tec-mas{
-    max-width: 640px; margin: 24px auto 0; text-align: center; text-wrap: pretty;
-    font-size: 16px; line-height: 1.6; color: var(--muted);
-  }
-  .stack-tec-mas strong{
-    display: block; margin-bottom: 4px; text-wrap: balance;
-    font-family: Archivo, "Helvetica Neue", Arial, sans-serif; font-weight: 800; font-size: 18px;
-    letter-spacing: -0.01em; color: var(--text);
-  }
-  .stack-tec-mas a{ font-weight: 600; white-space: nowrap; }
-  @media (max-width: 599px){
-    /* compacta: con 19 marcas, en celular son 8 filas en vez de 9-11 */
-    .stack-tec-grid{ gap: 6px; }
-    .stack-tec-grid li{ font-size: 12.5px; gap: 6px; padding: 5px 10px 5px 7px; }
-    .stack-tec-grid img{ width: 17px; height: 17px; }
-    .stack-tec-grid img.marca-palabra{ height: 9.5px; }
-    .stack-tec-mas{ font-size: 15px; }
-    .stack-tec-mas strong{ font-size: 17px; }
-  }
-
-  /* ---------- diagnostico ---------- */
-  .diag{
-    display: grid; gap: 28px;
-    background: linear-gradient(180deg, var(--surface) 0%, var(--ink-2) 100%);
-    border: 1px solid var(--edge-soft); border-radius: 20px;
-    padding: clamp(16px, 4vw, 36px);
-  }
-  @media (min-width: 900px){
-    .diag{ grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 40px; align-items: start; }
-  }
-  .diag-campo{ border: 0; margin: 0 0 26px; padding: 0; min-width: 0; }
-  .diag-campo:last-child{ margin-bottom: 0; }
-  .diag-campo legend{
-    font-family: Archivo, Arial, sans-serif; font-weight: 700; font-size: 17px; line-height: 1.3;
-    color: var(--text); margin-bottom: 14px; padding: 0;
-  }
-  .chips{ display: flex; flex-wrap: wrap; gap: 10px; }
-  .chip{ position: relative; cursor: pointer; -webkit-tap-highlight-color: transparent; }
-  .chip input{ position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; pointer-events: none; }
-  .chip span{
-    position: relative; isolation: isolate;
-    display: inline-flex; align-items: center; gap: 8px; min-height: 44px;
-    padding: 10px 16px 10px 12px; border-radius: 999px;
-    border: 1px solid var(--edge); background: var(--ink-2);
-    font-family: Archivo, Arial, sans-serif; font-weight: 600; font-size: 14.5px; line-height: 1.2;
-    color: var(--chrome);
-    -webkit-user-select: none; user-select: none;
-    transition: border-color .25s ease, color .25s ease, transform .2s cubic-bezier(.22,1,.36,1);
-  }
-  .chip span::after{
-    content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit;
-    background: linear-gradient(180deg, rgba(61,155,224,.42) 0%, rgba(27,87,168,.42) 100%);
-    opacity: 0; transition: opacity .25s ease;
-  }
-  .chip span::before{
-    content: ""; flex: none; width: 14px; height: 14px;
-    background-color: currentColor;
-    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center / contain no-repeat;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center / contain no-repeat;
-    opacity: .35; transform: scale(.7);
-    transition: opacity .25s ease, transform .35s cubic-bezier(.34,1.56,.64,1), background-color .25s ease;
-  }
-  .chip:hover span{ border-color: var(--brand); color: var(--text); }
-  .chip:active span{ transform: scale(.97); }
-  .chip input:checked + span{ color: #FFFFFF; border-color: rgba(127,212,245,.7); }
-  .chip input:checked + span::after{ opacity: 1; }
-  .chip input:checked + span::before{ opacity: 1; transform: scale(1); background-color: var(--brand-hot); }
-  .chip input:focus-visible + span{ outline: 2px solid var(--brand-hot); outline-offset: 2px; }
-
-  .diag-res{
-    display: flex; flex-direction: column; gap: 14px;
-    border: 1px solid var(--edge-vivo); border-radius: 16px;
-    background: rgba(7,14,29,.55);
-    padding: clamp(18px, 3vw, 26px);
-  }
-  @media (min-width: 900px){ .diag-res{ position: sticky; top: 96px; } }
-  @media (max-width: 599px){
-    .diag-res{ padding: 22px 0 0; border: 0; border-top: 1px solid var(--edge-soft); border-radius: 0; background: none; }
-  }
-  .diag-rotulo{
-    font-family: "Archivo Narrow", Arial, sans-serif; font-weight: 700; font-size: 12.5px;
-    letter-spacing: .14em; text-transform: uppercase; color: var(--brand-hot);
-  }
-  .diag-num{
-    display: flex; align-items: baseline; gap: 12px;
-    font-family: Archivo, Arial, sans-serif; font-weight: 600; font-size: 16px; line-height: 1.3; color: var(--chrome);
-  }
-  .diag-num b{
-    display: inline-block; min-width: 1ch;
-    font-size: 46px; font-weight: 800; line-height: 1; letter-spacing: -0.03em; color: #FFFFFF;
-  }
-  .diag-vacio{ font-size: 15.5px; line-height: 1.6; color: var(--muted); }
-  .diag-lista{ list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
-  .diag-lista:empty{ display: none; }
-  .diag-lista li{
-    display: flex; flex-direction: column; gap: 3px;
-    padding: 12px 14px; border-radius: 12px;
-    background: var(--surface); border: 1px solid var(--edge-soft);
-    animation: diagEntra .45s cubic-bezier(.22,1,.36,1) both;
-  }
-  .diag-lista b{ font-family: Archivo, Arial, sans-serif; font-size: 15px; font-weight: 700; color: var(--text); }
-  .diag-lista span{ font-size: 15px; line-height: 1.55; color: var(--muted); }
-  @keyframes diagEntra{ from{ opacity: 0; transform: translateY(8px); } to{ opacity: 1; transform: none; } }
-  .diag-equipo{ font-size: 15.5px; line-height: 1.6; color: var(--chrome); border-left: 2px solid var(--brand); padding-left: 12px; }
-  .diag-cta{ align-self: flex-start; margin-top: 4px; }
-  @media (max-width: 599px){ .diag-cta{ align-self: stretch; justify-content: center; font-size: 16px; padding: 14px 16px; } }
-  .diag-nota{ font-family: "Archivo Narrow", Arial, sans-serif; font-size: 13px; color: var(--dim); }
-
-  /* ---------- recursos ---------- */
-  .recursos{ display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
-  .recurso{
-    display: flex; flex-direction: column; gap: 10px;
-    text-decoration: none; color: inherit;
-    border: 1px solid var(--edge-soft); border-radius: 16px;
-    background: linear-gradient(180deg, var(--surface) 0%, var(--ink-2) 100%);
-    padding: 22px 24px;
-    transition: border-color .25s ease, transform .3s cubic-bezier(.22,1,.36,1);
-  }
-  .recurso:hover{ border-color: var(--brand); transform: translateY(-3px); }
-  .recurso small{
-    font-family: "Archivo Narrow", Arial, sans-serif; font-weight: 700; font-size: 12px;
-    letter-spacing: .14em; text-transform: uppercase; color: var(--brand-hot);
-  }
-  .recurso h3{ font-size: 18px; font-weight: 700; line-height: 1.25; color: var(--text); }
-  .recurso p{ font-size: 15.5px; line-height: 1.6; color: var(--muted); }
-  .recurso .leer{ margin-top: auto; font-family: Archivo, Arial, sans-serif; font-weight: 700; font-size: 14px; color: var(--brand-hot); }
-  .recursos-todos{ font-family: Archivo, Arial, sans-serif; font-weight: 700; font-size: 15px; }
-  .recursos-todos a{ text-decoration: none; }
-
-  /* ---------- barra de WhatsApp en el celular ---------- */
-  .barra-cta{ display: none; }
-  @media (max-width: 767px){
-    .barra-cta{
-      display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
-      padding: 14px 16px calc(12px + env(safe-area-inset-bottom, 0px));
-      background: linear-gradient(180deg, rgba(7,14,29,0) 0%, rgba(7,14,29,.88) 38%, rgba(7,14,29,.96) 100%);
-      pointer-events: none;
-      transform: translateY(115%); visibility: hidden;
-      transition: transform .5s cubic-bezier(.22,1,.36,1), visibility 0s linear .5s;
-    }
-    .barra-cta.visible{
-      transform: translateY(0); visibility: visible;
-      transition: transform .5s cubic-bezier(.22,1,.36,1), visibility 0s;
-    }
-    .barra-cta .btn{
-      display: flex; width: 100%; justify-content: center;
-      font-size: 15.5px; padding: 14px 16px; pointer-events: auto;
-    }
-    .barra-cta.visible .btn svg{ animation: barraPop .6s cubic-bezier(.34,1.56,.64,1) .25s both; }
-    body footer{ padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px)); }
-  }
-  @keyframes barraPop{
-    0%{ transform: scale(.6); }
-    60%{ transform: scale(1.18); }
-    100%{ transform: scale(1); }
-  }
-
-  /* ---------- t&iacute;tulos de secci&oacute;n ---------- */
-  .head{ display: flex; flex-direction: column; gap: 14px; margin-bottom: 40px; }
-  .head h2{ font-size: clamp(27px, 4.2vw, 40px); max-width: 20ch; }
-  .head p{ color: var(--muted); max-width: var(--measure); }
-  .head h2.eyebrow{
-    font-family: "Archivo Narrow", Arial, sans-serif;
-    font-weight: 700; font-size: 13px; letter-spacing: 0.16em;
-    text-transform: uppercase; max-width: none; line-height: 1.4;
-    color: var(--brand);
-  }
-
-  .rule{ border: 0; border-top: 1px solid var(--edge-soft); margin: 0; }
-
-  /* ---------- listas ---------- */
-  .pains{ list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
-  .pains li{
-    display: flex; gap: 15px; align-items: baseline;
-    padding: 15px 0;
-    border-bottom: 1px solid var(--edge-soft);
-    color: var(--chrome);
-  }
-  .pains li::before{
-    content: ""; flex: none; width: 7px; height: 7px; margin-top: 9px;
-    border-radius: 50%; background: var(--brand); box-shadow: 0 0 10px rgba(61,155,224,.8);
-  }
-  .pains li b{ color: var(--text); font-weight: 600; }
-
-  .ticks{ list-style: none; margin: 0; padding: 0; display: grid; gap: 13px; }
-  .ticks li{ display: flex; gap: 13px; align-items: flex-start; color: var(--chrome); }
-  .ticks li svg{ flex: none; width: 20px; height: 20px; margin-top: 6px; color: var(--brand); }
-  .ticks li b{ color: var(--text); font-weight: 600; }
-
-  /* ---------- figuras ---------- */
-  figure{ margin: 0; }
-  .fig{
-    background: var(--surface);
-    border: 1px solid var(--edge-soft);
-    border-radius: 16px;
-    padding: clamp(16px, 3vw, 26px);
-    overflow-x: auto;
-  }
-  .fig svg{ display: block; width: 100%; min-width: 480px; height: auto; }
-  .fig.narrow svg{ min-width: 360px; }
-  figcaption{
-    margin-top: 16px; font-size: 15.5px; color: var(--muted);
-    max-width: var(--measure); line-height: 1.6;
-  }
-  .fig-note{
-    font-family: "Archivo Narrow", Arial, sans-serif; text-transform: uppercase;
-    letter-spacing: .13em; font-size: 12px; color: var(--dim); margin-bottom: 12px;
-  }
-
-  /* ---------- qu&eacute; entiende ---------- */
-  .senses{ display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(212px, 1fr)); }
-  .sense{
-    border: 1px solid var(--edge-soft); border-radius: 14px;
-    padding: 22px; background: linear-gradient(180deg, var(--surface) 0%, var(--ink-2) 100%);
-    display: flex; flex-direction: column; gap: 10px;
-  }
-  .sense svg{ width: 30px; height: 30px; color: var(--brand); }
-  .sense h3{ font-size: 18px; font-weight: 700; }
-  .sense p{ font-size: 16px; color: var(--muted); line-height: 1.6; }
-
-  /* ---------- chat ---------- */
-  .phone{
-    max-width: 400px;
-    border: 1px solid var(--edge);
-    border-radius: 22px;
-    background: #0A1119;
-    padding: 16px 14px 20px;
-    box-shadow: 0 24px 60px -30px rgba(0,0,0,.9);
-  }
-  .phone-top{
-    display: flex; align-items: center; gap: 10px;
-    padding: 0 4px 14px; border-bottom: 1px solid var(--edge-soft); margin-bottom: 16px;
-  }
-  .avatar{
-    width: 32px; height: 32px; border-radius: 50%; flex: none;
-    background: linear-gradient(140deg, var(--brand) 0%, var(--brand-deep) 100%);
-    display: grid; place-items: center;
-    font-family: Archivo, Arial, sans-serif; font-weight: 800; font-size: 13px; color: #fff;
-  }
-  .phone-top div{ display: flex; flex-direction: column; line-height: 1.3; }
-  .phone-top strong{ font-family: Archivo, Arial, sans-serif; font-size: 15px; font-weight: 700; }
-  .phone-top span{ font-family: "Archivo Narrow", Arial, sans-serif; font-size: 12.5px; color: var(--brand-hot); }
-  .msgs{ display: flex; flex-direction: column; gap: 9px; }
-  .msg{
-    max-width: 84%; padding: 10px 13px; border-radius: 14px;
-    font-size: 15.5px; line-height: 1.55;
-  }
-  .msg.in{ align-self: flex-start; background: var(--chat-in); border-bottom-left-radius: 5px; }
-  .msg.out{ align-self: flex-end; background: var(--chat-out); border-bottom-right-radius: 5px; }
-  .msg .t{
-    display: block; font-family: "Archivo Narrow", Arial, sans-serif;
-    font-size: 11.5px; color: rgba(230,239,249,.5); text-align: right; margin-top: 3px;
-  }
-  .msg .audio{
-    display: flex; align-items: center; gap: 9px;
-    font-family: "Archivo Narrow", Arial, sans-serif; font-size: 13px; color: var(--brand-hot);
-    margin-bottom: 6px;
-  }
-  .msg .audio svg{ width: 16px; height: 16px; flex: none; }
-  .chat-grid{ display: grid; gap: 34px; grid-template-columns: minmax(0,1fr); align-items: start; }
-  @media (min-width: 900px){
-    .chat-grid{ grid-template-columns: 400px minmax(0,1fr); gap: 52px; }
-  }
-  .sample-tag{
-    display: inline-flex; align-items: center; gap: 8px;
-    font-family: "Archivo Narrow", Arial, sans-serif; text-transform: uppercase;
-    letter-spacing: .12em; font-size: 12px; color: var(--dim);
-    border: 1px solid var(--edge-soft); border-radius: 999px; padding: 5px 12px;
-    margin-bottom: 18px;
-  }
-
-  /* ---------- tareas ---------- */
-  .tasks{ display: grid; gap: 1px; background: var(--edge-soft); border: 1px solid var(--edge-soft); border-radius: 14px; overflow: hidden; }
-  @media (min-width: 720px){ .tasks{ grid-template-columns: 1fr 1fr; } }
-  .task{ background: var(--surface); padding: 24px; display: flex; flex-direction: column; gap: 8px; }
-  .task h3{ font-size: 17.5px; font-weight: 700; }
-  .task p{ font-size: 16px; color: var(--muted); line-height: 1.6; }
-
-  /* ---------- rubros ---------- */
-  .rubros{ display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(268px, 1fr)); }
-  .rubro{
-    border: 1px solid var(--edge-soft); border-left: 3px solid var(--brand);
-    border-radius: 4px 14px 14px 4px;
-    background: var(--surface); padding: 22px 24px;
-    display: flex; flex-direction: column; gap: 9px;
-  }
-  .rubro h3{ font-size: 17.5px; font-weight: 700; }
-  .rubro p{ font-size: 16px; color: var(--muted); line-height: 1.6; }
-
-  /* ---------- pasos ---------- */
-  .steps{ display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); counter-reset: paso; }
-  .step{ display: flex; flex-direction: column; gap: 10px; padding-top: 20px; border-top: 2px solid var(--edge); }
-  .step:first-child{ border-top-color: var(--brand); }
-  .step .n{
-    font-family: Archivo, Arial, sans-serif; font-weight: 800; font-size: 13px;
-    letter-spacing: .12em; color: var(--brand);
-  }
-  .step h3{ font-size: 18px; font-weight: 700; }
-  .step p{ font-size: 16px; color: var(--muted); line-height: 1.6; }
-
-  /* ---------- faq ---------- */
-  .faq{ display: grid; gap: 0; }
-  .qa{ padding: 24px 0; border-bottom: 1px solid var(--edge-soft); }
-  .qa:first-child{ border-top: 1px solid var(--edge-soft); }
-  .qa h3{ font-size: 19px; font-weight: 700; margin-bottom: 9px; }
-  .qa p{ color: var(--muted); max-width: var(--measure); }
-
-  /* ---------- cierre ---------- */
-  .close{
-    position: relative; overflow: hidden;
-    border-top: 1px solid var(--edge-soft);
-    background: linear-gradient(180deg, var(--ink-2) 0%, var(--ink) 100%);
-  }
-  .close::before{
-    content: ""; position: absolute; inset: -40% -10% auto -10%; height: 560px;
-    background: radial-gradient(48% 56% at 50% 34%, rgba(61,155,224,.22) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .close .wrap{ position: relative; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 22px; }
-  .close h2{ font-size: clamp(28px, 4.6vw, 44px); max-width: 18ch; }
-  .close p{ color: var(--chrome); max-width: 50ch; }
-  .wa-number{
-    font-family: Archivo, Arial, sans-serif; font-weight: 800;
-    font-size: clamp(26px, 5.2vw, 40px); letter-spacing: -0.02em;
-    color: var(--brand-hot); text-decoration: none;
-    font-variant-numeric: tabular-nums;
-    display: inline-block;
-  }
-  .contact-alt{
-    display: flex; flex-wrap: wrap; gap: 10px 28px; justify-content: center;
-    font-family: "Archivo Narrow", Arial, sans-serif; font-size: 15px; color: var(--muted);
-  }
-  .contact-alt a{ color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--edge); }
-  .contact-alt a:hover{ color: var(--brand-hot); border-color: var(--brand); }
-
-  footer{
-    border-top: 1px solid var(--edge-soft);
-    padding-block: 30px 40px;
-    font-family: "Archivo Narrow", Arial, sans-serif;
-    font-size: 14px; color: var(--dim);
-  }
-  footer .wrap{ display: flex; flex-wrap: wrap; gap: 10px 26px; align-items: center; justify-content: space-between; }
-  footer a{ color: var(--dim); text-decoration: none; border-bottom: 1px solid transparent; }
-  footer a:hover{ color: var(--brand-hot); border-color: var(--brand); }
-  .legal-links{ display: flex; flex-wrap: wrap; gap: 10px 20px; }
-
-  /* ================= PROFUNDIDAD Y MOVIMIENTO ================= */
-
-  /* capas de fondo con parallax (solo decorativas, nunca texto) */
-  .hero{ perspective: 1000px; }
-  .glow{
-    position: absolute; border-radius: 50%; pointer-events: none;
-    filter: blur(72px); opacity: .55; will-change: transform;
-  }
-  .glow-a{
-    width: 620px; height: 620px; top: -220px; left: -160px;
-    background: radial-gradient(circle, rgba(27,87,168,.55) 0%, transparent 68%);
-  }
-  .glow-b{
-    width: 460px; height: 460px; top: 40px; right: -180px;
-    background: radial-gradient(circle, rgba(61,155,224,.40) 0%, transparent 70%);
-  }
-
-  /* rejilla t&eacute;cnica, gui&ntilde;o al circuito del logo */
-  .grid-bg{
-    position: absolute; inset: 0; pointer-events: none; opacity: .35;
-    background-image:
-      linear-gradient(rgba(61,155,224,.10) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(61,155,224,.10) 1px, transparent 1px);
-    background-size: 62px 62px;
-    mask-image: radial-gradient(72% 60% at 50% 30%, #000 0%, transparent 78%);
-    -webkit-mask-image: radial-gradient(72% 60% at 50% 30%, #000 0%, transparent 78%);
-  }
-
-  /* el logo flota y responde al puntero en 3D */
-  .hero-logo{
-    transform-style: preserve-3d;
-    will-change: transform;
-    animation: flotar 7s ease-in-out infinite;
-  }
-  @keyframes flotar{
-    0%,100%{ transform: translateY(0); }
-    50%    { transform: translateY(-9px); }
-  }
-
-  /* tarjetas con inclinaci&oacute;n 3D y brillo que sigue al puntero */
-  .senses, .rubros, .tasks{ perspective: 900px; }
-  .sense, .rubro, .task{
-    position: relative;
-    transform-style: preserve-3d;
-    transition: border-color .25s ease, box-shadow .25s ease;
-  }
-  .sense::after, .rubro::after, .task::after{
-    content: ""; position: absolute; inset: 0; border-radius: inherit;
-    pointer-events: none; opacity: 0; transition: opacity .3s ease;
-    background: radial-gradient(220px circle at var(--mx, 50%) var(--my, 50%),
-                rgba(127,212,245,.16) 0%, transparent 62%);
-  }
-  .sense:hover::after, .rubro:hover::after, .task:hover::after{ opacity: 1; }
-  .sense:hover, .rubro:hover, .task:hover{
-    border-color: rgba(61,155,224,.55);
-    box-shadow: 0 22px 44px -26px rgba(0,0,0,.9), 0 0 0 1px rgba(61,155,224,.18);
-  }
-
-  /* el n&uacute;mero del paso, con relieve */
-  .step .n{
-    display: inline-block;
-    text-shadow: 0 0 18px rgba(61,155,224,.55);
-  }
-
-  /* barrido de luz sobre el bot&oacute;n principal */
-  .btn{ position: relative; overflow: hidden; cursor: pointer; }
-  .btn::after{
-    content: ""; position: absolute; top: 0; bottom: 0; width: 42%;
-    left: -60%; pointer-events: none;
-    background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,.30) 50%, transparent 100%);
-    transform: skewX(-18deg);
-  }
-  .btn:hover::after{ animation: barrido .75s ease-out; }
-  @keyframes barrido{ to{ left: 120%; } }
-
-  /* el tel&eacute;fono del ejemplo, apoyado en el espacio */
-  .phone{
-    transform: perspective(1400px) rotateY(-7deg) rotateX(2deg);
-    transform-origin: 50% 50%;
-    transition: transform .5s cubic-bezier(.2,.7,.3,1);
-    will-change: transform;
-  }
-  .phone:hover{ transform: perspective(1400px) rotateY(0deg) rotateX(0deg); }
-  @media (max-width: 899px){
-    .phone{ transform: none; }
-    .phone:hover{ transform: none; }
-  }
-
-  /* las figuras se levantan apenas del fondo */
-  .fig{
-    box-shadow: 0 30px 60px -40px rgba(0,0,0,.95), inset 0 1px 0 rgba(127,212,245,.07);
-  }
-
-  a, button, summary{ cursor: pointer; }
-
-  /* si el visitante pidi&oacute; menos movimiento, se apaga todo y queda el estado final */
-  @media (prefers-reduced-motion: reduce){
-    *{ animation: none !important; transition: none !important; }
-    .hero-logo{ transform: none !important; }
-    .phone{ transform: none !important; }
-    .glow{ transform: none !important; }
-  }
-
-    /* ================= TONOS: que no sea todo igual ================= */
-
-  :root{
-    --banda:      #0B1A34;   /* franja apenas m&aacute;s clara, para dar ritmo al scroll */
-    --banda-2:    #102243;   /* la m&aacute;s clara de todas */
-    --surface-3:  #1A3255;   /* tarjeta levantada */
-    --edge-vivo:  #2A4C78;
-  }
-
-  /* las secciones alternan de tono: as&iacute; se ve d&oacute;nde termina una y empieza otra */
-  .banda{ background: var(--banda); }
-  .banda-2{
-    background: linear-gradient(180deg, var(--banda-2) 0%, var(--banda) 100%);
-    border-block: 1px solid var(--edge-vivo);
-  }
-
-  /* las seis &aacute;reas de trabajo van del azul profundo al celeste */
-  .area:nth-child(1) .area-ico{ background: rgba(27,87,168,.24);  border-color: rgba(27,87,168,.62); }
-  .area:nth-child(2) .area-ico{ background: rgba(37,112,196,.24); border-color: rgba(37,112,196,.62); }
-  .area:nth-child(3) .area-ico{ background: rgba(61,155,224,.24); border-color: rgba(61,155,224,.62); }
-  .area:nth-child(4) .area-ico{ background: rgba(82,176,232,.24); border-color: rgba(82,176,232,.62); }
-  .area:nth-child(5) .area-ico{ background: rgba(104,194,239,.24);border-color: rgba(104,194,239,.62); }
-  .area:nth-child(6) .area-ico{ background: rgba(127,212,245,.24);border-color: rgba(127,212,245,.62); }
-  .area:nth-child(1) .area-ico svg{ color: #6FA8E8; }
-  .area:nth-child(2) .area-ico svg{ color: #7FBAEE; }
-  .area:nth-child(3) .area-ico svg{ color: #8FC9F2; }
-  .area:nth-child(4) .area-ico svg{ color: #9FD6F5; }
-  .area:nth-child(5) .area-ico svg{ color: #AFE0F8; }
-  .area:nth-child(6) .area-ico svg{ color: #C2EAFB; }
-  .area:nth-child(odd){ background: linear-gradient(180deg, var(--surface-3) 0%, var(--surface) 100%); }
-
-  /* las tarjetas de rubro alternan claro y oscuro */
-  .rubro:nth-child(even){ background: var(--surface-3); }
-  .rubro:nth-child(3n+2){ border-left-color: var(--brand-hot); }
-  .sense:nth-child(2){ background: linear-gradient(180deg, var(--surface-3) 0%, var(--ink-2) 100%); }
-
-  /* t&iacute;tulos m&aacute;s luminosos, y los pasos con su propio degrad&eacute; */
-  .head h2{ color: #F2F8FF; }
-  .eyebrow{ color: var(--brand-hot); }
-  .step:nth-child(2){ border-top-color: #52B0E8; }
-  .step:nth-child(3){ border-top-color: #68C2EF; }
-  .step:nth-child(4){ border-top-color: #7FD4F5; }
-  .step:nth-child(2) .n{ color: #52B0E8; }
-  .step:nth-child(3) .n{ color: #68C2EF; }
-  .step:nth-child(4) .n{ color: #7FD4F5; }
-
-  /* ================= NAVEGACI&Oacute;N POR PESTA&Ntilde;AS ================= */
-
-  .topbar .wrap{ flex-wrap: wrap; gap: 10px 14px; padding-block: 9px; }
-  .menu{ display: flex; gap: 3px; flex-wrap: wrap; order: 3; width: 100%; }
-  @media (min-width: 980px){
-    .menu{ order: 0; width: auto; margin-inline: auto 6px; gap: 4px; }
-  }
-  .menu button{
-    font-family: Archivo, Arial, sans-serif; font-weight: 600; font-size: 14.5px;
-    letter-spacing: -.01em;
-    background: transparent; color: var(--muted);
-    border: 1px solid transparent; border-radius: 999px;
-    padding: 8px 14px; cursor: pointer; white-space: nowrap;
-    transition: color .2s ease, background .2s ease, border-color .2s ease;
-    min-height: 40px;
-  }
-  .menu button:hover{ color: var(--text); background: rgba(61,155,224,.10); }
-  .menu button[aria-current="page"]{
-    color: #FFFFFF;
-    background: linear-gradient(180deg, rgba(61,155,224,.32) 0%, rgba(27,87,168,.32) 100%);
-    border-color: rgba(127,212,245,.55);
-  }
-  .menu button:focus-visible{ outline: 2px solid var(--brand-hot); outline-offset: 2px; }
-
-  /* sin JavaScript se ven todas las vistas, una abajo de la otra */
-  .vista{ display: block; }
-  body.pestanas .vista{ display: none; }
-  body.pestanas .vista.activa{ display: block; }
-
-  /* al pie de cada vista, para seguir sin volver arriba */
-  .siguiente{
-    display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between;
-    border-top: 1px solid var(--edge-vivo);
-    padding-top: 26px;
-  }
-  .siguiente span{
-    font-family: "Archivo Narrow", Arial, sans-serif; font-size: 14px;
-    letter-spacing: .04em; color: var(--dim); text-transform: uppercase;
-  }
-  .siguiente button{
-    font-family: Archivo, Arial, sans-serif; font-weight: 700; font-size: 15px;
-    background: transparent; color: var(--brand-hot);
-    border: 1px solid var(--edge-vivo); border-radius: 999px;
-    padding: 11px 20px; cursor: pointer; min-height: 44px;
-    display: inline-flex; align-items: center; gap: 9px;
-    transition: border-color .2s ease, background .2s ease;
-  }
-  .siguiente button:hover{ border-color: var(--brand); background: rgba(61,155,224,.12); }
-  .siguiente button svg{ width: 16px; height: 16px; }
-
-  /* ================= CONTACTO CON &Iacute;CONOS ================= */
-  .contactos{ display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
-  .contacto{
-    display: inline-flex; align-items: center; gap: 11px;
-    text-decoration: none; color: var(--text);
-    background: var(--surface-3);
-    border: 1px solid var(--edge-vivo); border-radius: 999px;
-    padding: 10px 22px 10px 11px;
-    font-family: Archivo, Arial, sans-serif; font-size: 15px;
-    transition: border-color .2s ease, background .2s ease, transform .2s ease;
-    min-height: 48px; text-align: left;
-  }
-  .contacto:hover{ border-color: var(--brand); background: #1F3D66; transform: translateY(-1px); }
-  .contacto-ico{
-    width: 32px; height: 32px; border-radius: 50%; flex: none;
-    display: grid; place-items: center;
-  }
-  .contacto-ico svg{ width: 18px; height: 18px; color: #FFFFFF; }
-  .contacto-mail .contacto-ico{ background: linear-gradient(140deg, #EA4335 0%, #C5221F 100%); }
-  .contacto-ig   .contacto-ico{ background: linear-gradient(45deg, #F9CE34 0%, #EE2A7B 52%, #6228D7 100%); }
-  .contacto small{
-    display: block; font-family: "Archivo Narrow", Arial, sans-serif;
-    font-weight: 500; font-size: 12.5px; color: var(--muted); line-height: 1.3;
-  }
-  .contacto b{ display: block; font-weight: 700; line-height: 1.3; }
-
-  @media print{
-    /* en papel no hay pesta&ntilde;as: se imprime todo */
-    body.pestanas .vista{ display: block !important; }
-    .menu, .siguiente, .barra-cta{ display: none !important; }
-    .banda, .banda-2{ background: #fff !important; border-block: 0 !important; }
-    .area:nth-child(odd), .rubro:nth-child(even), .sense:nth-child(2){ background: #fff !important; }
-    .head h2{ color: #0B1420 !important; }
-    .contacto{ background: #fff !important; border-color: #B9C7D8 !important; color: #0B1420 !important; }
-    .contacto small{ color: #3B4B5C !important; }
-  }
-
-
-/* ---------- versi&oacute;n para imprimir / guardar como PDF ---------- */
-  @media print{
-    :root{
-      --ink:#FFFFFF; --ink-2:#FFFFFF; --surface:#FFFFFF; --surface-2:#FFFFFF;
-      --edge:#B9C7D8; --edge-soft:#D8E1EB;
-      --brand:#12558F; --brand-hot:#12558F; --brand-deep:#0E4270; --chrome:#31414F;
-      --text:#0B1420; --muted:#3B4B5C; --dim:#5C6B7A;
-      --chat-in:#EEF2F6; --chat-out:#DDEFE4;
-      color-scheme: light;
-    }
-    body{ background:#fff; color:#0B1420; font-size: 11.5pt; line-height: 1.55; }
-    .topbar{ display: none; }
-    .hero::before, .close::before{ display: none; }
-    .hero-logo{ filter: none; width: 118px; }
-    .stack-tec-grid img.claro{ filter: brightness(0); } /* logos blancos: en papel blanco no se verian */
-    .btn{ display: none; }
-    .close .btn-print-show{
-      display: inline-flex; background: none; color: #12558F;
-      border: 1px solid #12558F; box-shadow: none; padding: 8px 14px;
-    }
-    section{ padding-block: 20pt; break-inside: auto; }
-    .hero{ padding-block: 0 22pt; }
-    h1,h2,h3{ break-after: avoid; }
-    figure, .fig, .rubro, .step, .qa, .task, .sense, .phone{ break-inside: avoid; }
-    .fig{ border:1px solid #D8E1EB; overflow: visible; }
-    .fig svg{ min-width: 0; }
-    .phone{ box-shadow: none; border:1px solid #D8E1EB; background:#fff; }
-    .msg.out{ color:#0B1420; }
-    .msg .t{ color:#5C6B7A; }
-    .avatar{ color:#fff; }
-    a{ color:#12558F; }
-    .wa-number{ color:#0B1420; }
-    footer{ padding-block: 14pt; }
-  }
-</style>
 </head>
 <body>
+
+<!-- Iconos: se dibujan una vez y se reusan con <use href="#..."> -->
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.23 8.23 0 0 1 8.24 8.24c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.78.97-.14.16-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></symbol>
+  <symbol id="i-flecha" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></g></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></g></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.2v13.6a1 1 0 0 0 1.52.85l10.9-6.8a1 1 0 0 0 0-1.7L9.52 4.35A1 1 0 0 0 8 5.2Z"/></symbol>
+  <symbol id="i-pausa" viewBox="0 0 24 24"><g fill="currentColor"><rect x="6" y="5" width="4.2" height="14" rx="1.2"/><rect x="13.8" y="5" width="4.2" height="14" rx="1.2"/></g></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 17 0z"/></g></symbol>
+  <symbol id="i-bolsa" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></g></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></g></symbol>
+  <symbol id="i-tabla" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/><path d="M9 3v18"/></g></symbol>
+  <symbol id="i-grafico" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></g></symbol>
+  <symbol id="i-campana" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></g></symbol>
+  <symbol id="i-luna" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.2A8.5 8.5 0 1 1 9.8 3.5a6.8 6.8 0 0 0 10.7 10.7z"/></g></symbol>
+  <symbol id="i-calendario" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18"/><path d="M8 2.5v4"/><path d="M16 2.5v4"/></g></symbol>
+  <symbol id="i-copia" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></g></symbol>
+  <symbol id="i-caja" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5"/><path d="M12 13v8"/></g></symbol>
+  <symbol id="i-vuelta" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 21v-5h5"/></g></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/></g></symbol>
+  <symbol id="i-foto" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2.5"/><circle cx="8.8" cy="9.6" r="1.8"/><path d="m3.5 17.5 4.6-4.3a2 2 0 0 1 2.7 0l3 2.8"/><path d="m14 15 2.2-2a2 2 0 0 1 2.7 0l2.1 1.9"/></g></symbol>
+  <symbol id="i-chispa" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M11 3.5 12.9 8.6 18 10.5l-5.1 1.9L11 17.5l-1.9-5.1L4 10.5l5.1-1.9z"/><path d="M18.5 14.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></g></symbol>
+  <symbol id="i-persona" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></g></symbol>
+  <symbol id="i-equipo" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.6"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.6 3.6 0 0 1 0 6.8"/><path d="M18.5 14.2A6.5 6.5 0 0 1 21.5 20"/></g></symbol>
+  <symbol id="i-herramienta" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></g></symbol>
+  <symbol id="i-pregunta" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M9.2 9.2a2.9 2.9 0 0 1 5.6 1c0 1.9-2.8 2.8-2.8 2.8"/><path d="M12 17h.01"/></g></symbol>
+  <symbol id="i-alerta" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></g></symbol>
+  <symbol id="i-taza" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><path d="M7 2v2.5"/><path d="M11 2v2.5"/></g></symbol>
+  <symbol id="i-tijera" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9"/><path d="M14.5 14.5 20 20"/><path d="M8.1 8.1 12 12"/></g></symbol>
+  <symbol id="i-escudo" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></g></symbol>
+  <symbol id="i-libro" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></g></symbol>
+</svg>
+
 <canvas id="escena" aria-hidden="true"></canvas>
-<style>
-  /* ---------- el problema, en dos frentes ---------- */
-  .dos-frentes{ display: grid; gap: 34px; }
-  @media (min-width: 860px){ .dos-frentes{ grid-template-columns: 1fr 1fr; gap: 48px; } }
-  .frente h3{
-    font-size: 19px; font-weight: 700; margin-bottom: 4px;
-    display: flex; align-items: center; gap: 11px;
-  }
-  .frente h3 svg{ width: 22px; height: 22px; color: var(--brand); flex: none; }
-  .frente > p{ color: var(--dim); font-size: 16px; margin-bottom: 14px; }
-
-  /* ---------- mapa de areas ---------- */
-  .mapa{ display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(262px, 1fr)); perspective: 900px; }
-  .area{
-    position: relative; transform-style: preserve-3d;
-    border: 1px solid var(--edge-soft); border-radius: 14px;
-    background: linear-gradient(180deg, var(--surface) 0%, var(--ink-2) 100%);
-    padding: 24px; display: flex; flex-direction: column; gap: 10px;
-    transition: border-color .25s ease, box-shadow .25s ease;
-  }
-  .area::after{
-    content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
-    opacity: 0; transition: opacity .3s ease;
-    background: radial-gradient(220px circle at var(--mx,50%) var(--my,50%), rgba(127,212,245,.16) 0%, transparent 62%);
-  }
-  .area:hover::after{ opacity: 1; }
-  .area:hover{ border-color: rgba(61,155,224,.55); box-shadow: 0 22px 44px -26px rgba(0,0,0,.9); }
-  .area-ico{
-    width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center;
-    background: rgba(61,155,224,.14); border: 1px solid rgba(61,155,224,.32);
-  }
-  .area-ico svg{ width: 20px; height: 20px; color: var(--brand-hot); }
-  .area h3{ font-size: 17.5px; font-weight: 700; }
-  .area p{ font-size: 15.5px; color: var(--muted); line-height: 1.6; }
-  .area ul{ margin: 2px 0 0; padding: 0; list-style: none; display: grid; gap: 5px; }
-  .area li{
-    font-family: "Archivo Narrow", Arial, sans-serif; font-size: 14px; color: var(--chrome);
-    padding-left: 15px; position: relative; line-height: 1.45;
-  }
-  .area li::before{ content: ""; position: absolute; left: 0; top: 8px; width: 5px; height: 5px; border-radius: 50%; background: var(--brand); }
-
-  /* ---------- ejemplo de flujo (pedido -> factura) ---------- */
-  .flujo{ display: grid; gap: 14px; }
-  @media (min-width: 980px){ .flujo{ grid-template-columns: 1fr 1fr 1fr; align-items: stretch; } }
-  .flujo-paso{
-    border: 1px solid var(--edge-soft); border-radius: 14px; background: var(--surface);
-    padding: 22px; display: flex; flex-direction: column; gap: 12px;
-  }
-  .flujo-paso.destacado{ border-color: rgba(61,155,224,.6); background: linear-gradient(180deg, rgba(61,155,224,.10) 0%, var(--surface) 100%); }
-  .flujo-tag{
-    font-family: "Archivo Narrow", Arial, sans-serif; text-transform: uppercase;
-    letter-spacing: .13em; font-size: 11.5px; color: var(--dim);
-  }
-  .flujo-paso.destacado .flujo-tag{ color: var(--brand-hot); }
-  .crudo{
-    font-family: "Source Serif 4", Georgia, serif; font-size: 15.5px; line-height: 1.55;
-    background: var(--chat-in); border-radius: 12px; border-bottom-left-radius: 5px;
-    padding: 13px 15px; color: var(--text);
-  }
-  .campos{ display: grid; gap: 0; margin: 0; }
-  .campos div{
-    display: flex; justify-content: space-between; gap: 14px;
-    padding: 9px 0; border-bottom: 1px solid var(--edge-soft);
-    font-size: 15px;
-  }
-  .campos div:last-child{ border-bottom: 0; }
-  .campos dt{ color: var(--muted); font-family: "Archivo Narrow", Arial, sans-serif; }
-  .campos dd{ margin: 0; color: var(--text); font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
-  .hechos{ list-style: none; margin: 0; padding: 0; display: grid; gap: 11px; }
-  .hechos li{ display: flex; gap: 11px; align-items: flex-start; font-size: 15.5px; color: var(--chrome); line-height: 1.5; }
-  .hechos svg{ width: 18px; height: 18px; color: var(--brand); flex: none; margin-top: 4px; }
-
-  @media print{
-    .area, .flujo-paso{ break-inside: avoid; border: 1px solid #D8E1EB; background: #fff; }
-    .area::after{ display: none; }
-    .crudo{ background: #EEF2F6; }
-    .flujo-paso.destacado{ background: #fff; border-color: #12558F; }
-  }
-
-  /* diagnostico: el aviso de que el mensaje tambien quedo copiado */
-  .diag-copiado{
-    font-family: "Archivo Narrow", Arial, sans-serif; font-size: 14px; line-height: 1.45;
-    color: var(--brand-hot);
-  }
-
-  /* ================= COMPUTADORA =================
-     En el celular todo va en una sola columna y llena la pantalla. En
-     una pantalla ancha esa misma columna quedaba pegada a la izquierda
-     con la mitad derecha vacia. Aca se reparte el ancho. Todo va con
-     min-width: en el celular no cambia nada. */
-  @media screen and (min-width: 1480px){
-    .wrap{ max-width: 1240px; }
-  }
-
-  @media screen and (min-width: 920px){
-    /* La portada: que el boton de WhatsApp entre en la primera pantalla
-       de una notebook (1366x768 deja unos 650 px utiles), asi que el
-       titular y la bajada se achican tambien con el alto de la ventana. */
-    .hero{ padding-block: clamp(22px, 4.5svh, 64px) clamp(48px, 8svh, 96px); }
-    .hero .hero-h1{ max-width: none; }
-    .hero .hero-title{ font-size: clamp(38px, min(5vw, 7.2svh), 64px); max-width: none; margin-bottom: 18px; }
-    .hero-sub{ font-size: clamp(17px, min(1.5vw, 2.7svh), 20px); max-width: 54ch; }
-    .hero-cta{ margin-top: clamp(20px, 3.6svh, 34px); }
-  }
-
-  @media screen and (min-width: 1000px){
-    /* titulos de seccion: el titular a la izquierda y la bajada a la
-       derecha, apoyada abajo. Los rotulos chicos van a todo el ancho. */
-    .head{
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
-      column-gap: clamp(40px, 5vw, 80px);
-      row-gap: 14px;
-      align-items: end;
-    }
-    .head > .eyebrow{ grid-column: 1 / -1; }
-    .head > h2:not(.eyebrow){ grid-column: 1; max-width: 22ch; }
-    .head > p:not(.eyebrow){ grid-column: 2; max-width: 50ch; }
-    /* Con un solo rotulo (que es corto), la bajada acompana al bloque
-       entero de la izquierda. Si no, cuando la bajada es mas alta que el
-       titular, el rotulo quedaba lejos del titular ("Recursos"). Los
-       rotulos dobles son largos y siguen a todo el ancho. */
-    @supports selector(:has(a)){
-      .head:not(:has(> .eyebrow + .eyebrow)) > .eyebrow{ grid-column: 1; }
-      .head:not(:has(> .eyebrow + .eyebrow)) > p:not(.eyebrow){ grid-row: 1 / span 2; }
-    }
-
-    /* texto largo: dos columnas en vez de una tira angosta */
-    .prosa{ max-width: none; }
-    .prosa > .stack{ display: block; columns: 2; column-gap: clamp(40px, 5vw, 80px); orphans: 3; widows: 3; }
-    .prosa > .stack > p:not(:last-child){ margin-bottom: 22px; }
-
-    /* la lista con tildes de "Vos seguis al mando" */
-    .col.ancho{ max-width: none; }
-    .col.ancho > .ticks{ grid-template-columns: 1fr 1fr; column-gap: clamp(40px, 5vw, 80px); row-gap: 18px; }
-
-    /* preguntas frecuentes en dos columnas */
-    .faq{ grid-template-columns: 1fr 1fr; column-gap: clamp(40px, 5vw, 80px); }
-    .faq .qa:nth-child(2){ border-top: 1px solid var(--edge-soft); }
-    .faq .qa p{ max-width: none; }
-
-    /* el ejemplo del chat: la explicacion acompana al telefono al bajar */
-    .chat-grid > .stack{ position: sticky; top: 104px; }
-  }
-</style>
 
 <header class="topbar">
   <div class="wrap">
-    <span class="mark">
-      <img src="img/logo-header.webp" width="96" height="96" alt="ExplosIA">
+    <a class="mark" href="./" data-ir="inicio" aria-label="ExplosIA, volver al inicio">
+      <img src="img/logo-header.webp" width="96" height="96" alt="">
       <b>explos<i>IA</i></b>
-    </span>
+    </a>
     <nav class="menu" aria-label="Secciones">
-      <button type="button" data-vista="inicio" aria-label="Ir a la secci&oacute;n Inicio">Inicio</button>
-      <button type="button" data-vista="hacemos" aria-label="Ir a la secci&oacute;n Qu&eacute; hacemos">Qu&eacute; hacemos</button>
-      <button type="button" data-vista="funciona" aria-label="Ir a la secci&oacute;n C&oacute;mo funciona">C&oacute;mo funciona</button>
-      <button type="button" data-vista="ejemplos" aria-label="Ir a la secci&oacute;n Ejemplos">Ejemplos</button>
-      <button type="button" data-vista="hablemos" aria-label="Ir a la secci&oacute;n Hablemos">Hablemos</button>
+      <button type="button" data-vista="inicio">Inicio</button>
+      <button type="button" data-vista="hacemos">Qu&eacute; hacemos</button>
+      <button type="button" data-vista="funciona">C&oacute;mo funciona</button>
+      <button type="button" data-vista="ejemplos">Ejemplos</button>
+      <button type="button" data-vista="hablemos">Hablemos</button>
     </nav>
-    <a class="btn" href="https://wa.me/5491130270119?text=Hola!%20Vi%20la%20presentaci%C3%B3n%20de%20ExplosIA%20y%20quiero%20saber%20qu%C3%A9%20se%20puede%20automatizar%20en%20mi%20negocio." target="_blank" rel="noopener noreferrer" aria-label="Escribinos por WhatsApp para pedir tu diagn&oacute;stico gratis">
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.23 8.23 0 0 1 8.24 8.24c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.78.97-.14.16-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
-      Escribinos
+    <a class="btn btn-top" href="https://wa.me/5491130270119?text=Hola!%20Vi%20la%20presentaci%C3%B3n%20de%20ExplosIA%20y%20quiero%20saber%20qu%C3%A9%20se%20puede%20automatizar%20en%20mi%20negocio." target="_blank" rel="noopener noreferrer" aria-label="Escribinos por WhatsApp para pedir tu diagn&oacute;stico gratis">
+      <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>
+      <span>Escribinos</span>
     </a>
   </div>
 </header>
@@ -1056,34 +137,38 @@
 <main>
 
 <div class="vista" id="v-inicio">
+
 <!-- ===================== PORTADA ===================== -->
   <section class="hero">
-    <span class="grid-bg" aria-hidden="true"></span>
-    <span class="glow glow-a" aria-hidden="true"></span>
-    <span class="glow glow-b" aria-hidden="true"></span>
     <div class="wrap hero-grid">
       <div class="hero-texto">
-      <p class="eyebrow">Automatizaci&oacute;n empresarial con IA</p>
-      <h1 class="hero-h1">Agencia de Automatizaci&oacute;n con Inteligencia Artificial para Empresas</h1>
-      <h2 class="hero-title">El trabajo repetitivo de tu negocio <em>puede hacerse solo</em>.</h2>
-      <p class="hero-sub">Armamos agentes de inteligencia artificial que se hacen cargo de lo que hoy te come el d&iacute;a: atender consultas, tomar pedidos, facturar, cargar datos, controlar stock, hacer seguimiento. Trabajan con las herramientas que ya us&aacute;s, a la hora que sea, y te avisan s&oacute;lo cuando hace falta que decidas vos.</p>
-      <div class="hero-cta">
-        <a class="btn btn-lg" data-oculta-barra href="https://wa.me/5491130270119?text=Hola!%20Vi%20la%20presentaci%C3%B3n%20de%20ExplosIA%20y%20quiero%20saber%20qu%C3%A9%20se%20puede%20automatizar%20en%20mi%20negocio." target="_blank" rel="noopener noreferrer" aria-label="Ped&iacute; tu diagn&oacute;stico gratis por WhatsApp sobre automatizaci&oacute;n con IA">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.23 8.23 0 0 1 8.24 8.24c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.78.97-.14.16-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
-          Ped&iacute; tu diagn&oacute;stico gratis
-        </a>
-        <span class="hero-loc">Mart&iacute;nez, San Isidro &middot; Buenos Aires</span>
-      </div>
-      <p class="hero-trust">Sin compromiso &middot; Te respondemos por WhatsApp &middot; Primera charla sin costo</p>
+        <p class="eyebrow">Automatizaci&oacute;n empresarial con IA</p>
+        <h1 class="hero-h1">Agencia de Automatizaci&oacute;n con Inteligencia Artificial para Empresas</h1>
+        <h2 class="hero-title">El trabajo repetitivo de tu negocio <em>puede hacerse solo</em>.</h2>
+        <p class="hero-sub">Atender, tomar pedidos, facturar, cargar datos: lo hace un agente de inteligencia artificial. Vos s&oacute;lo decid&iacute;s.</p>
+        <div class="hero-cta">
+          <a class="btn btn-lg" href="https://wa.me/5491130270119?text=Hola!%20Vi%20la%20presentaci%C3%B3n%20de%20ExplosIA%20y%20quiero%20saber%20qu%C3%A9%20se%20puede%20automatizar%20en%20mi%20negocio." target="_blank" rel="noopener noreferrer" aria-label="Ped&iacute; tu diagn&oacute;stico gratis por WhatsApp sobre automatizaci&oacute;n con IA">
+            <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>
+            Ped&iacute; tu diagn&oacute;stico gratis
+          </a>
+          <a class="btn-play" href="#demo" data-ver-demo>
+            <span class="play-circ"><svg class="ico" aria-hidden="true"><use href="#i-play"/></svg></span>
+            <span>Mir&aacute; c&oacute;mo funciona<small>en 4 ejemplos animados</small></span>
+          </a>
+        </div>
+        <ul class="hero-trust">
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Sin compromiso</li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Primera charla sin costo</li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Mart&iacute;nez, San Isidro</li>
+        </ul>
       </div>
       <div class="hero-visual">
-      <img class="hero-logo" src="img/logo-hero.webp" width="360" height="360" fetchpriority="high" alt="Automatizaci&oacute;n de procesos empresariales con IA en Buenos Aires - ExplosIA">
+        <img class="hero-logo" src="img/logo-hero.webp" width="360" height="360" fetchpriority="high" alt="Automatizaci&oacute;n de procesos empresariales con IA en Buenos Aires - ExplosIA">
       </div>
     </div>
-    <span class="hero-cue" aria-hidden="true"><i></i>Desliz&aacute; para ver c&oacute;mo</span>
   </section>
 
-<!-- ===================== STACK TECNOLOGICO ===================== -->
+<!-- ===================== HERRAMIENTAS DEL CLIENTE ===================== -->
   <section class="stack-tec">
     <div class="wrap">
       <p class="stack-tec-label">Se integra con las herramientas que ya us&aacute;s</p>
@@ -1111,158 +196,333 @@
         <li><img src="img/marcas/googledrive.svg" width="20" height="20" alt="" decoding="async">Google Drive</li>
         <li><img src="img/marcas/googlecalendar.svg" width="20" height="20" alt="" decoding="async">Google Calendar</li>
       </ul>
-      <p class="stack-tec-mas"><strong>&iquest;Tu sistema no est&aacute; en la lista? Tambi&eacute;n se puede automatizar.</strong> Estas son s&oacute;lo algunas de las herramientas con las que trabajamos: nos adaptamos a lo que ya us&aacute;s en tu negocio, sin que tengas que cambiar de sistema. <a href="https://wa.me/5491130270119?text=Hola!%20Vi%20la%20lista%20de%20herramientas%20en%20la%20p%C3%A1gina%20de%20ExplosIA.%20Uso%20otro%20sistema%20y%20quiero%20saber%20c%C3%B3mo%20se%20puede%20automatizar.%20El%20sistema%20es%3A%20" target="_blank" rel="noopener noreferrer" aria-label="Contanos por WhatsApp qu&eacute; sistema us&aacute;s">Contanos cu&aacute;l us&aacute;s &rarr;</a></p>
+      <p class="stack-tec-mas"><strong>&iquest;Tu sistema no est&aacute; en la lista? Tambi&eacute;n se puede automatizar.</strong> <a href="https://wa.me/5491130270119?text=Hola!%20Vi%20la%20lista%20de%20herramientas%20en%20la%20p%C3%A1gina%20de%20ExplosIA.%20Uso%20otro%20sistema%20y%20quiero%20saber%20c%C3%B3mo%20se%20puede%20automatizar.%20El%20sistema%20es%3A%20" target="_blank" rel="noopener noreferrer" aria-label="Contanos por WhatsApp qu&eacute; sistema us&aacute;s">Contanos cu&aacute;l us&aacute;s &rarr;</a></p>
     </div>
   </section>
 
-<!-- ===================== EL PROBLEMA ===================== -->
-  <section>
-    <div class="wrap stack-lg">
-      <div class="head" style="margin-bottom:0">
-        <p class="eyebrow">El problema</p>
-        <h2>El d&iacute;a se te va en dos cosas, y ninguna de las dos hace crecer el negocio</h2>
-        <p>No es por falta de ganas ni de orden. Es que hay trabajo que se repite todos los d&iacute;as y siempre lo termina haciendo una persona.</p>
+<!-- ===================== LOS EJEMPLOS ANIMADOS =====================
+     Cuatro escenas cortas que se reproducen como historias. Cada pieza
+     con data-t aparece a esos milisegundos de empezada la escena; los
+     subtitulos cuentan lo que pasa. data-paneles dice que mitad se ve
+     en el celular (a = lo que llega, b = lo que hace el agente).
+     Son ejemplos ilustrativos: nombres y datos inventados, sin precios
+     ni resultados. -->
+  <section class="demo-sec" id="demo">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Ejemplos animados</p>
+        <h2>Mir&aacute; c&oacute;mo se hace solo</h2>
+        <p>Cuatro situaciones de todos los d&iacute;as, de principio a fin. Toc&aacute; cualquiera para verla.</p>
       </div>
 
-      <div class="dos-frentes">
-        <div class="frente">
-          <h3>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 17 0z"/></svg>
-            Lo que te escriben
-          </h3>
-          <p>Lo que entra de afuera y no espera.</p>
-          <ul class="pains">
-            <li><span><b>El mensaje de las once de la noche.</b> Lo ves al otro d&iacute;a. Para entonces ya pregunt&oacute; en otros tres lados.</span></li>
-            <li><span><b>La misma pregunta, veinte veces por d&iacute;a.</b> Horarios, precios, si hay stock, d&oacute;nde quedan, si atienden el s&aacute;bado.</span></li>
-            <li><span><b>El que contesta primero se lleva la venta.</b> No siempre gana el mejor: gana el que estaba disponible.</span></li>
-            <li><span><b>Los domingos y los feriados.</b> El negocio est&aacute; cerrado, pero los clientes escriben igual.</span></li>
-          </ul>
+      <div class="demo poster pausado" data-demo>
+        <div class="demo-caps" role="tablist" aria-label="Ejemplos">
+          <button class="demo-cap" type="button" role="tab" data-cap="0" aria-selected="true" aria-controls="esc-pedido" id="cap-pedido">
+            <span class="cap-ico"><svg class="ico" aria-hidden="true"><use href="#i-bolsa"/></svg></span>
+            <span><b>Un pedido</b><small>escrito como sea, termina en factura</small></span>
+            <i class="cap-barra" aria-hidden="true"></i>
+          </button>
+          <button class="demo-cap" type="button" role="tab" data-cap="1" aria-selected="false" aria-controls="esc-remito" id="cap-remito" tabindex="-1">
+            <span class="cap-ico"><svg class="ico" aria-hidden="true"><use href="#i-foto"/></svg></span>
+            <span><b>Una foto</b><small>de un remito, cargada en tu planilla</small></span>
+            <i class="cap-barra" aria-hidden="true"></i>
+          </button>
+          <button class="demo-cap" type="button" role="tab" data-cap="2" aria-selected="false" aria-controls="esc-turno" id="cap-turno" tabindex="-1">
+            <span class="cap-ico"><svg class="ico" aria-hidden="true"><use href="#i-luna"/></svg></span>
+            <span><b>Un turno</b><small>pedido por audio a las 23:41</small></span>
+            <i class="cap-barra" aria-hidden="true"></i>
+          </button>
+          <button class="demo-cap" type="button" role="tab" data-cap="3" aria-selected="false" aria-controls="esc-vos" id="cap-vos" tabindex="-1">
+            <span class="cap-ico"><svg class="ico" aria-hidden="true"><use href="#i-persona"/></svg></span>
+            <span><b>Una decisi&oacute;n</b><small>que el agente te pasa a vos</small></span>
+            <i class="cap-barra" aria-hidden="true"></i>
+          </button>
         </div>
 
-        <div class="frente">
-          <h3>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg>
-            Lo que hac&eacute;s a mano
-          </h3>
-          <p>Lo de adentro, que nadie ve pero se cobra tu tiempo.</p>
-          <ul class="pains">
-            <li><span><b>Cargar el mismo dato tres veces.</b> Del chat al cuaderno, del cuaderno a la planilla, de la planilla al sistema.</span></li>
-            <li><span><b>Armar facturas y remitos uno por uno.</b> Copiando datos que ya estaban escritos en otro lado.</span></li>
-            <li><span><b>Controlar lo que se repite.</b> Stock que se va sin avisar, vencimientos, pagos que nadie reclam&oacute;.</span></li>
-            <li><span><b>El seguimiento que nunca se hace.</b> El presupuesto sin respuesta, el cliente que compr&oacute; y no volvi&oacute;.</span></li>
-          </ul>
+        <div class="demo-pantalla">
+          <div class="demo-barra">
+            <div class="demo-seg">
+              <button type="button" data-seg="0" aria-label="Ver el ejemplo del pedido"><i><b></b></i></button>
+              <button type="button" data-seg="1" aria-label="Ver el ejemplo de la foto del remito"><i><b></b></i></button>
+              <button type="button" data-seg="2" aria-label="Ver el ejemplo del turno"><i><b></b></i></button>
+              <button type="button" data-seg="3" aria-label="Ver el ejemplo de la decisi&oacute;n"><i><b></b></i></button>
+            </div>
+            <span class="demo-tag">Ejemplo ilustrativo</span>
+            <button class="demo-play" type="button" aria-label="Reproducir los ejemplos">
+              <svg class="ico i-pausa" aria-hidden="true"><use href="#i-pausa"/></svg>
+              <svg class="ico i-play" aria-hidden="true"><use href="#i-play"/></svg>
+            </button>
+          </div>
+
+          <div class="demo-subs" aria-live="polite">
+            <ol class="subs activa" data-esc="0">
+              <li data-t="0">Llega un pedido escrito como le sali&oacute; al cliente: sin c&oacute;digos y con una condici&oacute;n adentro.</li>
+              <li data-t="1900">El agente entiende qu&eacute; pide, cu&aacute;nto y a qui&eacute;n hay que facturar.</li>
+              <li data-t="4300">Revisa el stock: de las grandes queda una sola, as&iacute; que aplica el reemplazo que pidi&oacute; el cliente.</li>
+              <li data-t="6600">Deja la factura lista para que la apruebes y te avisa lo que se est&aacute; terminando.</li>
+              <li data-t="8600">Y le confirma al cliente. Nadie tuvo que tipear nada.</li>
+            </ol>
+            <ol class="subs" data-esc="1">
+              <li data-t="0">Alguien manda la foto de un remito en vez de tipearlo.</li>
+              <li data-t="1500">El agente mira la imagen y lee lo que dice, aunque est&eacute; escrito a mano.</li>
+              <li data-t="3700">Carga cada rengl&oacute;n en tu planilla, cada dato en su columna.</li>
+              <li data-t="6600">Listo: cargado y con el stock al d&iacute;a, sin copiar ni pegar.</li>
+            </ol>
+            <ol class="subs" data-esc="2">
+              <li data-t="0">Son las 23:41 y el local est&aacute; cerrado. Una clienta manda un audio.</li>
+              <li data-t="1800">El agente lo escucha y entiende qu&eacute; necesita.</li>
+              <li data-t="3200">Ofrece horarios reales, calculando cu&aacute;nto duran dos servicios para dos personas.</li>
+              <li data-t="4500">La respuesta llega en dos mensajes sueltos y la entiende igual. Anota el turno.</li>
+              <li data-t="8200">Confirmado. A la ma&ntilde;ana, el turno ya est&aacute; en tu agenda.</li>
+            </ol>
+            <ol class="subs" data-esc="3">
+              <li data-t="0">Un cliente pide algo que no le toca decidir al agente.</li>
+              <li data-t="1500">El agente no inventa: le dice que eso lo define el due&ntilde;o.</li>
+              <li data-t="3700">Te llega un aviso con todo lo que ya averigu&oacute;.</li>
+              <li data-t="6300">Toc&aacute;s &laquo;Respondo yo&raquo; y el agente se hace a un lado en esa charla.</li>
+              <li data-t="9600">Cuando termin&aacute;s, retoma solo. Nunca responden los dos a la vez.</li>
+            </ol>
+          </div>
+
+          <div class="demo-escenas">
+
+            <!-- 1. UN PEDIDO -->
+            <div class="escena activa" id="esc-pedido" role="tabpanel" aria-labelledby="cap-pedido" data-dur="11500" data-paneles="3400:b,8300:a">
+              <div class="esc-grid">
+                <div class="esc-a">
+                  <p class="esc-rot"><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg>Llega un mensaje &middot; 9:12</p>
+                  <div class="chat">
+                    <p class="burbuja in" data-t="300">&iexcl;Buen d&iacute;a! Mandame <mark data-t="1900">3 cajas de las de 500</mark> y <mark data-t="2150">2 de las grandes</mark>. Factur&aacute; a <mark data-t="2400">Distribuidora Sur</mark>. Si no hay de las grandes mand&aacute; <mark data-t="2650">4 chicas</mark>.<span class="hora">9:12</span></p>
+                    <p class="burbuja out" data-t="8600">&iexcl;Listo! De las grandes quedaba una sola, as&iacute; que van 4 chicas como pediste. La factura sale a Distribuidora Sur.<span class="hora">9:12</span></p>
+                  </div>
+                </div>
+                <div class="esc-b">
+                  <p class="agente" data-t="3200"><span class="agente-ico"><svg class="ico" aria-hidden="true"><use href="#i-chispa"/></svg></span><span><small>El agente</small>entendi&oacute; el pedido</span></p>
+                  <div class="tarjeta" data-t="3700">
+                    <p class="tarjeta-tit"><svg class="ico" aria-hidden="true"><use href="#i-bolsa"/></svg>Pedido &middot; Distribuidora Sur</p>
+                    <ul class="filas">
+                      <li data-t="4300"><span>3 &times; caja 500</span><b class="est ok">hay stock</b></li>
+                      <li class="tachada" data-t="4900"><span>2 &times; caja grande</span><b class="est alerta">queda 1</b></li>
+                      <li data-t="5500"><span>4 &times; caja chica</span><b class="est info">reemplazo</b></li>
+                    </ul>
+                  </div>
+                  <p class="chip-res ok" data-t="6600"><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg>Factura lista, esperando tu OK</p>
+                  <p class="chip-res aviso" data-t="7300"><svg class="ico" aria-hidden="true"><use href="#i-alerta"/></svg>Caja grande: qued&oacute; en el m&iacute;nimo</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. UNA FOTO -->
+            <div class="escena" id="esc-remito" role="tabpanel" aria-labelledby="cap-remito" data-dur="10500" data-paneles="2900:b">
+              <div class="esc-grid">
+                <div class="esc-a">
+                  <p class="esc-rot"><svg class="ico" aria-hidden="true"><use href="#i-foto"/></svg>Mandan una foto &middot; 11:40</p>
+                  <div class="chat">
+                    <div class="burbuja in foto" data-t="300">
+                      <div class="remito" role="img" aria-label="Foto de un remito escrito a mano: Corral&oacute;n Norte, 10 bolsas de cemento, 4 cajas de tornillos, 2 rollos de cable">
+                        <div class="remito-papel">
+                          <p class="remito-cab"><b>REMITO</b><span>N&deg; 0012</span></p>
+                          <p class="mano">Corral&oacute;n Norte</p>
+                          <ul class="mano">
+                            <li>10 bolsas cemento</li>
+                            <li>4 cajas tornillos 6mm</li>
+                            <li>2 rollos cable 2,5</li>
+                          </ul>
+                          <p class="mano remito-firma">R. G&oacute;mez</p>
+                        </div>
+                        <i class="scan" data-t="1500"></i>
+                      </div>
+                      <span class="hora">11:40</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="esc-b">
+                  <p class="agente" data-t="2700"><span class="agente-ico"><svg class="ico" aria-hidden="true"><use href="#i-chispa"/></svg></span><span><small>El agente</small>ley&oacute; la foto</span></p>
+                  <div class="tarjeta planilla" data-t="3300">
+                    <p class="tarjeta-tit"><svg class="ico" aria-hidden="true"><use href="#i-tabla"/></svg>Compras &middot; Corral&oacute;n Norte</p>
+                    <table>
+                      <thead><tr><th>Producto</th><th>Cantidad</th></tr></thead>
+                      <tbody>
+                        <tr data-t="3900"><td>Cemento (bolsa)</td><td>10</td></tr>
+                        <tr data-t="4600"><td>Tornillos 6 mm (caja)</td><td>4</td></tr>
+                        <tr data-t="5300"><td>Cable 2,5 (rollo)</td><td>2</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p class="chip-res ok" data-t="6600"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Cargado sin tipear nada</p>
+                  <p class="chip-res" data-t="7300"><svg class="ico" aria-hidden="true"><use href="#i-caja"/></svg>Stock actualizado</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. UN TURNO -->
+            <div class="escena" id="esc-turno" role="tabpanel" aria-labelledby="cap-turno" data-dur="11500" data-paneles="5600:b,7900:a">
+              <div class="esc-grid">
+                <div class="esc-a">
+                  <p class="esc-rot noche"><svg class="ico" aria-hidden="true"><use href="#i-luna"/></svg>23:41 &middot; el local est&aacute; cerrado</p>
+                  <div class="chat">
+                    <div class="burbuja in audio" data-t="300">
+                      <span class="audio-fila">
+                        <span class="audio-play"><svg class="ico" aria-hidden="true"><use href="#i-play"/></svg></span>
+                        <span class="onda" aria-hidden="true"><i style="--h:30%;--n:0"></i><i style="--h:55%;--n:1"></i><i style="--h:75%;--n:2"></i><i style="--h:45%;--n:3"></i><i style="--h:90%;--n:4"></i><i style="--h:60%;--n:5"></i><i style="--h:35%;--n:6"></i><i style="--h:70%;--n:7"></i><i style="--h:95%;--n:8"></i><i style="--h:50%;--n:9"></i><i style="--h:40%;--n:10"></i><i style="--h:80%;--n:11"></i><i style="--h:65%;--n:12"></i><i style="--h:30%;--n:13"></i><i style="--h:55%;--n:14"></i><i style="--h:85%;--n:15"></i><i style="--h:45%;--n:16"></i><i style="--h:70%;--n:17"></i><i style="--h:40%;--n:18"></i><i style="--h:60%;--n:19"></i><i style="--h:90%;--n:20"></i><i style="--h:50%;--n:21"></i><i style="--h:35%;--n:22"></i><i style="--h:30%;--n:23"></i></span>
+                        <span class="audio-dur">0:12</span>
+                      </span>
+                      <span class="transcripcion" data-t="1800">&laquo;&iquest;Ten&eacute;s lugar el jueves a la tarde? Corte y color, para m&iacute; y para mi hermana.&raquo;</span>
+                    </div>
+                    <p class="burbuja out" data-t="3200">&iexcl;Hola! El jueves a la tarde tengo <b>15:00</b> o <b>16:30</b>. &iquest;Cu&aacute;l te sirve?<span class="hora">23:41</span></p>
+                    <p class="burbuja in" data-t="4500">1630 barbaro<span class="hora">23:43</span></p>
+                    <p class="burbuja in" data-t="5000">a nombre de Caro<span class="hora">23:43</span></p>
+                    <p class="burbuja out" data-t="8200">Listo, Caro: <b>jueves 16:30</b>, corte y color para dos. &iexcl;Te esperamos!<span class="hora">23:43</span></p>
+                  </div>
+                </div>
+                <div class="esc-b">
+                  <p class="agente" data-t="2000"><span class="agente-ico"><svg class="ico" aria-hidden="true"><use href="#i-chispa"/></svg></span><span><small>El agente</small>escuch&oacute; el audio</span></p>
+                  <div class="tarjeta agenda" data-t="5800">
+                    <p class="tarjeta-tit"><svg class="ico" aria-hidden="true"><use href="#i-calendario"/></svg>Agenda &middot; jueves</p>
+                    <ul class="slots">
+                      <li><span>14:00</span><i>Luc&iacute;a &middot; corte</i></li>
+                      <li><span>15:00</span><i class="libre">libre</i></li>
+                      <li class="reserva siempre" data-t="6500"><span>16:30</span><span class="slot-cambia"><i class="libre">libre</i><i class="nueva"><b>Caro + hermana</b> &middot; corte y color</i></span></li>
+                      <li><span>18:30</span><i class="libre">libre</i></li>
+                    </ul>
+                  </div>
+                  <p class="chip-res ok" data-t="7000"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Turno anotado, sin pisar la agenda</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. UNA DECISION -->
+            <div class="escena" id="esc-vos" role="tabpanel" aria-labelledby="cap-vos" data-dur="12000" data-paneles="3400:b,7700:a">
+              <div class="esc-grid">
+                <div class="esc-a">
+                  <p class="esc-rot"><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg>Un cliente pide algo especial</p>
+                  <div class="chat">
+                    <p class="burbuja in" data-t="300">Si llevo 50 cajas, &iquest;me hac&eacute;s un precio especial?<span class="hora">15:20</span></p>
+                    <p class="burbuja out" data-t="2000">&iexcl;Buen&iacute;simo! El precio por cantidad lo define el due&ntilde;o: ya le paso tu pedido y te responde &eacute;l.<span class="hora">15:20</span></p>
+                    <p class="burbuja out vos" data-t="8000"><small class="quien">Vos</small>&iexcl;Hola! Te hago precio por las 50, ya te lo paso.<span class="hora">15:26</span></p>
+                    <p class="nota-chat" data-t="9600">El agente retoma la charla</p>
+                  </div>
+                </div>
+                <div class="esc-b">
+                  <p class="agente" data-t="1500"><span class="agente-ico"><svg class="ico" aria-hidden="true"><use href="#i-chispa"/></svg></span><span><small>El agente</small>sabe que esto lo decid&iacute;s vos</span></p>
+                  <div class="tarjeta aviso-cel" data-t="3700">
+                    <p class="aviso-app"><img src="img/logo-header.webp" width="96" height="96" alt="">Aviso para vos<em>ahora</em></p>
+                    <b class="aviso-tit">Distribuidora Sur pide precio especial por 50 cajas</b>
+                    <ul class="hechos-mini">
+                      <li data-t="4300"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Hay stock para las 50</li>
+                      <li data-t="4800"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Es cliente habitual</li>
+                      <li data-t="5300"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Su &uacute;ltimo pedido fue el martes</li>
+                    </ul>
+                    <p class="aviso-bots"><span class="bot-sec">M&aacute;s tarde</span><span class="bot-pri siempre" data-t="6300">Respondo yo</span></p>
+                  </div>
+                  <p class="chip-res" data-t="6900"><svg class="ico" aria-hidden="true"><use href="#i-persona"/></svg>El agente se hace a un lado en esta charla</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <button class="demo-grande" type="button" aria-label="Reproducir los ejemplos desde el principio">
+            <span class="play-circ"><svg class="ico" aria-hidden="true"><use href="#i-play"/></svg></span>
+            <span>Ver los ejemplos</span>
+          </button>
         </div>
       </div>
     </div>
   </section>
 
-<!-- ===================== QU&Eacute; ES ===================== -->
-  <section class="banda">
-    <div class="wrap stack-lg">
-      <div class="head" style="margin-bottom:0">
-        <h2 class="eyebrow">Soluciones de Inteligencia Artificial para PyMEs y Empresas</h2>
-        <p class="eyebrow">Qu&eacute; es</p>
-        <h2>Qu&eacute; es un agente de inteligencia artificial</h2>
-      </div>
-
-      <div class="col prosa">
-        <div class="stack">
-          <p>Es un ayudante que trabaja adentro de tu negocio. No es una persona y no pretende serlo, pero <b>entiende lo que tiene delante</b> igual que vos: lee un mensaje, un pedido escrito de cualquier manera o el papel que alguien le manda de foto, se da cuenta de qu&eacute; hay que hacer con eso, y lo hace.</p>
-          <p>La diferencia con cualquier sistema que ya conozcas es que <b>no trabaja con una lista de pasos fija</b>. A un programa com&uacute;n hay que preverle de antemano cada caso; si algo llega distinto a lo esperado, se frena y te llama. El agente entiende el caso concreto &mdash;el que est&aacute; escrito raro, el que le falta un dato, el que es la excepci&oacute;n&mdash; y sigue adelante.</p>
-          <p>Se le ense&ntilde;a una vez c&oacute;mo funciona tu negocio: c&oacute;mo trabaj&aacute;s, con qu&eacute; herramientas, qu&eacute; decid&iacute;s vos y qu&eacute; no puede hacer nunca. Despu&eacute;s trabaja solo.</p>
+<!-- ===================== HOY / CON UN AGENTE ===================== -->
+  <section class="banda cambio-sec">
+    <div class="wrap">
+      <div class="sec-head centro">
+        <p class="eyebrow">Lo que cambia</p>
+        <h2>El mismo d&iacute;a de trabajo, de dos maneras</h2>
+        <div class="interruptor" data-interruptor data-modo="hoy" role="group" aria-label="Elegir c&oacute;mo verlo">
+          <button type="button" data-modo="hoy" aria-pressed="true">Hoy</button>
+          <button type="button" data-modo="agente" aria-pressed="false">Con un agente</button>
         </div>
       </div>
 
-      <figure>
-        <div class="fig">
-          <p class="fig-note">La diferencia, dibujada</p>
-          <svg viewBox="0 0 880 372" role="img" aria-label="Comparaci&oacute;n: un sistema com&uacute;n se frena cuando un pedido llega escrito de forma libre; un agente de inteligencia artificial entiende el pedido, lo carga, lo factura y avisa.">
-            <defs>
-              <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-                <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/>
-              </marker>
-              <marker id="arb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-                <path d="M 0 0 L 10 5 L 0 10 z" fill="#3D9BE0"/>
-              </marker>
-            </defs>
-
-            <line x1="440" y1="24" x2="440" y2="348" stroke="currentColor" stroke-opacity=".2" stroke-dasharray="4 6"/>
-
-            <!-- ===== izquierda ===== -->
-            <text x="26" y="30" font-family="Archivo Narrow, Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="1.6" fill="currentColor" fill-opacity=".55">UN SISTEMA COM&Uacute;N</text>
-
-            <rect x="26" y="50" width="270" height="58" rx="9" fill="currentColor" fill-opacity=".08" stroke="currentColor" stroke-opacity=".28"/>
-            <text x="42" y="70" font-size="12.5" fill="currentColor" fill-opacity=".85">&laquo;Mandame 3 cajas de las chicas</text>
-            <text x="42" y="86" font-size="12.5" fill="currentColor" fill-opacity=".85">y 2 grandes, factur&aacute; a nombre</text>
-            <text x="42" y="102" font-size="12.5" fill="currentColor" fill-opacity=".85">de Distribuidora Sur&raquo;</text>
-
-            <line x1="161" y1="108" x2="161" y2="136" stroke="currentColor" stroke-opacity=".45" marker-end="url(#ar)"/>
-
-            <rect x="26" y="136" width="270" height="88" rx="9" fill="currentColor" fill-opacity=".05" stroke="currentColor" stroke-opacity=".28"/>
-            <text x="42" y="157" font-size="12.5" font-weight="600" fill="currentColor" fill-opacity=".9">Espera un formulario:</text>
-            <text x="42" y="178" font-size="12.5" fill="currentColor" fill-opacity=".6">C&oacute;digo de producto &middot; &middot; &middot; &middot; &middot; &middot;</text>
-            <text x="42" y="196" font-size="12.5" fill="currentColor" fill-opacity=".6">Cantidad &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot;</text>
-            <text x="42" y="214" font-size="12.5" fill="currentColor" fill-opacity=".6">Cliente (de la lista) &middot; &middot; &middot; &middot; &middot;</text>
-
-            <line x1="161" y1="224" x2="161" y2="254" stroke="currentColor" stroke-opacity=".45" marker-end="url(#ar)"/>
-            <text x="173" y="244" font-family="Archivo Narrow, Arial, sans-serif" font-size="11.5" fill="currentColor" fill-opacity=".5">no viene en ese formato</text>
-
-            <rect x="26" y="254" width="270" height="46" rx="9" fill="currentColor" fill-opacity=".05" stroke="currentColor" stroke-opacity=".35" stroke-dasharray="5 4"/>
-            <text x="42" y="274" font-size="12.5" fill="currentColor" fill-opacity=".8">Lo carga una persona,</text>
-            <text x="42" y="290" font-size="12.5" fill="currentColor" fill-opacity=".8">a mano, como siempre.</text>
-
-            <text x="26" y="334" font-family="Archivo Narrow, Arial, sans-serif" font-size="13" font-weight="700" fill="currentColor" fill-opacity=".75">El trabajo sigue siendo tuyo.</text>
-
-            <!-- ===== derecha ===== -->
-            <text x="480" y="30" font-family="Archivo Narrow, Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="1.6" fill="#3D9BE0">UN AGENTE DE IA</text>
-
-            <rect x="480" y="50" width="270" height="58" rx="9" fill="#3D9BE0" fill-opacity=".10" stroke="#3D9BE0" stroke-opacity=".5"/>
-            <text x="496" y="70" font-size="12.5" fill="currentColor">&laquo;Mandame 3 cajas de las chicas</text>
-            <text x="496" y="86" font-size="12.5" fill="currentColor">y 2 grandes, factur&aacute; a nombre</text>
-            <text x="496" y="102" font-size="12.5" fill="currentColor">de Distribuidora Sur&raquo;</text>
-
-            <line x1="615" y1="108" x2="615" y2="136" stroke="#3D9BE0" marker-end="url(#arb)"/>
-
-            <rect x="480" y="136" width="270" height="60" rx="9" fill="#3D9BE0" fill-opacity=".16" stroke="#3D9BE0"/>
-            <text x="615" y="158" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-size="13" font-weight="700" fill="currentColor">Entiende el pedido entero</text>
-            <text x="615" y="177" text-anchor="middle" font-family="Archivo Narrow, Arial, sans-serif" font-size="11.5" fill="currentColor" fill-opacity=".75">producto &middot; cantidad &middot; a qui&eacute;n facturar</text>
-
-            <line x1="615" y1="196" x2="615" y2="214" stroke="#3D9BE0"/>
-            <line x1="524" y1="214" x2="706" y2="214" stroke="#3D9BE0"/>
-            <line x1="524" y1="214" x2="524" y2="236" stroke="#3D9BE0" marker-end="url(#arb)"/>
-            <line x1="615" y1="214" x2="615" y2="236" stroke="#3D9BE0" marker-end="url(#arb)"/>
-            <line x1="706" y1="214" x2="706" y2="236" stroke="#3D9BE0" marker-end="url(#arb)"/>
-
-            <rect x="480" y="242" width="88" height="58" rx="8" fill="currentColor" fill-opacity=".06" stroke="currentColor" stroke-opacity=".3"/>
-            <text x="524" y="266" text-anchor="middle" font-size="11.5" fill="currentColor" fill-opacity=".85">Carga el</text>
-            <text x="524" y="282" text-anchor="middle" font-size="11.5" fill="currentColor" fill-opacity=".85">pedido</text>
-
-            <rect x="571" y="242" width="88" height="58" rx="8" fill="currentColor" fill-opacity=".06" stroke="currentColor" stroke-opacity=".3"/>
-            <text x="615" y="266" text-anchor="middle" font-size="11.5" fill="currentColor" fill-opacity=".85">Prepara la</text>
-            <text x="615" y="282" text-anchor="middle" font-size="11.5" fill="currentColor" fill-opacity=".85">factura</text>
-
-            <rect x="662" y="242" width="88" height="58" rx="8" fill="currentColor" fill-opacity=".06" stroke="currentColor" stroke-opacity=".3"/>
-            <text x="706" y="266" text-anchor="middle" font-size="11.5" fill="currentColor" fill-opacity=".85">Confirma al</text>
-            <text x="706" y="282" text-anchor="middle" font-size="11.5" fill="currentColor" fill-opacity=".85">cliente</text>
-
-            <text x="480" y="334" font-family="Archivo Narrow, Arial, sans-serif" font-size="13" font-weight="700" fill="#3D9BE0">Vos s&oacute;lo revis&aacute;s.</text>
-          </svg>
-        </div>
-        <figcaption>Un sistema com&uacute;n s&oacute;lo sabe recibir lo que viene en el formato que espera: cualquier cosa escrita en criollo cae afuera y termina carg&aacute;ndola una persona. El agente lee la frase entera, saca de ah&iacute; el producto, la cantidad y a qui&eacute;n facturar, y sigue el circuito hasta el final. Lo mismo vale para un turno, un reclamo o un remito.</figcaption>
-      </figure>
+      <ul class="cambios" data-cambios>
+        <li class="cambio" data-estado="hoy">
+          <button type="button" class="cambio-btn" aria-pressed="false">
+            <span class="cambio-ico"><svg class="ico" aria-hidden="true"><use href="#i-luna"/></svg></span>
+            <b class="cambio-tit">El mensaje de las once de la noche</b>
+            <span class="cambio-txts">
+              <span class="c-hoy">Lo ves al otro d&iacute;a. Para entonces ya pregunt&oacute; en otros tres lados.</span>
+              <span class="c-ag">Se responde apenas llega, con la informaci&oacute;n real de tu negocio.</span>
+            </span>
+            <span class="cambio-pie"><span class="c-hoy"><svg class="ico" aria-hidden="true"><use href="#i-vuelta"/></svg>Ver con un agente</span><span class="c-ag"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Con un agente</span></span>
+          </button>
+        </li>
+        <li class="cambio" data-estado="hoy">
+          <button type="button" class="cambio-btn" aria-pressed="false">
+            <span class="cambio-ico"><svg class="ico" aria-hidden="true"><use href="#i-calendario"/></svg></span>
+            <b class="cambio-tit">Domingos y feriados</b>
+            <span class="cambio-txts">
+              <span class="c-hoy">El negocio est&aacute; cerrado, pero los clientes escriben igual. Todo espera al lunes.</span>
+              <span class="c-ag">Se atiende las 24 horas, tambi&eacute;n domingos y feriados.</span>
+            </span>
+            <span class="cambio-pie"><span class="c-hoy"><svg class="ico" aria-hidden="true"><use href="#i-vuelta"/></svg>Ver con un agente</span><span class="c-ag"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Con un agente</span></span>
+          </button>
+        </li>
+        <li class="cambio" data-estado="hoy">
+          <button type="button" class="cambio-btn" aria-pressed="false">
+            <span class="cambio-ico"><svg class="ico" aria-hidden="true"><use href="#i-copia"/></svg></span>
+            <b class="cambio-tit">Cargar el mismo dato tres veces</b>
+            <span class="cambio-txts">
+              <span class="c-hoy">Del chat al cuaderno, del cuaderno a la planilla, de la planilla al sistema. Y alg&uacute;n error de tipeo.</span>
+              <span class="c-ag">El dato entra una sola vez y pasa solo. Sin copiar y pegar, sin errores de tipeo.</span>
+            </span>
+            <span class="cambio-pie"><span class="c-hoy"><svg class="ico" aria-hidden="true"><use href="#i-vuelta"/></svg>Ver con un agente</span><span class="c-ag"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Con un agente</span></span>
+          </button>
+        </li>
+        <li class="cambio" data-estado="hoy">
+          <button type="button" class="cambio-btn" aria-pressed="false">
+            <span class="cambio-ico"><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg></span>
+            <b class="cambio-tit">Facturas y remitos</b>
+            <span class="cambio-txts">
+              <span class="c-hoy">Uno por uno, copiando datos que ya estaban escritos en otro lado.</span>
+              <span class="c-ag">Salen preparados con los datos que ya existen. Vos revis&aacute;s y aprob&aacute;s.</span>
+            </span>
+            <span class="cambio-pie"><span class="c-hoy"><svg class="ico" aria-hidden="true"><use href="#i-vuelta"/></svg>Ver con un agente</span><span class="c-ag"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Con un agente</span></span>
+          </button>
+        </li>
+        <li class="cambio" data-estado="hoy">
+          <button type="button" class="cambio-btn" aria-pressed="false">
+            <span class="cambio-ico"><svg class="ico" aria-hidden="true"><use href="#i-caja"/></svg></span>
+            <b class="cambio-tit">Stock y vencimientos</b>
+            <span class="cambio-txts">
+              <span class="c-hoy">Te enter&aacute;s cuando ya falta, o cuando ya venci&oacute;.</span>
+              <span class="c-ag">Lo controla todos los d&iacute;as y te avisa antes, a tiempo.</span>
+            </span>
+            <span class="cambio-pie"><span class="c-hoy"><svg class="ico" aria-hidden="true"><use href="#i-vuelta"/></svg>Ver con un agente</span><span class="c-ag"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Con un agente</span></span>
+          </button>
+        </li>
+        <li class="cambio" data-estado="hoy">
+          <button type="button" class="cambio-btn" aria-pressed="false">
+            <span class="cambio-ico"><svg class="ico" aria-hidden="true"><use href="#i-vuelta"/></svg></span>
+            <b class="cambio-tit">El seguimiento</b>
+            <span class="cambio-txts">
+              <span class="c-hoy">El presupuesto sin respuesta y el cliente que no volvi&oacute; quedan en el olvido.</span>
+              <span class="c-ag">Los retoma solo, en el momento justo y sin quedar pesado.</span>
+            </span>
+            <span class="cambio-pie"><span class="c-hoy"><svg class="ico" aria-hidden="true"><use href="#i-vuelta"/></svg>Ver con un agente</span><span class="c-ag"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Con un agente</span></span>
+          </button>
+        </li>
+      </ul>
+      <p class="cambio-nota">Sin porcentajes inventados: es el mismo trabajo, antes y despu&eacute;s.</p>
     </div>
   </section>
-
 
 <!-- ===================== DIAGNOSTICO ===================== -->
-  <section class="banda-2" id="diagnostico">
-    <div class="wrap stack-lg">
-      <div class="head" style="margin-bottom:0">
+  <section id="diagnostico">
+    <div class="wrap">
+      <div class="sec-head">
         <p class="eyebrow">Diagn&oacute;stico en un minuto</p>
         <h2>Calcul&aacute; el potencial de automatizaci&oacute;n de tu empresa</h2>
-        <p>Marc&aacute; lo que se repite en tu negocio y te mostramos qu&eacute; parte de ese trabajo puede hacerse solo. Si te sirve, lo mand&aacute;s por WhatsApp y lo vemos juntos.</p>
+        <p>Marc&aacute; lo que se repite en tu negocio y mir&aacute; qu&eacute; parte puede hacerse solo.</p>
       </div>
-
       <form class="diag" id="diag" aria-label="Diagn&oacute;stico de automatizaci&oacute;n">
         <div class="diag-campos">
           <fieldset class="diag-campo">
@@ -1295,7 +555,7 @@
           <p class="diag-vacio" id="diag-vacio">Marc&aacute; las tareas que se repiten en tu negocio y ac&aacute; vas a ver qu&eacute; parte de ese trabajo puede hacerse solo.</p>
           <ul class="diag-lista" id="diag-lista"></ul>
           <p class="diag-equipo" id="diag-equipo" hidden></p>
-          <a class="btn btn-lg diag-cta" id="diag-cta" data-oculta-barra href="https://wa.me/5491130270119?text=Hola!%20Quiero%20hacer%20un%20diagn%C3%B3stico%20de%20automatizaci%C3%B3n%20para%20mi%20negocio." target="_blank" rel="noopener noreferrer">
+          <a class="btn btn-lg diag-cta" id="diag-cta" href="https://wa.me/5491130270119?text=Hola!%20Quiero%20hacer%20un%20diagn%C3%B3stico%20de%20automatizaci%C3%B3n%20para%20mi%20negocio." target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.23 8.23 0 0 1 8.24 8.24c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.78.97-.14.16-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
             Enviar mi diagn&oacute;stico
           </a>
@@ -1306,105 +566,225 @@
     </div>
   </section>
 
+<!-- ===================== COMO EMPEZAMOS ===================== -->
+  <section class="banda">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">C&oacute;mo trabajamos</p>
+        <h2>De la primera charla a tenerlo andando</h2>
+      </div>
+      <ol class="pasos">
+        <li class="paso">
+          <span class="paso-ico"><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg></span>
+          <span class="n">Paso 1</span>
+          <b>Charlamos</b>
+          <span class="d">Miramos tu caso, sin costo y sin compromiso.</span>
+        </li>
+        <li class="paso">
+          <span class="paso-ico"><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg></span>
+          <span class="n">Paso 2</span>
+          <b>Propuesta a medida</b>
+          <span class="d">Qu&eacute; va a hacer el agente, qu&eacute; no y con qu&eacute; se conecta.</span>
+        </li>
+        <li class="paso">
+          <span class="paso-ico"><svg class="ico" aria-hidden="true"><use href="#i-herramienta"/></svg></span>
+          <span class="n">Paso 3</span>
+          <b>Lo armamos y probamos</b>
+          <span class="d">Y te ense&ntilde;amos a mirarlo, frenarlo y entrar vos.</span>
+        </li>
+        <li class="paso">
+          <span class="paso-ico"><svg class="ico" aria-hidden="true"><use href="#i-equipo"/></svg></span>
+          <span class="n">Paso 4</span>
+          <b>Te acompa&ntilde;amos</b>
+          <span class="d">Lo ajustamos con el uso y le sumamos lo que aparezca.</span>
+        </li>
+      </ol>
+    </div>
+  </section>
 
-  <div class="wrap"><div class="siguiente">
-    <span>Segu&iacute; leyendo</span>
-    <button type="button" data-ir="hacemos">Qu&eacute; hacemos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></button>
-  </div></div>
+<!-- ===================== SEGUIR RECORRIENDO ===================== -->
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Segu&iacute; recorriendo</p>
+        <h2>&iquest;Qu&eacute; quer&eacute;s ver ahora?</h2>
+      </div>
+      <div class="explora">
+        <button type="button" class="ir-card" data-ir="hacemos">
+          <span class="ir-ilus" aria-hidden="true"><i><svg class="ico"><use href="#i-chat"/></svg></i><i><svg class="ico"><use href="#i-bolsa"/></svg></i><i><svg class="ico"><use href="#i-doc"/></svg></i></span>
+          <b>Qu&eacute; hacemos</b>
+          <span class="d">Las &aacute;reas del negocio donde m&aacute;s se nota, y lo que entiende un agente.</span>
+          <span class="ir-flecha">Ver &aacute;reas <svg class="ico" aria-hidden="true"><use href="#i-flecha"/></svg></span>
+        </button>
+        <button type="button" class="ir-card" data-ir="funciona">
+          <span class="ir-ilus" aria-hidden="true"><i><svg class="ico"><use href="#i-mic"/></svg></i><i class="grande"><svg class="ico"><use href="#i-chispa"/></svg></i><i><svg class="ico"><use href="#i-check"/></svg></i></span>
+          <b>C&oacute;mo funciona</b>
+          <span class="d">Qu&eacute; es un agente de IA, y por qu&eacute; vos segu&iacute;s al mando.</span>
+          <span class="ir-flecha">Ver c&oacute;mo funciona <svg class="ico" aria-hidden="true"><use href="#i-flecha"/></svg></span>
+        </button>
+        <button type="button" class="ir-card" data-ir="ejemplos">
+          <span class="ir-ilus" aria-hidden="true"><i><svg class="ico"><use href="#i-caja"/></svg></i><i><svg class="ico"><use href="#i-tijera"/></svg></i><i><svg class="ico"><use href="#i-taza"/></svg></i></span>
+          <b>Ejemplos por rubro</b>
+          <span class="d">Distribuidoras, comercios, peluquer&iacute;as, gastronom&iacute;a, talleres y estudios.</span>
+          <span class="ir-flecha">Ver ejemplos <svg class="ico" aria-hidden="true"><use href="#i-flecha"/></svg></span>
+        </button>
+        <button type="button" class="ir-card" data-ir="hablemos">
+          <span class="ir-ilus" aria-hidden="true"><i><svg class="ico"><use href="#i-pregunta"/></svg></i><i><svg class="ico"><use href="#i-escudo"/></svg></i><i><svg class="ico"><use href="#i-libro"/></svg></i></span>
+          <b>Preguntas y contacto</b>
+          <span class="d">Lo que todos preguntan, art&iacute;culos para leer con calma y c&oacute;mo seguimos.</span>
+          <span class="ir-flecha">Ver preguntas <svg class="ico" aria-hidden="true"><use href="#i-flecha"/></svg></span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+<!-- ===================== CIERRE CORTO ===================== -->
+  <section class="cierre cierre-corto">
+    <div class="wrap">
+      <h2>Contanos qu&eacute; hac&eacute;s todos los d&iacute;as y te decimos qu&eacute; se puede automatizar</h2>
+      <a class="btn btn-lg btn-blanco" href="https://wa.me/5491130270119?text=Hola!%20Vi%20la%20presentaci%C3%B3n%20de%20ExplosIA%20y%20quiero%20saber%20qu%C3%A9%20se%20puede%20automatizar%20en%20mi%20negocio." target="_blank" rel="noopener noreferrer" aria-label="Ped&iacute; tu diagn&oacute;stico gratis por WhatsApp">
+        <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>
+        Ped&iacute; tu diagn&oacute;stico gratis
+      </a>
+    </div>
+  </section>
 
 </div><!-- /inicio -->
 
 <div class="vista" id="v-hacemos">
-<!-- ===================== D&Oacute;NDE PUEDE TRABAJAR ===================== -->
-  <section class="banda-2">
+<!-- ===================== DONDE PUEDE TRABAJAR ===================== -->
+  <section>
     <div class="wrap stack-lg">
-      <div class="head" style="margin-bottom:0">
+      <div class="head">
         <h2 class="eyebrow">Integraci&oacute;n de Agentes de IA en WhatsApp y Sistemas de Facturaci&oacute;n</h2>
         <p class="eyebrow">D&oacute;nde puede trabajar</p>
         <h2>No hay una sola cosa que hagamos. Hay una sola pregunta: &iquest;esto se repite?</h2>
-        <p>Si una tarea se repite y sigue una l&oacute;gica que pod&eacute;s explicar, se puede automatizar. Estas son las &aacute;reas donde m&aacute;s se nota, pero no son una lista cerrada &mdash; si lo tuyo no est&aacute; ac&aacute;, preguntanos igual.</p>
+        <p>Armamos agentes de inteligencia artificial que se hacen cargo de lo que hoy te come el d&iacute;a: atender consultas, tomar pedidos, facturar, cargar datos, controlar stock, hacer seguimiento. Trabajan con las herramientas que ya us&aacute;s, a la hora que sea, y te avisan s&oacute;lo cuando hace falta que decidas vos.</p>
       </div>
 
+      <p class="pista"><svg class="ico" aria-hidden="true"><use href="#i-chispa"/></svg><span>Si una tarea se repite y sigue una l&oacute;gica que pod&eacute;s explicar, se puede automatizar. Estas son las &aacute;reas donde m&aacute;s se nota, pero no son una lista cerrada &mdash; si lo tuyo no est&aacute; ac&aacute;, preguntanos igual. <b>Toc&aacute; un &aacute;rea para ver qu&eacute; hace.</b></span></p>
+
       <div class="mapa">
-        <div class="area">
-          <span class="area-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 17 0z"/></svg></span>
-          <h3>Atenci&oacute;n y ventas</h3>
-          <p>Que nadie se quede sin respuesta, a la hora que escriba.</p>
+        <details class="area">
+          <summary>
+            <span class="area-ico"><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg></span>
+            <span class="area-txt"><h3>Atenci&oacute;n y ventas</h3><span>Que nadie se quede sin respuesta, a la hora que escriba.</span></span>
+            <i class="area-mas" aria-hidden="true"></i>
+          </summary>
           <ul>
             <li>Responde consultas con la informaci&oacute;n de tu negocio</li>
             <li>Da y reprograma turnos seg&uacute;n tu agenda real</li>
             <li>Atiende por donde te escriban tus clientes</li>
             <li>Deriva a una persona cuando corresponde</li>
           </ul>
-        </div>
-
-        <div class="area">
-          <span class="area-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span>
-          <h3>Pedidos</h3>
-          <p>Del mensaje suelto al pedido cargado, sin pasar por tus manos.</p>
+        </details>
+        <details class="area">
+          <summary>
+            <span class="area-ico"><svg class="ico" aria-hidden="true"><use href="#i-bolsa"/></svg></span>
+            <span class="area-txt"><h3>Pedidos</h3><span>Del mensaje suelto al pedido cargado, sin pasar por tus manos.</span></span>
+            <i class="area-mas" aria-hidden="true"></i>
+          </summary>
           <ul>
             <li>Entiende el pedido aunque venga escrito de cualquier forma</li>
             <li>Confirma disponibilidad y aclara lo que falta</li>
             <li>Lo carga donde lo llev&aacute;s hoy</li>
             <li>Avisa cuando est&aacute; listo o cuando sali&oacute;</li>
           </ul>
-        </div>
-
-        <div class="area">
-          <span class="area-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 15h6"/><path d="M12 12v6"/></svg></span>
-          <h3>Facturaci&oacute;n y administraci&oacute;n</h3>
-          <p>El papeler&iacute;o que se arma solo a partir de datos que ya existen.</p>
+        </details>
+        <details class="area">
+          <summary>
+            <span class="area-ico"><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg></span>
+            <span class="area-txt"><h3>Facturaci&oacute;n y administraci&oacute;n</h3><span>El papeler&iacute;o que se arma solo a partir de datos que ya existen.</span></span>
+            <i class="area-mas" aria-hidden="true"></i>
+          </summary>
           <ul>
             <li>Prepara facturas, remitos y presupuestos</li>
             <li>Lee comprobantes y saca los datos de adentro</li>
             <li>Ordena y archiva lo que hoy se acumula</li>
             <li>Deja todo listo para que vos s&oacute;lo revises y aprob&eacute;s</li>
           </ul>
-        </div>
-
-        <div class="area">
-          <span class="area-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></span>
-          <h3>Datos y planillas</h3>
-          <p>Se termina el copiar y pegar de un lado al otro.</p>
+        </details>
+        <details class="area">
+          <summary>
+            <span class="area-ico"><svg class="ico" aria-hidden="true"><use href="#i-tabla"/></svg></span>
+            <span class="area-txt"><h3>Datos y planillas</h3><span>Se termina el copiar y pegar de un lado al otro.</span></span>
+            <i class="area-mas" aria-hidden="true"></i>
+          </summary>
           <ul>
             <li>Pasa informaci&oacute;n entre tus sistemas sin errores de tipeo</li>
             <li>Cruza datos y arma los res&uacute;menes que hoy hac&eacute;s a mano</li>
             <li>Detecta lo que est&aacute; repetido, incompleto o mal cargado</li>
             <li>Prepara los n&uacute;meros que mir&aacute;s todas las semanas</li>
           </ul>
-        </div>
-
-        <div class="area">
-          <span class="area-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg></span>
-          <h3>Seguimiento</h3>
-          <p>Lo que se pierde por no tener tiempo de insistir.</p>
+        </details>
+        <details class="area">
+          <summary>
+            <span class="area-ico"><svg class="ico" aria-hidden="true"><use href="#i-grafico"/></svg></span>
+            <span class="area-txt"><h3>Seguimiento</h3><span>Lo que se pierde por no tener tiempo de insistir.</span></span>
+            <i class="area-mas" aria-hidden="true"></i>
+          </summary>
           <ul>
             <li>Retoma presupuestos que quedaron sin respuesta</li>
             <li>Vuelve a contactar al cliente que compr&oacute; y no volvi&oacute;</li>
             <li>Recuerda pagos y vencimientos, sin quedar pesado</li>
             <li>Pide la opini&oacute;n despu&eacute;s de la compra</li>
           </ul>
-        </div>
-
-        <div class="area">
-          <span class="area-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></span>
-          <h3>Control y avisos</h3>
-          <p>Que te enteres a tiempo, no cuando ya es tarde.</p>
+        </details>
+        <details class="area">
+          <summary>
+            <span class="area-ico"><svg class="ico" aria-hidden="true"><use href="#i-campana"/></svg></span>
+            <span class="area-txt"><h3>Control y avisos</h3><span>Que te enteres a tiempo, no cuando ya es tarde.</span></span>
+            <i class="area-mas" aria-hidden="true"></i>
+          </summary>
           <ul>
             <li>Vigila el stock y avisa antes de que falte</li>
             <li>Alerta por vencimientos y fechas que no se pueden pasar</li>
             <li>Te marca el pedido grande o el reclamo urgente</li>
             <li>Controla todos los d&iacute;as lo que nadie tiene ganas de controlar</li>
           </ul>
+        </details>
+      </div>
+    </div>
+  </section>
+
+<!-- ===================== EL PROBLEMA ===================== -->
+  <section class="banda">
+    <div class="wrap stack-lg">
+      <div class="head">
+        <p class="eyebrow">El problema</p>
+        <h2>El d&iacute;a se te va en dos cosas, y ninguna de las dos hace crecer el negocio</h2>
+        <p>No es por falta de ganas ni de orden. Es que hay trabajo que se repite todos los d&iacute;as y siempre lo termina haciendo una persona.</p>
+      </div>
+
+      <div class="dos-frentes">
+        <div class="frente">
+          <h3><span class="frente-ico"><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg></span>Lo que te escriben</h3>
+          <p>Lo que entra de afuera y no espera.</p>
+          <ul class="pains">
+            <li><span><b>El mensaje de las once de la noche.</b> Lo ves al otro d&iacute;a. Para entonces ya pregunt&oacute; en otros tres lados.</span></li>
+            <li><span><b>La misma pregunta, veinte veces por d&iacute;a.</b> Horarios, precios, si hay stock, d&oacute;nde quedan, si atienden el s&aacute;bado.</span></li>
+            <li><span><b>El que contesta primero se lleva la venta.</b> No siempre gana el mejor: gana el que estaba disponible.</span></li>
+            <li><span><b>Los domingos y los feriados.</b> El negocio est&aacute; cerrado, pero los clientes escriben igual.</span></li>
+          </ul>
+        </div>
+        <div class="frente">
+          <h3><span class="frente-ico"><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg></span>Lo que hac&eacute;s a mano</h3>
+          <p>Lo de adentro, que nadie ve pero se cobra tu tiempo.</p>
+          <ul class="pains">
+            <li><span><b>Cargar el mismo dato tres veces.</b> Del chat al cuaderno, del cuaderno a la planilla, de la planilla al sistema.</span></li>
+            <li><span><b>Armar facturas y remitos uno por uno.</b> Copiando datos que ya estaban escritos en otro lado.</span></li>
+            <li><span><b>Controlar lo que se repite.</b> Stock que se va sin avisar, vencimientos, pagos que nadie reclam&oacute;.</span></li>
+            <li><span><b>El seguimiento que nunca se hace.</b> El presupuesto sin respuesta, el cliente que compr&oacute; y no volvi&oacute;.</span></li>
+          </ul>
         </div>
       </div>
     </div>
   </section>
 
-<!-- ===================== QU&Eacute; ENTIENDE ===================== -->
-  <section class="banda">
+<!-- ===================== QUE ENTIENDE ===================== -->
+  <section>
     <div class="wrap stack-lg">
-      <div class="head" style="margin-bottom:0">
+      <div class="head">
         <p class="eyebrow">Qu&eacute; entiende</p>
         <h2>El trabajo llega desprolijo. As&iacute; es como llega de verdad</h2>
         <p>Nadie escribe un pedido en formato de formulario. Mandan audios manejando, sacan una foto del remito en vez de tipearlo, cortan la idea en cuatro mensajes. Todo eso lo entiende.</p>
@@ -1412,49 +792,150 @@
 
       <div class="senses">
         <div class="sense">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          <div class="sense-ilus" aria-hidden="true">
+            <span class="mini-burbuja">mandame 3 cjas d las d 500</span>
+            <span class="mini-burbuja">y 2 grandes</span>
+            <span class="mini-burbuja">a nombre d distrib sur</span>
+          </div>
           <h3>Texto</h3>
           <p>Con faltas de ortograf&iacute;a, abreviaturas, condiciones metidas en el medio o la idea partida en varios mensajes cortos.</p>
         </div>
         <div class="sense">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/></svg>
+          <div class="sense-ilus" aria-hidden="true">
+            <span class="mini-burbuja mini-audio"><span class="audio-play"><svg class="ico"><use href="#i-play"/></svg></span><span class="onda quieta"><i style="--h:35%"></i><i style="--h:70%"></i><i style="--h:50%"></i><i style="--h:90%"></i><i style="--h:60%"></i><i style="--h:30%"></i><i style="--h:75%"></i><i style="--h:45%"></i><i style="--h:85%"></i><i style="--h:55%"></i><i style="--h:40%"></i><i style="--h:65%"></i><i style="--h:30%"></i><i style="--h:50%"></i></span><span class="audio-dur">1:04</span></span>
+          </div>
           <h3>Audios</h3>
           <p>Los escucha y los entiende. Alguien manda su nota de voz de un minuto y el trabajo queda hecho como si la hubiera escrito.</p>
         </div>
         <div class="sense">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2.5"/><circle cx="8.8" cy="9.6" r="1.8"/><path d="m3.5 17.5 4.6-4.3a2 2 0 0 1 2.7 0l3 2.8"/><path d="m14 15 2.2-2a2 2 0 0 1 2.7 0l2.1 1.9"/></svg>
+          <div class="sense-ilus" aria-hidden="true">
+            <span class="mini-papel mano">10 bolsas cemento<br>4 cajas tornillos</span>
+          </div>
           <h3>Fotos y papeles</h3>
           <p>Mira la imagen y lee lo que hay adentro: un remito, una lista escrita a mano, la etiqueta de un producto, un comprobante, una captura de pantalla.</p>
         </div>
       </div>
+
+      <div class="siguiente">
+        <span>Segu&iacute; recorriendo</span>
+        <button type="button" data-ir="funciona">C&oacute;mo funciona <svg class="ico" aria-hidden="true"><use href="#i-flecha"/></svg></button>
+      </div>
     </div>
   </section>
-
-
-  <div class="wrap"><div class="siguiente">
-    <span>Segu&iacute; leyendo</span>
-    <button type="button" data-ir="funciona">C&oacute;mo funciona <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></button>
-  </div></div>
 
 </div><!-- /hacemos -->
 
 <div class="vista" id="v-funciona">
-<!-- ===================== C&Oacute;MO FUNCIONA ===================== -->
+<!-- ===================== QUE ES ===================== -->
   <section>
     <div class="wrap stack-lg">
-      <div class="head" style="margin-bottom:0">
+      <div class="head">
+        <h2 class="eyebrow">Soluciones de Inteligencia Artificial para PyMEs y Empresas</h2>
+        <p class="eyebrow">Qu&eacute; es</p>
+        <h2>Qu&eacute; es un agente de inteligencia artificial</h2>
+      </div>
+      <div class="col prosa">
+        <div class="stack">
+          <p>Es un ayudante que trabaja adentro de tu negocio. No es una persona y no pretende serlo, pero <b>entiende lo que tiene delante</b> igual que vos: lee un mensaje, un pedido escrito de cualquier manera o el papel que alguien le manda de foto, se da cuenta de qu&eacute; hay que hacer con eso, y lo hace.</p>
+          <p>La diferencia con cualquier sistema que ya conozcas es que <b>no trabaja con una lista de pasos fija</b>. A un programa com&uacute;n hay que preverle de antemano cada caso; si algo llega distinto a lo esperado, se frena y te llama. El agente entiende el caso concreto &mdash;el que est&aacute; escrito raro, el que le falta un dato, el que es la excepci&oacute;n&mdash; y sigue adelante.</p>
+          <p>Se le ense&ntilde;a una vez c&oacute;mo funciona tu negocio: c&oacute;mo trabaj&aacute;s, con qu&eacute; herramientas, qu&eacute; decid&iacute;s vos y qu&eacute; no puede hacer nunca. Despu&eacute;s trabaja solo.</p>
+        </div>
+      </div>
+      <figure>
+        <div class="fig">
+          <p class="fig-note">La diferencia, dibujada</p>
+          <svg viewBox="0 0 880 372" role="img" aria-label="Comparaci&oacute;n: un sistema com&uacute;n se frena cuando un pedido llega escrito de forma libre; un agente de inteligencia artificial entiende el pedido, lo carga, lo factura y avisa.">
+            <defs>
+              <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/>
+              </marker>
+              <marker id="arb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="#1B6FC8"/>
+              </marker>
+            </defs>
+
+            <line x1="440" y1="24" x2="440" y2="348" stroke="currentColor" stroke-opacity=".2" stroke-dasharray="4 6"/>
+
+            <!-- ===== izquierda ===== -->
+            <text x="26" y="30" font-family="Archivo Narrow, Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="1.6" fill="currentColor" fill-opacity=".55">UN SISTEMA COM&Uacute;N</text>
+
+            <rect x="26" y="50" width="270" height="58" rx="9" fill="currentColor" fill-opacity=".08" stroke="currentColor" stroke-opacity=".28"/>
+            <text x="42" y="70" font-size="12.5" fill="currentColor" fill-opacity=".85">&laquo;Mandame 3 cajas de las chicas</text>
+            <text x="42" y="86" font-size="12.5" fill="currentColor" fill-opacity=".85">y 2 grandes, factur&aacute; a nombre</text>
+            <text x="42" y="102" font-size="12.5" fill="currentColor" fill-opacity=".85">de Distribuidora Sur&raquo;</text>
+
+            <line x1="161" y1="108" x2="161" y2="136" stroke="currentColor" stroke-opacity=".45" marker-end="url(#ar)"/>
+
+            <rect x="26" y="136" width="270" height="88" rx="9" fill="currentColor" fill-opacity=".05" stroke="currentColor" stroke-opacity=".28"/>
+            <text x="42" y="157" font-size="12.5" font-weight="600" fill="currentColor" fill-opacity=".9">Espera un formulario:</text>
+            <text x="42" y="178" font-size="12.5" fill="currentColor" fill-opacity=".6">C&oacute;digo de producto &middot; &middot; &middot; &middot; &middot; &middot;</text>
+            <text x="42" y="196" font-size="12.5" fill="currentColor" fill-opacity=".6">Cantidad &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot; &middot;</text>
+            <text x="42" y="214" font-size="12.5" fill="currentColor" fill-opacity=".6">Cliente (de la lista) &middot; &middot; &middot; &middot; &middot;</text>
+
+            <line x1="161" y1="224" x2="161" y2="254" stroke="currentColor" stroke-opacity=".45" marker-end="url(#ar)"/>
+            <text x="173" y="244" font-family="Archivo Narrow, Arial, sans-serif" font-size="11.5" fill="currentColor" fill-opacity=".5">no viene en ese formato</text>
+
+            <rect x="26" y="254" width="270" height="46" rx="9" fill="currentColor" fill-opacity=".05" stroke="currentColor" stroke-opacity=".35" stroke-dasharray="5 4"/>
+            <text x="42" y="274" font-size="12.5" fill="currentColor" fill-opacity=".8">Lo carga una persona,</text>
+            <text x="42" y="290" font-size="12.5" fill="currentColor" fill-opacity=".8">a mano, como siempre.</text>
+
+            <text x="26" y="334" font-family="Archivo Narrow, Arial, sans-serif" font-size="13" font-weight="700" fill="currentColor" fill-opacity=".75">El trabajo sigue siendo tuyo.</text>
+
+            <!-- ===== derecha ===== -->
+            <text x="480" y="30" font-family="Archivo Narrow, Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="1.6" fill="#1B6FC8">UN AGENTE DE IA</text>
+
+            <rect x="480" y="50" width="270" height="58" rx="9" fill="#1B6FC8" fill-opacity=".10" stroke="#1B6FC8" stroke-opacity=".5"/>
+            <text x="496" y="70" font-size="12.5" fill="currentColor">&laquo;Mandame 3 cajas de las chicas</text>
+            <text x="496" y="86" font-size="12.5" fill="currentColor">y 2 grandes, factur&aacute; a nombre</text>
+            <text x="496" y="102" font-size="12.5" fill="currentColor">de Distribuidora Sur&raquo;</text>
+
+            <line x1="615" y1="108" x2="615" y2="136" stroke="#1B6FC8" marker-end="url(#arb)"/>
+
+            <rect x="480" y="136" width="270" height="60" rx="9" fill="#1B6FC8" fill-opacity=".16" stroke="#1B6FC8"/>
+            <text x="615" y="158" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-size="13" font-weight="700" fill="currentColor">Entiende el pedido entero</text>
+            <text x="615" y="177" text-anchor="middle" font-family="Archivo Narrow, Arial, sans-serif" font-size="11.5" fill="currentColor" fill-opacity=".75">producto &middot; cantidad &middot; a qui&eacute;n facturar</text>
+
+            <line x1="615" y1="196" x2="615" y2="214" stroke="#1B6FC8"/>
+            <line x1="524" y1="214" x2="706" y2="214" stroke="#1B6FC8"/>
+            <line x1="524" y1="214" x2="524" y2="236" stroke="#1B6FC8" marker-end="url(#arb)"/>
+            <line x1="615" y1="214" x2="615" y2="236" stroke="#1B6FC8" marker-end="url(#arb)"/>
+            <line x1="706" y1="214" x2="706" y2="236" stroke="#1B6FC8" marker-end="url(#arb)"/>
+
+            <rect x="480" y="242" width="88" height="58" rx="8" fill="currentColor" fill-opacity=".06" stroke="currentColor" stroke-opacity=".3"/>
+            <text x="524" y="266" text-anchor="middle" font-size="11.5" fill="currentColor" fill-opacity=".85">Carga el</text>
+            <text x="524" y="282" text-anchor="middle" font-size="11.5" fill="currentColor" fill-opacity=".85">pedido</text>
+
+            <rect x="571" y="242" width="88" height="58" rx="8" fill="currentColor" fill-opacity=".06" stroke="currentColor" stroke-opacity=".3"/>
+            <text x="615" y="266" text-anchor="middle" font-size="11.5" fill="currentColor" fill-opacity=".85">Prepara la</text>
+            <text x="615" y="282" text-anchor="middle" font-size="11.5" fill="currentColor" fill-opacity=".85">factura</text>
+
+            <rect x="662" y="242" width="88" height="58" rx="8" fill="currentColor" fill-opacity=".06" stroke="currentColor" stroke-opacity=".3"/>
+            <text x="706" y="266" text-anchor="middle" font-size="11.5" fill="currentColor" fill-opacity=".85">Confirma al</text>
+            <text x="706" y="282" text-anchor="middle" font-size="11.5" fill="currentColor" fill-opacity=".85">cliente</text>
+
+            <text x="480" y="334" font-family="Archivo Narrow, Arial, sans-serif" font-size="13" font-weight="700" fill="#1B6FC8">Vos s&oacute;lo revis&aacute;s.</text>
+          </svg>
+        </div>
+        <figcaption>Un sistema com&uacute;n s&oacute;lo sabe recibir lo que viene en el formato que espera: cualquier cosa escrita en criollo cae afuera y termina carg&aacute;ndola una persona. El agente lee la frase entera, saca de ah&iacute; el producto, la cantidad y a qui&eacute;n facturar, y sigue el circuito hasta el final. Lo mismo vale para un turno, un reclamo o un remito.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+<!-- ===================== COMO FUNCIONA ===================== -->
+  <section class="banda">
+    <div class="wrap stack-lg">
+      <div class="head">
         <h2 class="eyebrow">Optimizaci&oacute;n de Procesos de Negocio con Inteligencia Artificial</h2>
         <p class="eyebrow">C&oacute;mo funciona</p>
         <h2>Qu&eacute; pasa desde que aparece el trabajo hasta que est&aacute; resuelto</h2>
         <p>Es siempre el mismo circuito, sea una consulta, un pedido o una tarea que se repite todos los martes.</p>
       </div>
-
       <figure>
         <div class="fig">
           <svg viewBox="0 0 920 344" role="img" aria-label="Circuito del trabajo: entra un mensaje, un pedido, un archivo o una tarea programada; el agente lo entiende con el contexto de tu negocio; y sale resuelto solo o pasado a una persona.">
             <defs>
               <marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-                <path d="M 0 0 L 10 5 L 0 10 z" fill="#3D9BE0"/>
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="#1B6FC8"/>
               </marker>
             </defs>
 
@@ -1469,11 +950,11 @@
             <text x="110" y="179" text-anchor="middle" font-size="12.5" fill="currentColor">Es la hora de la tarea</text>
             <text x="20" y="210" font-size="12" fill="currentColor" fill-opacity=".55">Escrito, hablado, una foto o un archivo</text>
 
-            <path d="M 200 117 L 252 117" stroke="#3D9BE0" stroke-width="1.6" marker-end="url(#ar2)" fill="none"/>
+            <path d="M 200 117 L 252 117" stroke="#1B6FC8" stroke-width="1.6" marker-end="url(#ar2)" fill="none"/>
 
-            <rect x="256" y="52" width="220" height="130" rx="12" fill="#3D9BE0" fill-opacity=".13" stroke="#3D9BE0"/>
+            <rect x="256" y="52" width="220" height="130" rx="12" fill="#1B6FC8" fill-opacity=".13" stroke="#1B6FC8"/>
             <text x="366" y="78" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-size="15" font-weight="800" fill="currentColor">El agente lo entiende</text>
-            <line x1="280" y1="92" x2="452" y2="92" stroke="#3D9BE0" stroke-opacity=".45"/>
+            <line x1="280" y1="92" x2="452" y2="92" stroke="#1B6FC8" stroke-opacity=".45"/>
             <text x="280" y="114" font-size="12.5" fill="currentColor" fill-opacity=".9">&middot; Qu&eacute; hay que hacer</text>
             <text x="280" y="136" font-size="12.5" fill="currentColor" fill-opacity=".9">&middot; Con qu&eacute; datos ya cuenta</text>
             <text x="280" y="158" font-size="12.5" fill="currentColor" fill-opacity=".9">&middot; Qu&eacute; reglas tuyas aplican</text>
@@ -1481,9 +962,9 @@
             <text x="366" y="206" text-anchor="middle" font-family="Archivo Narrow, Arial, sans-serif" font-size="11.5" fill="currentColor" fill-opacity=".6">Conoce tu negocio, tu historial</text>
             <text x="366" y="222" text-anchor="middle" font-family="Archivo Narrow, Arial, sans-serif" font-size="11.5" fill="currentColor" fill-opacity=".6">y las herramientas donde vive tu informaci&oacute;n.</text>
 
-            <path d="M 476 117 L 516 117" stroke="#3D9BE0" stroke-width="1.6" fill="none"/>
-            <path d="M 516 117 L 516 80 L 556 80" stroke="#3D9BE0" stroke-width="1.6" marker-end="url(#ar2)" fill="none"/>
-            <path d="M 516 117 L 516 210 L 556 210" stroke="#3D9BE0" stroke-width="1.6" marker-end="url(#ar2)" fill="none"/>
+            <path d="M 476 117 L 516 117" stroke="#1B6FC8" stroke-width="1.6" fill="none"/>
+            <path d="M 516 117 L 516 80 L 556 80" stroke="#1B6FC8" stroke-width="1.6" marker-end="url(#ar2)" fill="none"/>
+            <path d="M 516 117 L 516 210 L 556 210" stroke="#1B6FC8" stroke-width="1.6" marker-end="url(#ar2)" fill="none"/>
 
             <text x="560" y="42" font-family="Archivo Narrow, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="1.5" fill="currentColor" fill-opacity=".5">LO RESUELVE SOLO</text>
             <rect x="560" y="56" width="340" height="88" rx="12" fill="currentColor" fill-opacity=".07" stroke="currentColor" stroke-opacity=".26"/>
@@ -1491,8 +972,8 @@
             <text x="582" y="102" font-size="12.5" fill="currentColor" fill-opacity=".9">Deja el dato cargado donde tiene que estar</text>
             <text x="582" y="124" font-size="12.5" fill="currentColor" fill-opacity=".9">Cierra la tarea sin que vos la mires</text>
 
-            <text x="560" y="186" font-family="Archivo Narrow, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="1.5" fill="#3D9BE0">TE LO PASA A VOS</text>
-            <rect x="560" y="200" width="340" height="88" rx="12" fill="#3D9BE0" fill-opacity=".13" stroke="#3D9BE0"/>
+            <text x="560" y="186" font-family="Archivo Narrow, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="1.5" fill="#1B6FC8">TE LO PASA A VOS</text>
+            <rect x="560" y="200" width="340" height="88" rx="12" fill="#1B6FC8" fill-opacity=".13" stroke="#1B6FC8"/>
             <text x="582" y="224" font-size="12.5" fill="currentColor" fill-opacity=".9">Cuando hay que decidir algo que decid&iacute;s vos</text>
             <text x="582" y="246" font-size="12.5" fill="currentColor" fill-opacity=".9">Cuando el caso se sale de lo previsto</text>
             <text x="582" y="268" font-size="12.5" fill="currentColor" fill-opacity=".9">Te llega el aviso con todo lo que ya averigu&oacute;</text>
@@ -1506,14 +987,13 @@
   </section>
 
 <!-- ===================== 24 HORAS ===================== -->
-  <section class="banda">
+  <section>
     <div class="wrap stack-lg">
-      <div class="head" style="margin-bottom:0">
+      <div class="head">
         <p class="eyebrow">Disponibilidad</p>
         <h2>Trabaja cuando el negocio est&aacute; cerrado</h2>
         <p>El trabajo no aparece s&oacute;lo en horario de atenci&oacute;n, y las tareas de todos los d&iacute;as no tienen por qu&eacute; esperar a que alguien las haga.</p>
       </div>
-
       <figure>
         <div class="fig">
           <svg viewBox="0 0 880 250" role="img" aria-label="Franja de 24 horas: hoy el trabajo s&oacute;lo avanza en el horario del local y el resto se acumula; con un agente, la franja completa queda cubierta.">
@@ -1541,11 +1021,11 @@
             <text x="185" y="98" text-anchor="middle" font-size="12" fill="currentColor" fill-opacity=".45">se acumula</text>
             <text x="570" y="98" text-anchor="middle" font-size="12" fill="currentColor" fill-opacity=".45">se acumula</text>
 
-            <text x="20" y="158" font-family="Archivo, Arial, sans-serif" font-size="13" font-weight="700" fill="#3D9BE0">Con un agente</text>
-            <rect x="80" y="140" width="560" height="34" rx="6" fill="#3D9BE0" fill-opacity=".24" stroke="#3D9BE0"/>
+            <text x="20" y="158" font-family="Archivo, Arial, sans-serif" font-size="13" font-weight="700" fill="#1B6FC8">Con un agente</text>
+            <rect x="80" y="140" width="560" height="34" rx="6" fill="#1B6FC8" fill-opacity=".24" stroke="#1B6FC8"/>
             <text x="360" y="162" text-anchor="middle" font-size="12" font-weight="600" fill="currentColor">el trabajo avanza igual</text>
 
-            <g fill="#7FD4F5">
+            <g fill="#3D9BE0">
               <circle cx="128" cy="196" r="3.4"/>
               <circle cx="196" cy="196" r="3.4"/>
               <circle cx="330" cy="196" r="3.4"/>
@@ -1566,57 +1046,55 @@
         </div>
         <figcaption>El gr&aacute;fico compara franjas horarias de trabajo, no vol&uacute;menes de venta. Lo que hoy cae fuera del horario no desaparece: espera a que alguien lo agarre a la ma&ntilde;ana siguiente.</figcaption>
       </figure>
-
       <div class="col">
         <p>El agente adem&aacute;s <b>sabe qu&eacute; hora y qu&eacute; d&iacute;a es</b>. No promete que algo sale ma&ntilde;ana si ma&ntilde;ana es domingo, y las tareas que tienen que correr a una hora fija corren solas a esa hora.</p>
       </div>
     </div>
   </section>
 
-<!-- ===================== VOS SEGU&Iacute;S AL MANDO ===================== -->
-  <section>
+<!-- ===================== VOS SEGUIS AL MANDO ===================== -->
+  <section class="banda">
     <div class="wrap stack-lg">
-      <div class="head" style="margin-bottom:0">
+      <div class="head">
         <p class="eyebrow">El control</p>
         <h2>Vos segu&iacute;s al mando de todo</h2>
         <p>El agente no es una caja cerrada que hace cosas por su cuenta. Ves lo que hizo, y entr&aacute;s cuando quer&eacute;s.</p>
       </div>
-
       <figure>
         <div class="fig narrow">
           <svg viewBox="0 0 820 210" role="img" aria-label="El agente trabaja solo, te avisa cuando hace falta, vos resolv&eacute;s, y cuando termin&aacute;s el agente retoma.">
             <defs>
               <marker id="ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-                <path d="M 0 0 L 10 5 L 0 10 z" fill="#3D9BE0"/>
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="#1B6FC8"/>
               </marker>
             </defs>
 
-            <rect x="16" y="60" width="164" height="66" rx="11" fill="#3D9BE0" fill-opacity=".13" stroke="#3D9BE0"/>
+            <rect x="16" y="60" width="164" height="66" rx="11" fill="#1B6FC8" fill-opacity=".13" stroke="#1B6FC8"/>
             <text x="98" y="88" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-size="14" font-weight="700" fill="currentColor">El agente</text>
             <text x="98" y="108" text-anchor="middle" font-size="12.5" fill="currentColor" fill-opacity=".8">trabaja solo</text>
 
-            <path d="M 180 93 L 234 93" stroke="#3D9BE0" stroke-width="1.6" marker-end="url(#ar3)" fill="none"/>
-            <text x="207" y="82" text-anchor="middle" font-family="Archivo Narrow, Arial, sans-serif" font-size="11" fill="#3D9BE0">te avisa</text>
+            <path d="M 180 93 L 234 93" stroke="#1B6FC8" stroke-width="1.6" marker-end="url(#ar3)" fill="none"/>
+            <text x="207" y="82" text-anchor="middle" font-family="Archivo Narrow, Arial, sans-serif" font-size="11" fill="#1B6FC8">te avisa</text>
 
             <rect x="238" y="60" width="164" height="66" rx="11" fill="currentColor" fill-opacity=".07" stroke="currentColor" stroke-opacity=".28"/>
             <text x="320" y="88" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-size="14" font-weight="700" fill="currentColor">Te llega el aviso</text>
             <text x="320" y="108" text-anchor="middle" font-size="12.5" fill="currentColor" fill-opacity=".8">con el resumen</text>
 
-            <path d="M 402 93 L 456 93" stroke="#3D9BE0" stroke-width="1.6" marker-end="url(#ar3)" fill="none"/>
-            <text x="429" y="82" text-anchor="middle" font-family="Archivo Narrow, Arial, sans-serif" font-size="11" fill="#3D9BE0">entr&aacute;s</text>
+            <path d="M 402 93 L 456 93" stroke="#1B6FC8" stroke-width="1.6" marker-end="url(#ar3)" fill="none"/>
+            <text x="429" y="82" text-anchor="middle" font-family="Archivo Narrow, Arial, sans-serif" font-size="11" fill="#1B6FC8">entr&aacute;s</text>
 
             <rect x="460" y="60" width="164" height="66" rx="11" fill="currentColor" fill-opacity=".07" stroke="currentColor" stroke-opacity=".28"/>
             <text x="542" y="88" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-size="14" font-weight="700" fill="currentColor">Resolv&eacute;s vos</text>
             <text x="542" y="108" text-anchor="middle" font-size="12.5" fill="currentColor" fill-opacity=".8">el agente espera</text>
 
-            <path d="M 624 93 L 678 93" stroke="#3D9BE0" stroke-width="1.6" marker-end="url(#ar3)" fill="none"/>
-            <text x="651" y="82" text-anchor="middle" font-family="Archivo Narrow, Arial, sans-serif" font-size="11" fill="#3D9BE0">termin&aacute;s</text>
+            <path d="M 624 93 L 678 93" stroke="#1B6FC8" stroke-width="1.6" marker-end="url(#ar3)" fill="none"/>
+            <text x="651" y="82" text-anchor="middle" font-family="Archivo Narrow, Arial, sans-serif" font-size="11" fill="#1B6FC8">termin&aacute;s</text>
 
-            <rect x="682" y="60" width="122" height="66" rx="11" fill="#3D9BE0" fill-opacity=".13" stroke="#3D9BE0"/>
+            <rect x="682" y="60" width="122" height="66" rx="11" fill="#1B6FC8" fill-opacity=".13" stroke="#1B6FC8"/>
             <text x="743" y="88" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-size="14" font-weight="700" fill="currentColor">Retoma</text>
             <text x="743" y="108" text-anchor="middle" font-size="12.5" fill="currentColor" fill-opacity=".8">y sigue trabajando</text>
 
-            <path d="M 743 126 L 743 168 L 98 168 L 98 126" stroke="#3D9BE0" stroke-opacity=".55" stroke-width="1.4" stroke-dasharray="5 5" fill="none" marker-end="url(#ar3)"/>
+            <path d="M 743 126 L 743 168 L 98 168 L 98 126" stroke="#1B6FC8" stroke-opacity=".55" stroke-width="1.4" stroke-dasharray="5 5" fill="none" marker-end="url(#ar3)"/>
             <text x="420" y="188" text-anchor="middle" font-family="Archivo Narrow, Arial, sans-serif" font-size="11.5" fill="currentColor" fill-opacity=".55">Sin cortes ni saltos para el que est&aacute; del otro lado</text>
 
             <text x="16" y="34" font-family="Archivo Narrow, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="1.4" fill="currentColor" fill-opacity=".5">EL PASE A UNA PERSONA</text>
@@ -1624,7 +1102,6 @@
         </div>
         <figcaption>Cuando entr&aacute;s vos, el agente se hace a un lado en ese caso puntual &mdash;nunca act&uacute;an los dos a la vez&mdash; y cuando termin&aacute;s, retoma.</figcaption>
       </figure>
-
       <div class="col ancho">
         <ul class="ticks">
           <li>
@@ -1645,29 +1122,26 @@
           </li>
         </ul>
       </div>
+
+      <div class="siguiente">
+        <span>Segu&iacute; recorriendo</span>
+        <button type="button" data-ir="ejemplos">Ejemplos <svg class="ico" aria-hidden="true"><use href="#i-flecha"/></svg></button>
+      </div>
     </div>
   </section>
-
-
-  <div class="wrap"><div class="siguiente">
-    <span>Segu&iacute; leyendo</span>
-    <button type="button" data-ir="ejemplos">Ejemplos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></button>
-  </div></div>
 
 </div><!-- /funciona -->
 
 <div class="vista" id="v-ejemplos">
 <!-- ===================== EJEMPLO 1: PEDIDO -> FACTURA ===================== -->
-  <section class="banda">
+  <section>
     <div class="wrap stack-lg">
-      <div class="head" style="margin-bottom:0">
+      <div class="head">
         <p class="eyebrow">Ejemplo &middot; Puertas adentro</p>
         <h2>Un pedido escrito de cualquier manera, convertido en trabajo hecho</h2>
         <p>Una distribuidora recibe esto un martes a la ma&ntilde;ana. Antes lo cargaba una persona: leerlo, buscar los c&oacute;digos, tipear, armar la factura, avisar.</p>
       </div>
-
       <span class="sample-tag">Ejemplo ilustrativo</span>
-
       <div class="flujo">
         <div class="flujo-paso">
           <span class="flujo-tag">1 &middot; Lo que llega</span>
@@ -1701,8 +1175,8 @@
     </div>
   </section>
 
-<!-- ===================== EJEMPLO 2: ATENCI&Oacute;N ===================== -->
-  <section class="banda-2">
+<!-- ===================== EJEMPLO 2: ATENCION ===================== -->
+  <section class="banda">
     <div class="wrap">
       <div class="head">
         <p class="eyebrow">Ejemplo &middot; De cara al cliente</p>
@@ -1784,9 +1258,9 @@
   </section>
 
 <!-- ===================== RUBROS ===================== -->
-  <section class="banda">
+  <section>
     <div class="wrap stack-lg">
-      <div class="head" style="margin-bottom:0">
+      <div class="head">
         <p class="eyebrow">Ejemplos por rubro</p>
         <h2>C&oacute;mo se ve esto en distintos negocios</h2>
         <p>Ning&uacute;n agente es igual a otro: se arma sobre c&oacute;mo trabaja cada uno. Estos son ejemplos, no un cat&aacute;logo.</p>
@@ -1794,141 +1268,118 @@
 
       <div class="rubros">
         <div class="rubro">
+          <span class="rubro-ico"><svg class="ico" aria-hidden="true"><use href="#i-caja"/></svg></span>
           <h3>Distribuidoras y mayoristas</h3>
           <p>Toma el pedido escrito como venga, controla stock, lo carga, deja la factura y el remito listos y le confirma al cliente. Avisa cuando algo est&aacute; por faltar.</p>
         </div>
         <div class="rubro">
+          <span class="rubro-ico"><svg class="ico" aria-hidden="true"><use href="#i-bolsa"/></svg></span>
           <h3>Comercios y locales</h3>
           <p>Responde consultas y reserva productos, identifica lo que el cliente manda de foto, y mantiene la lista de precios y el stock al d&iacute;a sin que nadie se siente a cargarlo.</p>
         </div>
         <div class="rubro">
+          <span class="rubro-ico"><svg class="ico" aria-hidden="true"><use href="#i-tijera"/></svg></span>
           <h3>Peluquer&iacute;as, est&eacute;tica y consultorios</h3>
           <p>Agenda, reagenda y recuerda turnos seg&uacute;n la duraci&oacute;n real de cada servicio, evita los huecos muertos y confirma el d&iacute;a anterior para que no falte nadie.</p>
         </div>
         <div class="rubro">
+          <span class="rubro-ico"><svg class="ico" aria-hidden="true"><use href="#i-taza"/></svg></span>
           <h3>Gastronom&iacute;a y panader&iacute;as</h3>
           <p>Toma encargos, confirma qu&eacute; hay disponible, avisa cuando el pedido est&aacute; listo, y arma solo el resumen de lo que se vendi&oacute; y lo que hay que reponer.</p>
         </div>
         <div class="rubro">
+          <span class="rubro-ico"><svg class="ico" aria-hidden="true"><use href="#i-herramienta"/></svg></span>
           <h3>Talleres y servicio t&eacute;cnico</h3>
           <p>Registra el trabajo con la foto del problema, arma la cola de entrada, presupuesta con tus criterios, avisa cuando est&aacute; terminado y reclama lo que qued&oacute; sin retirar.</p>
         </div>
         <div class="rubro">
+          <span class="rubro-ico"><svg class="ico" aria-hidden="true"><use href="#i-libro"/></svg></span>
           <h3>Estudios y oficinas</h3>
           <p>Lee comprobantes y los archiva donde corresponde, arma la facturaci&oacute;n del mes, cruza planillas y avisa de los vencimientos antes de que lleguen.</p>
         </div>
       </div>
 
-      <div class="col">
-        <p style="color:var(--chrome)"><b>&iquest;No est&aacute; tu rubro?</b> Casi no importa. Lo que define si algo se puede automatizar no es a qu&eacute; te dedic&aacute;s, sino si la tarea se repite y tiene una l&oacute;gica que pod&eacute;s explicar. Contanos qu&eacute; hac&eacute;s todos los d&iacute;as y te decimos qu&eacute; se puede sacar de encima.</p>
+      <p class="pista"><svg class="ico" aria-hidden="true"><use href="#i-pregunta"/></svg><span><b>&iquest;No est&aacute; tu rubro?</b> Casi no importa. Lo que define si algo se puede automatizar no es a qu&eacute; te dedic&aacute;s, sino si la tarea se repite y tiene una l&oacute;gica que pod&eacute;s explicar. Contanos qu&eacute; hac&eacute;s todos los d&iacute;as y te decimos qu&eacute; se puede sacar de encima.</span></p>
+
+      <div class="siguiente">
+        <span>Segu&iacute; recorriendo</span>
+        <button type="button" data-ir="hablemos">Hablemos <svg class="ico" aria-hidden="true"><use href="#i-flecha"/></svg></button>
       </div>
     </div>
   </section>
-
-
-  <div class="wrap"><div class="siguiente">
-    <span>Segu&iacute; leyendo</span>
-    <button type="button" data-ir="hablemos">Hablemos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></button>
-  </div></div>
 
 </div><!-- /ejemplos -->
 
 <div class="vista" id="v-hablemos">
-<!-- ===================== LO QUE CAMBIA ===================== -->
-  <section class="banda-2">
-    <div class="wrap stack-lg">
-      <div class="head" style="margin-bottom:0">
-        <p class="eyebrow">Lo que cambia</p>
-        <h2>Lo que cambia cuando lo automatiz&aacute;s</h2>
-        <p>Sin porcentajes inventados: as&iacute; se ve el mismo trabajo, antes y despu&eacute;s.</p>
-      </div>
-      <div class="tasks">
-        <div class="task">
-          <h3>Atenci&oacute;n</h3>
-          <p>De horario de oficina, a las 24 horas &mdash;incluidos domingos y feriados.</p>
-        </div>
-        <div class="task">
-          <h3>Carga de datos</h3>
-          <p>De copiar y pegar entre planillas, a que el dato entre solo una vez.</p>
-        </div>
-        <div class="task">
-          <h3>Primera respuesta</h3>
-          <p>De esperar a que alguien tenga un hueco, a una respuesta apenas llega el mensaje.</p>
-        </div>
-        <div class="task">
-          <h3>Errores de tipeo</h3>
-          <p>De frecuentes cuando se carga a mano, a pr&aacute;cticamente ninguno cuando el dato pasa solo.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-<!-- ===================== C&Oacute;MO TRABAJAMOS ===================== -->
+<!-- ===================== COMO TRABAJAMOS ===================== -->
   <section>
     <div class="wrap stack-lg">
-      <div class="head" style="margin-bottom:0">
+      <div class="head">
         <p class="eyebrow">C&oacute;mo trabajamos</p>
         <h2>Cuatro pasos, y el primero no te cuesta nada</h2>
       </div>
-
-      <div class="steps">
-        <div class="step">
-          <span class="n">PASO 1</span>
+      <ol class="pasos pasos-largos">
+        <li class="paso">
+          <span class="paso-ico"><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg></span>
+          <span class="n">Paso 1</span>
           <h3>Charlamos y miramos tu caso</h3>
-          <p>Una llamada corta, sin costo y sin compromiso, para entender d&oacute;nde se te va el tiempo y si esto de verdad te sirve. Si no te sirve, te lo decimos.</p>
-        </div>
-        <div class="step">
-          <span class="n">PASO 2</span>
+          <p class="d">Una llamada corta, sin costo y sin compromiso, para entender d&oacute;nde se te va el tiempo y si esto de verdad te sirve. Si no te sirve, te lo decimos.</p>
+        </li>
+        <li class="paso">
+          <span class="paso-ico"><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg></span>
+          <span class="n">Paso 2</span>
           <h3>Te armamos una propuesta a medida</h3>
-          <p>Qu&eacute; va a hacer el agente, qu&eacute; no, y con qu&eacute; se conecta. Cada negocio es distinto, as&iacute; que el presupuesto tambi&eacute;n: se arma sobre lo tuyo, no sobre una lista de precios.</p>
-        </div>
-        <div class="step">
-          <span class="n">PASO 3</span>
+          <p class="d">Qu&eacute; va a hacer el agente, qu&eacute; no, y con qu&eacute; se conecta. Cada negocio es distinto, as&iacute; que el presupuesto tambi&eacute;n: se arma sobre lo tuyo, no sobre una lista de precios.</p>
+        </li>
+        <li class="paso">
+          <span class="paso-ico"><svg class="ico" aria-hidden="true"><use href="#i-herramienta"/></svg></span>
+          <span class="n">Paso 3</span>
           <h3>Lo armamos, lo probamos y te ense&ntilde;amos</h3>
-          <p>Lo dejamos andando y probado antes de que toque nada real. Despu&eacute;s te mostramos c&oacute;mo mirarlo, c&oacute;mo frenarlo y c&oacute;mo entrar vos.</p>
-        </div>
-        <div class="step">
-          <span class="n">PASO 4</span>
+          <p class="d">Lo dejamos andando y probado antes de que toque nada real. Despu&eacute;s te mostramos c&oacute;mo mirarlo, c&oacute;mo frenarlo y c&oacute;mo entrar vos.</p>
+        </li>
+        <li class="paso">
+          <span class="paso-ico"><svg class="ico" aria-hidden="true"><use href="#i-equipo"/></svg></span>
+          <span class="n">Paso 4</span>
           <h3>Te acompa&ntilde;amos despu&eacute;s</h3>
-          <p>Un agente se ajusta con el uso. Seguimos encima: corregimos lo que haga falta y le sumamos lo que vaya apareciendo.</p>
-        </div>
-      </div>
+          <p class="d">Un agente se ajusta con el uso. Seguimos encima: corregimos lo que haga falta y le sumamos lo que vaya apareciendo.</p>
+        </li>
+      </ol>
     </div>
   </section>
 
 <!-- ===================== FAQ ===================== -->
   <section class="banda">
-    <div class="wrap">
+    <div class="wrap stack-lg">
       <div class="head">
         <p class="eyebrow">Preguntas</p>
         <h2>Lo que todos preguntan</h2>
+        <p>Toc&aacute; una pregunta para ver la respuesta.</p>
       </div>
-
       <div class="faq">
-        <div class="qa">
-          <h3>&iquest;Sirve para mi negocio, o esto es s&oacute;lo para atender clientes?</h3>
+        <details class="qa">
+          <summary><h3>&iquest;Sirve para mi negocio, o esto es s&oacute;lo para atender clientes?</h3><i class="qa-mas" aria-hidden="true"></i></summary>
           <p>Atender es lo m&aacute;s visible, pero es una parte. La pregunta que importa es otra: &iquest;hay algo que hac&eacute;s o que hace tu gente todos los d&iacute;as, siempre igual, siguiendo una l&oacute;gica que podr&iacute;as explicar en dos minutos? Si la respuesta es s&iacute;, se puede automatizar, sea de cara al cliente o puertas adentro.</p>
-        </div>
-        <div class="qa">
-          <h3>&iquest;Y si dice o hace cualquier cosa?</h3>
+        </details>
+        <details class="qa">
+          <summary><h3>&iquest;Y si dice o hace cualquier cosa?</h3><i class="qa-mas" aria-hidden="true"></i></summary>
           <p>Trabaja s&oacute;lo con la informaci&oacute;n y las reglas de tu negocio, no con lo que se le ocurra. Lo que no sabe, no lo inventa: te lo pasa. Y lo que no quer&eacute;s que haga &mdash;aprobar, cerrar precios, tocar plata&mdash; queda prohibido por escrito y se prueba antes de que salga a la cancha.</p>
-        </div>
-        <div class="qa">
-          <h3>&iquest;Tengo que cambiar los sistemas que uso?</h3>
+        </details>
+        <details class="qa">
+          <summary><h3>&iquest;Tengo que cambiar los sistemas que uso?</h3><i class="qa-mas" aria-hidden="true"></i></summary>
           <p>No. El agente se adapta a lo que ya ten&eacute;s, no al rev&eacute;s. Tu agenda, tus planillas, tu sistema de gesti&oacute;n, tu forma de facturar: se trabaja sobre eso. Nadie tiene que aprender nada nuevo.</p>
-        </div>
-        <div class="qa">
-          <h3>&iquest;Reemplaza a mi gente?</h3>
+        </details>
+        <details class="qa">
+          <summary><h3>&iquest;Reemplaza a mi gente?</h3><i class="qa-mas" aria-hidden="true"></i></summary>
           <p>No. Se come lo repetitivo: el &laquo;&iquest;a qu&eacute; hora abren?&raquo; n&uacute;mero catorce del d&iacute;a, la carga de datos, el pedido que se tipea a mano. Tu gente queda para lo que de verdad necesita una persona, que es donde se gana o se pierde el cliente.</p>
-        </div>
-        <div class="qa">
-          <h3>&iquest;Y los datos de mi negocio?</h3>
+        </details>
+        <details class="qa">
+          <summary><h3>&iquest;Y los datos de mi negocio?</h3><i class="qa-mas" aria-hidden="true"></i></summary>
           <p>Son tuyos y no se comparten con nadie. Cada negocio tiene su espacio separado: la informaci&oacute;n de un cliente nuestro nunca se cruza con la de otro.</p>
-        </div>
-        <div class="qa">
-          <h3>Soy chico, &iquest;esto es para m&iacute;?</h3>
+        </details>
+        <details class="qa">
+          <summary><h3>Soy chico, &iquest;esto es para m&iacute;?</h3><i class="qa-mas" aria-hidden="true"></i></summary>
           <p>Justamente. Cuanto m&aacute;s chico el equipo, m&aacute;s pesa que una sola persona est&eacute; atendiendo, cargando pedidos y facturando al mismo tiempo. Se puede arrancar por lo que m&aacute;s te duele hoy y sumar el resto despu&eacute;s.</p>
-        </div>
+        </details>
       </div>
     </div>
   </section>
@@ -1936,7 +1387,7 @@
 <!-- ===================== RECURSOS ===================== -->
   <section>
     <div class="wrap stack-lg">
-      <div class="head" style="margin-bottom:0">
+      <div class="head">
         <p class="eyebrow">Recursos</p>
         <h2>Para leer con m&aacute;s calma</h2>
         <p>Art&iacute;culos cortos y sin tecnicismos para entender qu&eacute; se puede automatizar en tu negocio antes de hablar con nadie.</p>
@@ -1966,13 +1417,13 @@
   </section>
 
 <!-- ===================== CIERRE ===================== -->
-  <section class="close">
+  <section class="cierre">
     <div class="wrap">
       <p class="eyebrow">Hablemos</p>
       <h2>Contanos qu&eacute; hac&eacute;s todos los d&iacute;as y te decimos qu&eacute; se puede automatizar</h2>
       <p>Escribinos por WhatsApp. La primera charla no tiene costo ni compromiso &mdash; y si no te conviene, te lo vamos a decir.</p>
-      <a class="btn btn-lg btn-print-show" data-oculta-barra href="https://wa.me/5491130270119?text=Hola!%20Vi%20la%20presentaci%C3%B3n%20de%20ExplosIA%20y%20quiero%20saber%20qu%C3%A9%20se%20puede%20automatizar%20en%20mi%20negocio." target="_blank" rel="noopener noreferrer" aria-label="Ped&iacute; tu diagn&oacute;stico gratis por WhatsApp">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.23 8.23 0 0 1 8.24 8.24c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.78.97-.14.16-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
+      <a class="btn btn-lg btn-blanco btn-print-show" href="https://wa.me/5491130270119?text=Hola!%20Vi%20la%20presentaci%C3%B3n%20de%20ExplosIA%20y%20quiero%20saber%20qu%C3%A9%20se%20puede%20automatizar%20en%20mi%20negocio." target="_blank" rel="noopener noreferrer" aria-label="Ped&iacute; tu diagn&oacute;stico gratis por WhatsApp">
+        <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>
         Ped&iacute; tu diagn&oacute;stico gratis
       </a>
       <a class="wa-number" href="https://wa.me/5491130270119" target="_blank" rel="noopener noreferrer" aria-label="Llamar o escribir al n&uacute;mero de WhatsApp +54 9 11 3027-0119">+54 9 11 3027-0119</a>
@@ -2010,12 +1461,12 @@
   </div>
 </footer>
 
-<div class="barra-cta">
-  <a class="btn" href="https://wa.me/5491130270119?text=Hola!%20Quiero%20agendar%20un%20diagn%C3%B3stico%20gratis%20de%20automatizaci%C3%B3n%20para%20mi%20negocio." target="_blank" rel="noopener noreferrer" aria-label="Agendar diagn&oacute;stico gratis por WhatsApp">
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.23 8.23 0 0 1 8.24 8.24c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.78.97-.14.16-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
-    <span class="barra-txt">Agendar diagn&oacute;stico gratis</span>
-  </a>
-</div>
+<!-- El boton flotante de WhatsApp: siempre a la vista, abajo a la derecha.
+     Cuando alguien marco algo en el diagnostico, lleva ese mensaje. -->
+<a class="wa-flotante" href="https://wa.me/5491130270119?text=Hola!%20Vi%20la%20p%C3%A1gina%20de%20ExplosIA%20y%20quiero%20saber%20qu%C3%A9%20se%20puede%20automatizar%20en%20mi%20negocio." target="_blank" rel="noopener noreferrer" aria-label="Escribinos por WhatsApp">
+  <span class="wa-flotante-txt">Escribinos por WhatsApp</span>
+  <span class="wa-flotante-ico"><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-wa"/></svg></span>
+</a>
 
 
 <script>
@@ -2024,7 +1475,7 @@
    Van primero y no dependen de nada: si la libreria de animacion
    no carga, la navegacion sigue funcionando igual.
    Sin JavaScript no se agrega la clase "pestanas" y entonces se
-   ven todas las vistas una abajo de la otra, como antes.
+   ven todas las vistas una abajo de la otra.
    ============================================================ */
 var Pestanas = (function () {
   var vistas  = [].slice.call(document.querySelectorAll(".vista"));
@@ -2045,6 +1496,14 @@ var Pestanas = (function () {
       else b.removeAttribute("aria-current");
     });
 
+    // En el celular el menu se desliza de costado: que la pestana
+    // elegida no quede escondida afuera.
+    var menu = document.querySelector(".menu");
+    var activo = menu && menu.querySelector('[aria-current="page"]');
+    if (menu && activo && menu.scrollWidth > menu.clientWidth) {
+      menu.scrollLeft = Math.max(0, activo.offsetLeft - (menu.clientWidth - activo.offsetWidth) / 2);
+    }
+
     if (history.replaceState) history.replaceState(null, "", "#" + id);
 
     if (mover) {
@@ -2058,10 +1517,14 @@ var Pestanas = (function () {
     b.addEventListener("click", function () { ir(b.dataset.vista, true); });
   });
   [].slice.call(document.querySelectorAll("[data-ir]")).forEach(function (b) {
-    b.addEventListener("click", function () { ir(b.dataset.ir, true); });
+    b.addEventListener("click", function (e) {
+      if (b.tagName === "A") e.preventDefault();
+      ir(b.dataset.ir, true);
+    });
   });
   window.addEventListener("hashchange", function () {
-    ir((location.hash || "").replace("#", "") || vistas[0].id.replace("v-", ""), false);
+    var id = (location.hash || "").replace("#", "");
+    if (!id || document.getElementById("v-" + id)) ir(id || vistas[0].id.replace("v-", ""), false);
   });
 
   // Arranque: si el link traia una pestana, se abre esa.
@@ -2084,45 +1547,16 @@ var Pestanas = (function () {
 
   mm.add("(prefers-reduced-motion: no-preference)", function () {
 
-    /* --- entrada de la portada --- */
-    gsap.timeline({ defaults: { ease: "expo.out" } })
-      .from(".hero-logo",     { opacity: 0, y: 26, scale: .9, duration: .9 })
-      .from(".hero .eyebrow", { opacity: 0, y: 14, duration: .6 }, "-=.55")
-      .from(".hero-h1",       { opacity: 0, y: 10, duration: .5 }, "-=.45")
-      .from(".hero .hero-title", { opacity: 0, y: 22, duration: .8 }, "-=.35")
-      .from(".hero-sub",      { opacity: 0, y: 18, duration: .7 }, "-=.55")
-      .from(".hero-cta > *",  { opacity: 0, y: 14, duration: .6, stagger: .09 }, "-=.45");
-
-    /* --- cada vista se presenta al abrirse --- */
-    if (Pestanas) {
-      Pestanas.alCambiar(function (vista) {
-        var piezas = vista.querySelectorAll(".head, .fig, .senses > *, .rubros > *, .mapa > *, " +
-                                           ".flujo > *, .dos-frentes > *, .steps > *, .qa, " +
-                                           ".chat-grid > *, .col, .diag, .recursos > *");
-        if (!piezas.length) return;
-        gsap.killTweensOf(piezas);
-        gsap.set(piezas, { clearProps: "opacity,transform" });
-        gsap.from(piezas, {
-          opacity: 0, y: 20, duration: .55, ease: "expo.out",
-          stagger: { each: .05, amount: Math.min(piezas.length * .05, .45) },
-          onComplete: function () { gsap.set(piezas, { clearProps: "opacity,transform" }); }
-        });
-        if (typeof ScrollTrigger !== "undefined") ScrollTrigger.refresh();
-      });
-    }
-
-    /* --- parallax de las capas de fondo (nunca sobre el texto) --- */
-    if (typeof ScrollTrigger !== "undefined") {
-      gsap.utils.toArray(".glow").forEach(function (capa, i) {
-        gsap.to(capa, {
-          yPercent: (i + 1) * 9, ease: "none",
-          scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: .5 }
-        });
-      });
-      gsap.to(".grid-bg", {
-        yPercent: 6, ease: "none",
-        scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: .5 }
-      });
+    /* --- entrada de la portada (solo si se abre en la portada) --- */
+    if (document.querySelector("#v-inicio.activa")) {
+      gsap.timeline({ defaults: { ease: "expo.out" } })
+        .from(".hero-logo",        { opacity: 0, y: 26, scale: .9, duration: .9 })
+        .from(".hero .eyebrow",    { opacity: 0, y: 14, duration: .6 }, "-=.55")
+        .from(".hero-h1",          { opacity: 0, y: 10, duration: .5 }, "-=.45")
+        .from(".hero .hero-title", { opacity: 0, y: 22, duration: .8 }, "-=.35")
+        .from(".hero-sub",         { opacity: 0, y: 18, duration: .7 }, "-=.55")
+        .from(".hero-cta > *",     { opacity: 0, y: 14, duration: .6, stagger: .09 }, "-=.45")
+        .from(".hero-trust li",    { opacity: 0, y: 10, duration: .5, stagger: .06 }, "-=.4");
     }
 
     /* --- el logo mira hacia donde esta el puntero --- */
@@ -2138,25 +1572,6 @@ var Pestanas = (function () {
       });
       hero.addEventListener("pointerleave", function () { rx(0); ry(0); });
     }
-
-    /* --- las tarjetas se inclinan bajo el puntero --- */
-    if (window.matchMedia("(hover: hover)").matches) {
-      gsap.utils.toArray(".sense, .rubro, .task, .area").forEach(function (card) {
-        var tx = gsap.quickTo(card, "rotationX", { duration: .5, ease: "power3.out" });
-        var ty = gsap.quickTo(card, "rotationY", { duration: .5, ease: "power3.out" });
-        var tz = gsap.quickTo(card, "z",         { duration: .5, ease: "power3.out" });
-        card.addEventListener("pointermove", function (e) {
-          var r = card.getBoundingClientRect();
-          var px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
-          card.style.setProperty("--mx", (px * 100) + "%");
-          card.style.setProperty("--my", (py * 100) + "%");
-          tx(gsap.utils.clamp(-6, 6, -(py - .5) * 12));
-          ty(gsap.utils.clamp(-6, 6,  (px - .5) * 12));
-          tz(18);
-        });
-        card.addEventListener("pointerleave", function () { tx(0); ty(0); tz(0); });
-      });
-    }
   });
 
   // Las fuentes y el logo cambian las alturas al terminar de cargar.
@@ -2168,16 +1583,13 @@ var Pestanas = (function () {
   }
 
   // Red de seguridad: a los 4 segundos no puede quedar un bloque invisible.
-  // Preferimos perder una animacion antes que perder texto.
+  // Preferimos perder una animacion antes que perder texto. Solo se rescata
+  // lo que YA deberia verse: lo de mas abajo espera su turno al bajar.
+  // (La otra red, con el mismo criterio, vive en js/visual.js.)
   setTimeout(function () {
-    document.querySelectorAll(".vista.activa section, .vista.activa .fig, .vista.activa .qa, " +
-                             ".vista.activa .sense, .vista.activa .rubro, .vista.activa .area, " +
-                             ".vista.activa .flujo-paso, .vista.activa .step, .vista.activa .head, " +
-                             ".vista.activa .diag, .vista.activa .recurso")
+    document.querySelectorAll(".vista.activa .hero-texto > *, .vista.activa .hero-cta > *, " +
+                             ".vista.activa .hero-logo, .vista.activa .hero-trust li")
       .forEach(function (el) {
-        // Solo se rescata lo que YA deberia verse. Lo que esta mas
-        // abajo puede estar esperando su turno para aparecer al
-        // bajar, y no hay que arruinarle la entrada.
         var r = el.getBoundingClientRect();
         var enPantalla = r.top < (window.innerHeight || 0) && r.bottom > 0;
         if (enPantalla && parseFloat(getComputedStyle(el).opacity) < .98) {
@@ -2192,8 +1604,7 @@ var Pestanas = (function () {
       ScrollTrigger.getAll().forEach(function (t) { t.kill(false); });
     }
     gsap.globalTimeline.progress(1);
-    gsap.set(".hero-logo, .sense, .rubro, .task, .area, .flujo-paso, .head, .fig, .phone, .glow, .grid-bg, .diag, .recurso",
-             { clearProps: "all" });
+    gsap.set(".hero-logo, .hero-texto > *, .hero-cta > *, .hero-trust li", { clearProps: "all" });
   });
 })();
 </script>
@@ -2224,17 +1635,18 @@ var Pestanas = (function () {
 
   // Todos los demas botones de WhatsApp de la pagina. Una vez que la
   // persona marco algo, toque el que toque tiene que llevar su
-  // diagnostico: en el celular, mientras marca, lo que tiene a la vista
-  // es la barra de abajo (el boton del diagnostico queda mas abajo), y
-  // el "Escribinos" de arriba se ve siempre. Cada uno mandaba su propio
-  // mensaje y el diagnostico se perdia.
+  // diagnostico: mientras marca, lo que tiene a la vista es el boton
+  // flotante de abajo a la derecha (el del diagnostico queda mas abajo),
+  // y el "Escribinos" de arriba se ve siempre. Cada uno mandaba su
+  // propio mensaje y el diagnostico se perdia.
   var enlaces = [].slice.call(document.querySelectorAll('a[href*="wa.me/' + NUMERO + '"]'))
     .filter(function (a) { return a !== cta; });
   enlaces.forEach(function (a) {
     a.setAttribute("data-href-original", a.getAttribute("href"));
     if (a.hasAttribute("aria-label")) a.setAttribute("data-aria-original", a.getAttribute("aria-label"));
   });
-  var barraTxt = document.querySelector(".barra-cta .barra-txt");
+  var flotante = document.querySelector(".wa-flotante");
+  var barraTxt = flotante ? flotante.querySelector(".wa-flotante-txt") : null;
   var barraOriginal = barraTxt ? barraTxt.textContent : "";
 
   function etiqueta(input) {
@@ -2314,6 +1726,15 @@ var Pestanas = (function () {
       }
     });
     if (barraTxt) barraTxt.textContent = hayAlgo ? "Enviar mi diagn\u00f3stico" : barraOriginal;
+    // con algo marcado, el boton flotante lo anuncia con su cartel
+    // solo un rato: fijo tapaba el resultado del diagnostico en pantallas chicas
+    if (flotante) {
+      clearTimeout(flotante.__cartel);
+      flotante.classList.toggle("con-texto", hayAlgo && !!animar);
+      if (hayAlgo && animar) {
+        flotante.__cartel = setTimeout(function () { flotante.classList.remove("con-texto"); }, 4500);
+      }
+    }
   }
 
   // WhatsApp no siempre respeta el texto que le llega en el link: segun
