@@ -305,8 +305,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
   .hero{ display: flex; align-items: center; min-height: min(calc(100svh - 150px), 720px); }
   .hero > .wrap{ width: 100%; }
   .hero-grid{ grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); }
-  .hero-visual{ order: 0; min-height: 420px; }
-  .hero-logo{ width: clamp(150px, 15vw, 200px); }
+  .hero-visual{ order: 0; min-height: 480px; }
+  .hero-logo{ width: clamp(150px, 18vw, 260px); }
   .hero-title{ font-size: clamp(44px, min(5.1vw, 8.4svh), 70px); }
 }
 
