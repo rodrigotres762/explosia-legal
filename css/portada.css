@@ -986,54 +986,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
   background: var(--wa); color: #FFFFFF;
 }
 .wa-logo .ico{ width: 26px; height: 26px; }
-.wa-number{
-  display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: #FFFFFF;
-  font-family: var(--display); font-weight: 800; font-size: clamp(26px, 5.2vw, 40px);
-  letter-spacing: -.02em; font-variant-numeric: tabular-nums;
-}
-.contactos{ display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
-/* el "o si preferis" que separa el boton de WhatsApp de los otros contactos */
-.cierre .cierre-o{
-  margin: -2px 0 -8px; color: rgba(255,255,255,.72);
-  font-family: var(--narrow); font-weight: 600; font-size: 12.5px;
-  letter-spacing: .1em; text-transform: uppercase;
-}
-.contacto-txt{ display: block; min-width: 0; }
-.contacto{
-  display: inline-flex; align-items: center; gap: 11px; min-height: 52px;
-  padding: 8px 22px 8px 9px; border-radius: 999px;
-  text-decoration: none; text-align: left; color: var(--tinta);
-  font-family: var(--display); font-size: 15px;
-  background: #FFFFFF; box-shadow: 0 10px 24px -14px rgba(12,26,48,.6);
-  transition: transform .2s ease;
-}
-.contacto:hover{ transform: translateY(-2px); }
-.contacto-ico{ width: 34px; height: 34px; border-radius: 50%; flex: none; display: grid; place-items: center; }
-.contacto-ico svg{ width: 19px; height: 19px; color: #FFFFFF; }
-.contacto-mail .contacto-ico{ background: linear-gradient(140deg, #EA4335 0%, #C5221F 100%); }
-.contacto-ig   .contacto-ico{ background: linear-gradient(45deg, #F9CE34 0%, #EE2A7B 52%, #6228D7 100%); }
-.contacto-fb   .contacto-ico{ background: #1877F2; }
-/* la "f" es angosta y alta: no va cuadrada como los demas iconos */
-.contacto-fb .contacto-ico svg{ width: auto; height: 20px; }
-/* el dato (el mail, el arroba) es la linea grande; el rotulo va chico arriba */
-.contacto small{
-  display: block; font-family: var(--narrow); font-weight: 600; font-size: 11px;
-  letter-spacing: .08em; text-transform: uppercase; color: var(--dim); line-height: 1.25;
-}
-.contacto b{ display: block; font-weight: 700; font-size: 15.5px; letter-spacing: -.01em; line-height: 1.3; }
-@media (max-width: 560px){
-  /* en el celular los dos contactos se apilan y quedan del mismo ancho */
-  .contactos{ flex-direction: column; align-self: stretch; }
-  .contacto{ width: 100%; }
-}
-@media (max-width: 400px){
-  /* el mail tiene 33 letras y en un celular angosto no entra: en vez de
-     achicarlo hasta que no se lea, pasa a la tipografia angosta */
-  .contacto{ padding-right: 14px; }
-  .contacto-mail b, footer .pie-red-mail .pie-red-txt b{
-    font-family: var(--narrow); font-size: 15px; letter-spacing: 0;
-  }
-}
+/* Los cierres azules llevan un solo boton. El numero, el mail, Instagram y
+   Facebook van una sola vez, en la franja del pie (.pie-contacto), que es
+   igual en todas las paginas: repetirlos aca los mostraba dos veces seguidas. */
 
 /* ================= LAS OTRAS PESTANAS ================= */
 
@@ -1428,6 +1383,13 @@ footer .pie-red:hover{
   .pie-red{ width: 100%; }
   .pie-red-txt b{ font-size: 14.5px; }
 }
+@media (max-width: 400px){
+  /* el mail tiene 33 letras y en un celular angosto no entra: en vez de
+     achicarlo hasta que no se lea, pasa a la tipografia angosta */
+  footer .pie-red-mail .pie-red-txt b{
+    font-family: var(--narrow); font-size: 15px; letter-spacing: 0;
+  }
+}
 
 /* ================= BOTON FLOTANTE DE WHATSAPP ================= */
 
@@ -1491,7 +1453,7 @@ footer .pie-red:hover{
   .wa-flotante-ico::before{ animation: none; opacity: 0; }
   .btn:hover::after{ animation: none; }
   .btn:hover, .cambio-btn:hover, .ir-card:hover, .rubro:hover, .recurso:hover,
-  .stack-tec-grid li:hover, .demo-cap:hover, .contacto:hover{ transform: none; }
+  .stack-tec-grid li:hover, .demo-cap:hover{ transform: none; }
   footer .pie-red:hover{ transform: none; }
   .cambio-txts > span, .cambio-pie > span{ transform: none !important; }
   .diag-lista li{ animation: none; }
@@ -1519,7 +1481,7 @@ footer .pie-red:hover{
   .fig svg{ min-width: 0; }
   details.area > ul, details.qa > p{ display: grid; }
   .cierre{ background: #FFFFFF; color: #0B1420; }
-  .cierre h2, .cierre p, .wa-number{ color: #0B1420; }
+  .cierre h2, .cierre p{ color: #0B1420; }
   .cierre::before, .cierre::after{ display: none; }
   .cierre .btn-print-show{ display: inline-flex !important; background: none; color: #12558F; border: 1px solid #12558F; box-shadow: none; padding: 8px 14px; }
   footer{ padding-block: 14pt; }
