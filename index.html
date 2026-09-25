@@ -46,13 +46,31 @@
     "latitude": -34.4883,
     "longitude": -58.4962
   },
-  "openingHoursSpecification": {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-    "opens": "09:00",
-    "closes": "18:00"
-  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "09:00",
+      "closes": "20:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "09:00",
+      "closes": "13:00"
+    }
+  ],
+  "areaServed": [
+    "Martínez",
+    "San Isidro",
+    "Vicente López",
+    "San Fernando",
+    "Tigre",
+    "Ciudad Autónoma de Buenos Aires"
+  ],
+  "hasMap": "https://www.google.com/maps?cid=12246641917192760472",
   "sameAs": [
+    "https://www.google.com/maps?cid=12246641917192760472",
     "https://wa.me/5491130270119",
     "https://instagram.com/explosia.automatizacion",
     "https://www.facebook.com/explosia.automatizacion"
