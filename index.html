@@ -86,12 +86,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..800&family=Archivo+Narrow:wght@500;600;700&family=Caveat:wght@600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
-<link rel="stylesheet" href="css/visual.css?v=24">
-<link rel="stylesheet" href="css/portada.css?v=24">
+<link rel="stylesheet" href="css/visual.css?v=25">
+<link rel="stylesheet" href="css/portada.css?v=25">
 <script src="vendor/gsap.min.js"></script>
 <script src="vendor/ScrollTrigger.min.js"></script>
-<script src="js/visual.js?v=24" defer></script>
-<script src="js/portada.js?v=24" defer></script>
+<script src="js/visual.js?v=25" defer></script>
+<script src="js/portada.js?v=25" defer></script>
 <script type="speculationrules">
 {
   "prerender": [
@@ -135,6 +135,7 @@
   <symbol id="i-tijera" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9"/><path d="M14.5 14.5 20 20"/><path d="M8.1 8.1 12 12"/></g></symbol>
   <symbol id="i-escudo" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></g></symbol>
   <symbol id="i-libro" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></g></symbol>
+  <symbol id="i-estrella" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.6l2.9 5.88 6.5.95-4.7 4.58 1.11 6.47L12 17.43l-5.81 3.05 1.11-6.47-4.7-4.58 6.5-.95z"/></symbol>
 </svg>
 
 <canvas id="escena" aria-hidden="true"></canvas>
@@ -660,6 +661,32 @@
           <span class="ir-flecha">Ver preguntas <svg class="ico" aria-hidden="true"><use href="#i-flecha"/></svg></span>
         </button>
       </div>
+    </div>
+  </section>
+
+<!-- ===================== OPINIONES =====================
+     Solo opiniones de clientes reales, copiadas de Google (solo se corrigio
+     la ortografia). Las de familia no van aca (pedido de Rodrigo, 6/10/2026).
+     El apellido va abreviado hasta que ella diga que se puede poner entero. -->
+  <section class="banda">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Opiniones</p>
+        <h2>Lo que dice una inmobiliaria que ya lo usa</h2>
+      </div>
+      <figure class="opinion">
+        <span class="opinion-estrellas" role="img" aria-label="5 de 5 estrellas">
+          <svg class="ico" aria-hidden="true"><use href="#i-estrella"/></svg><svg class="ico" aria-hidden="true"><use href="#i-estrella"/></svg><svg class="ico" aria-hidden="true"><use href="#i-estrella"/></svg><svg class="ico" aria-hidden="true"><use href="#i-estrella"/></svg><svg class="ico" aria-hidden="true"><use href="#i-estrella"/></svg>
+        </span>
+        <blockquote>
+          <p>Excelente servicio y atenci&oacute;n de 10. Contratamos la automatizaci&oacute;n para la inmobiliaria y la verdad es que super&oacute; nuestras expectativas: nos simplific&oacute; much&iacute;simo la respuesta a consultas y el filtro de clientes en el d&iacute;a a d&iacute;a. S&uacute;per recomendable si busc&aacute;s optimizar tiempos en tu negocio.</p>
+        </blockquote>
+        <figcaption>
+          <span class="opinion-avatar" aria-hidden="true">C</span>
+          <span class="opinion-quien"><b>Camila R.</b><span class="d">Inmobiliaria &middot; Opini&oacute;n en Google</span></span>
+        </figcaption>
+      </figure>
+      <a class="opinion-google" href="https://www.google.com/maps?cid=1498326324350000248" target="_blank" rel="noopener noreferrer">Ver la opini&oacute;n en Google <svg class="ico" aria-hidden="true"><use href="#i-flecha"/></svg></a>
     </div>
   </section>
 
@@ -1504,9 +1531,9 @@
 </a>
 
 
-<script src="js/inicio.js?v=24"></script>
+<script src="js/inicio.js?v=25"></script>
 
-<script src="js/diagnostico.js?v=24"></script>
+<script src="js/diagnostico.js?v=25"></script>
 
 </body>
 </html>

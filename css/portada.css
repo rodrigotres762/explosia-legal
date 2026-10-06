@@ -988,6 +988,38 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
   .aliado img{ width: 80px; }
 }
 
+/* ================= OPINIONES ================= */
+
+.opinion{
+  display: flex; flex-direction: column; gap: 16px; max-width: 760px;
+  padding: clamp(22px, 3.6vw, 34px); border-radius: 18px;
+  background: var(--papel); box-shadow: var(--sombra-1), inset 0 0 0 1px var(--edge-soft);
+}
+/* el amarillo de las estrellas de Google: solo aca */
+.opinion-estrellas{ display: inline-flex; gap: 3px; color: #F4B400; }
+.opinion-estrellas .ico{ width: 20px; height: 20px; }
+.opinion blockquote{ margin: 0; }
+.opinion blockquote p{
+  font-family: var(--serif); font-size: clamp(18px, 2.1vw, 21px); line-height: 1.55; color: var(--tinta);
+}
+.opinion figcaption{ display: flex; align-items: center; gap: 12px; }
+.opinion-avatar{
+  display: inline-grid; place-items: center; flex: none;
+  width: 42px; height: 42px; border-radius: 50%;
+  background: var(--nube); color: var(--brand-deep);
+  font-family: var(--display); font-weight: 700; font-size: 18px;
+}
+.opinion-quien{ display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.opinion-quien b{ font-family: var(--display); font-size: 16.5px; font-weight: 700; line-height: 1.25; color: var(--tinta); }
+.opinion-quien .d{ font-size: 14.5px; line-height: 1.4; color: var(--muted); }
+.opinion-google{
+  display: inline-flex; align-items: center; gap: 6px; margin-top: 18px;
+  font-family: var(--display); font-weight: 700; font-size: 15px; color: var(--brand); text-decoration: none;
+}
+.opinion-google:hover{ text-decoration: underline; text-underline-offset: 3px; }
+.opinion-google .ico{ width: 16px; height: 16px; transition: transform .25s ease; }
+.opinion-google:hover .ico{ transform: translateX(4px); }
+
 /* ================= CIERRE ================= */
 
 .cierre{
