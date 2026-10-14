@@ -2,10 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://explosia.com.ar/</loc>
-    <lastmod>2026-09-17</lastmod>
+    <lastmod>2026-10-14</lastmod>
   </url>
   <url>
     <loc>https://explosia.com.ar/agentes-de-ia/</loc>
+    <lastmod>2026-10-14</lastmod>
+  </url>
+  <url>
+    <loc>https://explosia.com.ar/paginas-web/</loc>
+    <lastmod>2026-10-14</lastmod>
+  </url>
+  <url>
+    <loc>https://explosia.com.ar/software-personalizado/</loc>
     <lastmod>2026-10-14</lastmod>
   </url>
   <url>

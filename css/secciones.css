@@ -1,0 +1,96 @@
+/* Lo que suman /paginas-web/ y /software-personalizado/ a la plantilla de los
+   servicios (css/servicios.css): el menu de los cuatro servicios, la grilla de
+   tarjetas y el ejemplo dibujado dentro de un navegador y un celular.
+   Va aparte y con ?v=N porque servicios.css no lleva version (ver
+   subir-version.sh): asi un cambio aca no tarda 10 minutos en verse. */
+
+/* ---------- menu de servicios ---------- */
+.topbar .menu-links{
+  display: flex; gap: 2px; min-width: 0;
+  overflow-x: auto; scrollbar-width: none;
+}
+.menu-links::-webkit-scrollbar{ display: none; }
+.menu-links a{
+  font-family: Archivo, Arial, sans-serif; font-weight: 600; font-size: 14.5px; letter-spacing: -.01em;
+  color: var(--muted); text-decoration: none; white-space: nowrap;
+  padding: 8px 12px; min-height: 40px; border-radius: 999px;
+  display: inline-flex; align-items: center;
+}
+.menu-links a:hover{ color: var(--text); background: var(--surface-2); }
+.menu-links a[aria-current="page"]{ color: #FFFFFF; background: var(--text); }
+@media (max-width: 719px){
+  /* Una sola fila: el logo redondo y el menu, que se desliza de costado. */
+  .topbar .mark{ margin-right: 0; flex: none; }
+  .topbar .mark b{ display: none; }
+  .topbar .menu-links{
+    flex: 1; margin-right: calc(-1 * var(--gutter)); padding-right: var(--gutter);
+    -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent 100%);
+            mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent 100%);
+  }
+  .menu-links a{ padding: 8px 10px; font-size: 14px; }
+}
+
+/* ---------- tarjetas ---------- */
+.items{
+  list-style: none; margin: 0; padding: 0;
+  display: grid; gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+}
+.item{
+  display: flex; flex-direction: column; gap: 8px;
+  padding: 20px 20px 22px; border-radius: 16px;
+  background: var(--surface); border: 1px solid var(--edge-soft); box-shadow: var(--sombra-1);
+}
+.banda .item{ background: var(--ink); }
+.item-ico{
+  width: 42px; height: 42px; border-radius: 12px; margin-bottom: 4px;
+  display: grid; place-items: center;
+  background: var(--surface-2); color: var(--brand);
+}
+.item-ico svg{ width: 22px; height: 22px; }
+.item b{ font-family: Archivo, Arial, sans-serif; font-size: 17px; color: var(--text); line-height: 1.3; }
+.item p{ font-size: 15.5px; line-height: 1.6; color: var(--muted); }
+
+/* ---------- el ejemplo: esta misma pagina en un navegador y en un celular ---------- */
+.ejemplo{ position: relative; margin: 8px 0 0; padding: 0 0 34px; }
+.marco-pc{
+  margin: 0; width: 88%;
+  border-radius: 14px; overflow: hidden;
+  background: #FFFFFF; border: 1px solid var(--edge);
+  box-shadow: 0 30px 60px -30px rgba(12,26,48,.45), var(--sombra-1);
+}
+.marco-barra{
+  display: flex; align-items: center; gap: 6px;
+  padding: 9px 12px; background: var(--surface-2); border-bottom: 1px solid var(--edge);
+}
+.marco-barra i{ width: 9px; height: 9px; border-radius: 50%; background: #C9D6E6; }
+.marco-url{
+  margin-left: 10px; padding: 3px 12px; border-radius: 999px;
+  font-family: "Archivo Narrow", Arial, sans-serif; font-size: 13px; color: var(--muted);
+  background: #FFFFFF; border: 1px solid var(--edge-soft);
+}
+.marco-pc img, .marco-cel img{ display: block; width: 100%; height: auto; }
+.marco-cel{
+  position: absolute; right: 0; bottom: 0; width: 26%;
+  border-radius: 22px; overflow: hidden;
+  border: 6px solid #0C1A30; background: #0C1A30;
+  box-shadow: 0 30px 50px -24px rgba(12,26,48,.6);
+}
+.ejemplo figcaption{
+  margin-top: 16px; max-width: 60%;
+  font-family: "Archivo Narrow", Arial, sans-serif; font-size: 14.5px; color: var(--muted);
+}
+@media (max-width: 599px){
+  .marco-pc{ width: 92%; }
+  .marco-url{ display: none; }
+  .marco-cel{ width: 34%; border-width: 4px; border-radius: 16px; }
+  .ejemplo{ padding-bottom: 60px; }
+  .ejemplo figcaption{ max-width: 62%; }
+}
+
+/* los cuatro pasos en una sola fila en la computadora (con el minimo de 200 px
+   de servicios.css quedaban tres arriba y uno solo abajo) */
+@media (min-width: 860px){ .spasos{ grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+/* al imprimir, sin el menu */
+@media print{ .menu-links{ display: none !important; } }
