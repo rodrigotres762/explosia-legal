@@ -57,8 +57,20 @@ var Pestanas = (function () {
 
   // Arranque: si el link traia una pestana, se abre esa.
   var inicial = (location.hash || "").replace("#", "");
-  if (!document.getElementById("v-" + inicial)) inicial = vistas[0].id.replace("v-", "");
-  ir(inicial, false);
+  // Si traia una seccion de adentro de una pestana (#demo, #diagnostico: links
+  // viejos de la portada), se abre su pestana y se baja hasta ella.
+  var ancla = inicial && !document.getElementById("v-" + inicial) ? document.getElementById(inicial) : null;
+  var suVista = ancla && ancla.closest ? ancla.closest(".vista") : null;
+  if (suVista) {
+    ir(suVista.id.replace("v-", ""), false);
+    if (history.replaceState) history.replaceState(null, "", "#" + inicial);
+    ancla.scrollIntoView();
+    // las fuentes y las imagenes cambian las alturas: se vuelve a ubicar al terminar de cargar
+    window.addEventListener("load", function () { if ((window.scrollY || 0) > 0) ancla.scrollIntoView(); });
+  } else {
+    if (!document.getElementById("v-" + inicial)) inicial = vistas[0].id.replace("v-", "");
+    ir(inicial, false);
+  }
 
   return { ir: ir, alCambiar: function (fn) { alCambiar = fn; } };
 })();

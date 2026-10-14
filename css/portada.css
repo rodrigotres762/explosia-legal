@@ -320,7 +320,15 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
   .hero-visual{ order: 0; min-height: 480px; }
   .hero-logo{ width: clamp(150px, 18vw, 260px); }
   .hero-title{ font-size: clamp(44px, min(5.1vw, 8.4svh), 70px); }
+  .hero-title-largo{ font-size: clamp(38px, min(4vw, 6.8svh), 56px); }
 }
+/* El titular de la portada nombra los cuatro servicios: es el doble de largo
+   que el de /agentes-de-ia/, asi que va un poco mas chico para no ocupar
+   toda la pantalla del celular. */
+.hero-title-largo{ font-size: clamp(29px, 7.4vw, 50px); line-height: 1.06; }
+@media (min-width: 920px){ .hero-title-largo{ font-size: clamp(38px, min(4vw, 6.8svh), 56px); } }
+/* "Ver lo que hacemos": la flecha apunta hacia abajo, a las tarjetas */
+.btn-bajar .play-circ .ico{ margin-left: 0; transform: rotate(90deg); }
 
 /* ================= HERRAMIENTAS DEL CLIENTE ================= */
 
@@ -973,6 +981,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
 }
 .ir-flecha .ico{ width: 16px; height: 16px; transition: transform .25s ease; }
 .ir-card:hover .ir-flecha .ico{ transform: translateX(4px); }
+/* En la portada las tarjetas son links a cada servicio, de a dos en fila */
+a.ir-card{ text-decoration: none; color: inherit; }
+@media (min-width: 720px){ .explora.servicios{ grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 /* ================= ALIADOS ================= */
 
