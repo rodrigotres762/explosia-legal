@@ -160,7 +160,19 @@ a:focus-visible, button:focus-visible, summary:focus-visible{
 }
 .menu button:hover{ color: var(--tinta); background: var(--nube); }
 .menu button[aria-current="page"]{ color: #FFFFFF; background: var(--tinta); }
+/* Links del menu (portada y "Inicio" desde /agentes-de-ia/): iguales a los botones */
+.menu a{
+  font-family: var(--display); font-weight: 600; font-size: 14.5px; letter-spacing: -.01em;
+  color: var(--muted); text-decoration: none; border-radius: 999px;
+  padding: 8px 14px; min-height: 40px; white-space: nowrap;
+  display: inline-flex; align-items: center;
+  transition: color .2s ease, background .2s ease;
+}
+.menu a:hover{ color: var(--tinta); background: var(--nube); }
+.menu a[aria-current="page"]{ color: #FFFFFF; background: var(--tinta); }
+.menu a.menu-inicio{ color: var(--brand); }
 @media (max-width: 599px){
+  .menu a{ padding: 8px 12px; font-size: 14px; }
   /* Una sola fila: el logo redondo y el menu. El boton de WhatsApp de
      arriba sobra, porque el flotante esta siempre a mano. Dos filas se
      comian 110 px de cada pantalla. */
