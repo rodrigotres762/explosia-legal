@@ -192,9 +192,14 @@
     return m ? m[1] : "";
   })();
 
+  // La escena se pide relativa a ESTE archivo y no a la pagina: desde
+  // /agentes-de-ia/ un "vendor/..." pelado daba 404 y no habia 3D.
+  var miSrc = (document.currentScript && document.currentScript.src) || "";
+
   function cargarEscena() {
     var s = document.createElement("script");
-    s.src = "vendor/escena.min.js" + (version ? "?v=" + version : "");
+    var ruta = miSrc ? new URL("../vendor/escena.min.js", miSrc).pathname : "vendor/escena.min.js";
+    s.src = ruta + (version ? "?v=" + version : "");
     s.async = true;
     s.onload = arrancarEscena;
     s.onerror = function () { /* sin 3D y sin drama */ };
@@ -316,10 +321,12 @@
         // la portada solo existe en la primera vista
         setTimeout(function () { alScroll(); }, 60);
       });
-
-      var activa = document.querySelector(".vista.activa") || document.querySelector(".vista");
-      if (activa) revelar(activa);
     }
+
+    // Tambien en una pagina sin pestanas (la portada desde el 14/10/2026):
+    // ahi no hay aviso de cambio de vista, pero los bloques entran igual.
+    var activa = document.querySelector(".vista.activa") || document.querySelector(".vista");
+    if (activa) revelar(activa);
 
     if (puedeCon3D()) cargarEscena();
 
