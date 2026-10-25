@@ -1567,3 +1567,113 @@ footer .pie-red:hover{
   .cierre .btn-print-show{ display: inline-flex !important; background: none; color: #12558F; border: 1px solid #12558F; box-shadow: none; padding: 8px 14px; }
   footer{ padding-block: 14pt; }
 }
+
+/* ============================================================
+   RENOVACION DEL 24/10/2026: el mismo idioma que el resto del sitio
+   Esta hoja ya solo la usa /agentes-de-ia/ (la portada nueva vive en
+   comun.css + vitrina.css y los servicios en comun.css + servicios.css).
+   No se puede cargar comun.css aca: esta pagina tiene piezas propias
+   con los mismos nombres (.chip, .flujo, .burbuja) y se pisarian.
+   Asi que lo de abajo la acerca al diseno nuevo sin tocar sus piezas:
+   letra Inter, fondo blanco y pergamino, barra translucida, botones
+   planos, titulos mas grandes y apretados y el pie como en las demas.
+   Va al final a proposito: gana sobre lo de arriba sin reescribirlo.
+   ============================================================ */
+
+:root{
+  --cielo:   #FFFFFF;
+  --nube:    #F4F7FB;
+  --nube-2:  #E6EEF8;
+  --edge:    #DCE5F0;
+  --edge-soft: #E8EEF5;
+  --display: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --narrow:  var(--display);
+  --serif:   var(--display);
+}
+
+body{
+  font-size: 17px;
+  line-height: 1.6;
+  letter-spacing: -.011em;
+  font-optical-sizing: auto;
+  background:
+    radial-gradient(1100px 620px at 50% -8%, #E3EFFC 0%, rgba(227, 239, 252, 0) 72%),
+    var(--cielo);
+  background-repeat: no-repeat;
+}
+h1, h2, h3, h4{ font-weight: 650; letter-spacing: -.03em; }
+
+.eyebrow{ font-size: 15px; font-weight: 600; letter-spacing: -.005em; text-transform: none; }
+
+/* ---------- la barra: translucida, sin borde, como en las demas ---------- */
+.topbar{
+  background: rgba(255, 255, 255, .72);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+          backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 0;
+  box-shadow: 0 1px 0 rgba(12, 26, 48, .07);
+}
+.topbar .wrap{ min-height: 56px; padding-block: 6px; }
+.mark img{ width: 30px; height: 30px; }
+.mark b{ font-weight: 700; font-size: 18px; letter-spacing: -.035em; }
+.menu button, .menu a{ font-weight: 400; font-size: 14px; color: var(--muted); padding: 8px 13px; min-height: 38px; }
+.menu button:hover, .menu a:hover{ background: rgba(12, 26, 48, .05); }
+.menu button[aria-current="page"], .menu a[aria-current="page"]{ color: var(--tinta); font-weight: 600; background: rgba(12, 26, 48, .07); }
+.menu a.menu-inicio{ color: var(--brand); font-weight: 600; }
+
+/* ---------- botones planos, que se achican al apretar ---------- */
+.btn{
+  font-weight: 600;
+  background: var(--brand);
+  box-shadow: none;
+  transition: transform .12s ease-out, background-color .2s ease;
+}
+.btn:hover{ transform: none; box-shadow: none; background: #155BA6; }
+.btn:active{ transform: scale(.97); }
+.btn::after{ display: none; }
+.btn[href*="wa.me"], .btn[href*="wa.me"]:hover{ box-shadow: none; }
+.btn-blanco, .btn-blanco:hover{ box-shadow: none; }
+
+/* ---------- titulos: mas grandes, mas apretados, sin ensanchar ---------- */
+.hero-title, .sec-head h2{ font-stretch: 100%; }
+.hero-title{ letter-spacing: -.042em; line-height: 1.03; }
+.hero-title em{
+  color: transparent;
+  background: linear-gradient(100deg, #1B57A8 0%, #1B6FC8 38%, #3D9BE0 72%, #58B6EC 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  padding-bottom: .08em;
+}
+.hero-sub{ font-size: clamp(18px, 1.6vw, 21px); line-height: 1.45; letter-spacing: -.016em; color: var(--muted); }
+.sec-head h2{ font-size: clamp(32px, 4.6vw, 52px); line-height: 1.07; letter-spacing: -.036em; }
+.sec-head p:not(.eyebrow){ letter-spacing: -.012em; }
+
+/* ---------- el pie: tarjetas blancas sobre pergamino ---------- */
+footer{
+  border-top: 0;
+  background: var(--nube);
+  font-size: 13px;
+  color: var(--muted);
+  padding-block: 56px 44px;
+}
+footer .pie-red{
+  border: 0;
+  border-radius: 18px;
+  background: #FFFFFF;
+  box-shadow: inset 0 0 0 1px rgba(12, 26, 48, .08);
+}
+footer .pie-red:hover{ transform: none; border-color: transparent; box-shadow: inset 0 0 0 1px rgba(12, 26, 48, .15), 0 10px 26px -14px rgba(12, 26, 48, .3); }
+footer .pie-red:active{ transform: scale(.98); }
+.pie-contacto-tit{ font-size: 21px; font-weight: 600; letter-spacing: -.022em; color: var(--tinta); }
+
+/* Los rotulos chicos van como en el resto del sitio: sin mayusculas ni
+   letras separadas. Los de adentro de los dibujos (planillas, etiquetas
+   de los ejemplos) quedan como estan: imitan pantallas de verdad. */
+.stack-tec-label, .diag-rotulo, .head h2.eyebrow, .recurso small, .siguiente span, .pie-red-txt small, .paso .n{
+  text-transform: none;
+  letter-spacing: -.005em;
+  font-weight: 600;
+}
+.stack-tec-label{ font-size: 15px; color: var(--muted); }
+.diag-rotulo, .recurso small{ font-size: 14px; }
+.pie-red-txt small{ font-size: 12px; }

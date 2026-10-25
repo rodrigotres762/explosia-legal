@@ -5,13 +5,13 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; worker-src 'none'; connect-src 'self'; upgrade-insecure-requests; script-src 'self' 'inline-speculation-rules'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="js/redirigir.js?v=26"></script>
+<script src="js/redirigir.js?v=29"></script>
 <title>Agentes de IA, WhatsApp, P&aacute;ginas Web y Software | ExplosIA</title>
 <meta name="description" content="Creamos agentes de IA, asistentes de WhatsApp, p&aacute;ginas web y software personalizado para empresas y PyMEs de Mart&iacute;nez, San Isidro y Buenos Aires, Argentina.">
 <link rel="canonical" href="https://explosia.com.ar/">
 <link rel="icon" type="image/png" href="icono.png">
 <link rel="apple-touch-icon" href="icono.png">
-<meta name="theme-color" content="#F3F8FE">
+<meta name="theme-color" content="#FFFFFF">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ExplosIA">
 <meta property="og:locale" content="es_AR">
@@ -87,12 +87,16 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..800&family=Archivo+Narrow:wght@500;600;700&family=Caveat:wght@600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
-<link rel="stylesheet" href="css/visual.css?v=26">
-<link rel="stylesheet" href="css/portada.css?v=26">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..800&display=swap">
+<link rel="stylesheet" href="css/visual.css?v=29">
+<link rel="stylesheet" href="css/comun.css?v=29">
+<link rel="stylesheet" href="css/vitrina.css?v=29">
 <script src="vendor/gsap.min.js"></script>
 <script src="vendor/ScrollTrigger.min.js"></script>
-<script src="js/visual.js?v=26" defer></script>
+<!-- Va en el head y sin defer a proposito: marca la pagina antes del primer
+     dibujo, asi lo que entra animado no aparece y desaparece. -->
+<script src="js/vitrina.js?v=29"></script>
+<script src="js/visual.js?v=29" defer></script>
 <script type="speculationrules">
 {
   "prerender": [
@@ -109,55 +113,78 @@
 <!-- Iconos: se dibujan una vez y se reusan con <use href="#..."> -->
 <svg class="sprite" aria-hidden="true" focusable="false">
   <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.23 8.23 0 0 1 8.24 8.24c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.78.97-.14.16-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></symbol>
-  <symbol id="i-flecha" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></g></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m9.5 6 6 6-6 6"/></symbol>
+  <symbol id="i-volver" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m15 5-7 7 7 7"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></g></symbol>
-  <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.2v13.6a1 1 0 0 0 1.52.85l10.9-6.8a1 1 0 0 0 0-1.7L9.52 4.35A1 1 0 0 0 8 5.2Z"/></symbol>
-  <symbol id="i-pausa" viewBox="0 0 24 24"><g fill="currentColor"><rect x="6" y="5" width="4.2" height="14" rx="1.2"/><rect x="13.8" y="5" width="4.2" height="14" rx="1.2"/></g></symbol>
   <symbol id="i-chat" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 17 0z"/></g></symbol>
-  <symbol id="i-bolsa" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></g></symbol>
   <symbol id="i-doc" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></g></symbol>
   <symbol id="i-tabla" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/><path d="M9 3v18"/></g></symbol>
   <symbol id="i-grafico" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></g></symbol>
-  <symbol id="i-campana" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></g></symbol>
   <symbol id="i-luna" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.2A8.5 8.5 0 1 1 9.8 3.5a6.8 6.8 0 0 0 10.7 10.7z"/></g></symbol>
   <symbol id="i-calendario" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18"/><path d="M8 2.5v4"/><path d="M16 2.5v4"/></g></symbol>
-  <symbol id="i-copia" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></g></symbol>
   <symbol id="i-caja" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5"/><path d="M12 13v8"/></g></symbol>
-  <symbol id="i-vuelta" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 21v-5h5"/></g></symbol>
   <symbol id="i-mic" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/></g></symbol>
-  <symbol id="i-foto" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2.5"/><circle cx="8.8" cy="9.6" r="1.8"/><path d="m3.5 17.5 4.6-4.3a2 2 0 0 1 2.7 0l3 2.8"/><path d="m14 15 2.2-2a2 2 0 0 1 2.7 0l2.1 1.9"/></g></symbol>
   <symbol id="i-chispa" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M11 3.5 12.9 8.6 18 10.5l-5.1 1.9L11 17.5l-1.9-5.1L4 10.5l5.1-1.9z"/><path d="M18.5 14.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></g></symbol>
   <symbol id="i-persona" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></g></symbol>
   <symbol id="i-equipo" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.6"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.6 3.6 0 0 1 0 6.8"/><path d="M18.5 14.2A6.5 6.5 0 0 1 21.5 20"/></g></symbol>
   <symbol id="i-herramienta" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></g></symbol>
-  <symbol id="i-pregunta" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M9.2 9.2a2.9 2.9 0 0 1 5.6 1c0 1.9-2.8 2.8-2.8 2.8"/><path d="M12 17h.01"/></g></symbol>
-  <symbol id="i-alerta" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></g></symbol>
-  <symbol id="i-taza" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><path d="M7 2v2.5"/><path d="M11 2v2.5"/></g></symbol>
-  <symbol id="i-tijera" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9"/><path d="M14.5 14.5 20 20"/><path d="M8.1 8.1 12 12"/></g></symbol>
-  <symbol id="i-escudo" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></g></symbol>
-  <symbol id="i-libro" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></g></symbol>
   <symbol id="i-estrella" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.6l2.9 5.88 6.5.95-4.7 4.58 1.11 6.47L12 17.43l-5.81 3.05 1.11-6.47-4.7-4.58 6.5-.95z"/></symbol>
   <symbol id="i-navegador" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="16" rx="2.5"/><path d="M2.5 8.5h19"/><path d="M5.6 6.25h.01"/><path d="M8.1 6.25h.01"/></g></symbol>
   <symbol id="i-codigo" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m8 7-5 5 5 5"/><path d="m16 7 5 5-5 5"/><path d="m13.5 4-3 16"/></g></symbol>
-  <symbol id="i-celular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M11 18h2"/></g></symbol>
+  <symbol id="i-casa" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.2V21h14V9.2"/><path d="M10 21v-6h4v6"/></g></symbol>
+  <symbol id="i-lupa" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></g></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.6"/></g></symbol>
+
+  <!-- Ilustraciones de las "fotos" de la pagina de ejemplo (no hay fotos reales a proposito). -->
+  <symbol id="ilus-ciudad" viewBox="0 0 400 120">
+    <g fill="#B9DBF4"><rect x="8" y="44" width="34" height="76"/><rect x="50" y="22" width="26" height="98"/><rect x="118" y="52" width="40" height="68"/><rect x="206" y="28" width="30" height="92"/><rect x="288" y="46" width="36" height="74"/><rect x="350" y="16" width="30" height="104"/></g>
+    <g fill="#6FA9DE"><rect x="28" y="64" width="40" height="56"/><rect x="82" y="44" width="32" height="76"/><rect x="158" y="34" width="44" height="86"/><rect x="244" y="58" width="38" height="62"/><rect x="316" y="52" width="34" height="68"/><rect x="370" y="68" width="30" height="52"/></g>
+    <g fill="#fff" opacity=".6"><rect x="166" y="44" width="8" height="8"/><rect x="180" y="44" width="8" height="8"/><rect x="166" y="60" width="8" height="8"/><rect x="180" y="60" width="8" height="8"/><rect x="166" y="76" width="8" height="8"/><rect x="180" y="76" width="8" height="8"/><rect x="90" y="54" width="6" height="7"/><rect x="101" y="54" width="6" height="7"/><rect x="90" y="68" width="6" height="7"/><rect x="101" y="68" width="6" height="7"/><rect x="252" y="68" width="7" height="7"/><rect x="265" y="68" width="7" height="7"/><rect x="252" y="82" width="7" height="7"/><rect x="324" y="62" width="6" height="7"/><rect x="336" y="62" width="6" height="7"/><rect x="324" y="76" width="6" height="7"/></g>
+    <rect y="114" width="400" height="6" fill="#3F7FC0"/>
+  </symbol>
+  <symbol id="ilus-depto" viewBox="0 0 120 80">
+    <rect x="38" y="10" width="44" height="70" rx="2" fill="#EEF3F9"/>
+    <g fill="#8DBDE8"><rect x="44" y="17" width="9" height="8" rx="1"/><rect x="56" y="17" width="9" height="8" rx="1"/><rect x="68" y="17" width="9" height="8" rx="1"/><rect x="44" y="31" width="9" height="8" rx="1"/><rect x="56" y="31" width="9" height="8" rx="1"/><rect x="68" y="31" width="9" height="8" rx="1"/><rect x="44" y="45" width="9" height="8" rx="1"/><rect x="56" y="45" width="9" height="8" rx="1"/><rect x="68" y="45" width="9" height="8" rx="1"/></g>
+    <rect x="54" y="62" width="12" height="18" fill="#1B6FC8"/>
+    <circle cx="22" cy="62" r="12" fill="#5DB37E"/><rect x="21" y="66" width="2.4" height="14" fill="#6B4F3A"/>
+    <circle cx="100" cy="66" r="9" fill="#4FA36F"/>
+    <rect y="78" width="120" height="2" fill="#4FA36F"/>
+  </symbol>
+  <symbol id="ilus-casa" viewBox="0 0 120 80">
+    <rect y="62" width="120" height="18" fill="#7CC48F"/>
+    <path d="M30 40 60 18l30 22z" fill="#C8553D"/>
+    <rect x="34" y="40" width="52" height="28" fill="#FFF6E8"/>
+    <rect x="54" y="50" width="12" height="18" fill="#8A5A3B"/>
+    <rect x="40" y="46" width="10" height="9" fill="#8DBDE8"/><rect x="70" y="46" width="10" height="9" fill="#8DBDE8"/>
+    <circle cx="100" cy="52" r="11" fill="#4FA36F"/><rect x="99" y="58" width="2.4" height="10" fill="#6B4F3A"/>
+    <circle cx="96" cy="16" r="7" fill="#FFD46B"/>
+  </symbol>
+  <symbol id="ilus-ph" viewBox="0 0 120 80">
+    <rect x="18" y="30" width="84" height="50" fill="#F2E3D3"/>
+    <rect x="18" y="26" width="84" height="6" fill="#B98962"/>
+    <g fill="#5B4636"><rect x="28" y="40" width="14" height="16" rx="1"/><rect x="53" y="40" width="14" height="16" rx="1"/><rect x="78" y="40" width="14" height="16" rx="1"/></g>
+    <rect x="53" y="62" width="14" height="18" fill="#1B6FC8"/>
+    <g fill="#5DB37E"><circle cx="24" cy="26" r="6"/><circle cx="34" cy="24" r="5"/><circle cx="96" cy="25" r="6"/><circle cx="86" cy="24" r="4.5"/></g>
+    <rect y="78" width="120" height="2" fill="#B98962"/>
+  </symbol>
 </svg>
 
 <canvas id="escena" aria-hidden="true"></canvas>
 
-<header class="topbar">
-  <div class="wrap">
-    <a class="mark" href="./" aria-label="ExplosIA, inicio">
+<header class="barra">
+  <div class="barra-in">
+    <a class="marca" href="./" aria-label="ExplosIA, inicio">
       <img src="img/logo-header.webp" width="96" height="96" alt="">
       <b>explos<i>IA</i></b>
     </a>
-    <nav class="menu" aria-label="Servicios">
+    <nav class="barra-menu" aria-label="Servicios">
       <a href="agentes-de-ia/">Agentes de IA</a>
       <a href="servicios/whatsapp-ia/">WhatsApp</a>
       <a href="paginas-web/">P&aacute;ginas web</a>
       <a href="software-personalizado/">Software</a>
       <a href="#contacto">Contacto</a>
     </nav>
-    <a class="btn btn-top" href="https://wa.me/5491130270119?text=Hola!%20Vi%20la%20p%C3%A1gina%20de%20ExplosIA%20y%20quiero%20hacer%20una%20consulta." target="_blank" rel="noopener noreferrer" aria-label="Escribinos por WhatsApp">
+    <a class="btn btn-chico barra-cta" href="https://wa.me/5491130270119?text=Hola!%20Vi%20la%20p%C3%A1gina%20de%20ExplosIA%20y%20quiero%20hacer%20una%20consulta." target="_blank" rel="noopener noreferrer" aria-label="Escribinos por WhatsApp">
       <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>
       <span>Escribinos</span>
     </a>
@@ -166,108 +193,317 @@
 
 <main>
 
-<!-- La portada es una sola vista, siempre activa: asi js/inicio.js y js/visual.js
-     (hechos para las pestanas de /agentes-de-ia/) la animan y la cuidan igual. -->
-<div class="vista activa" id="v-inicio">
-
-<!-- ===================== PORTADA ===================== -->
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div class="hero-texto">
-        <p class="eyebrow">Soluciones digitales con IA</p>
-        <h1 class="hero-h1">Desarrollo de Software, Agentes de IA y P&aacute;ginas Web en Buenos Aires</h1>
-        <h2 class="hero-title hero-title-largo">Creamos agentes de IA, asistentes de WhatsApp, p&aacute;ginas web y <em>software personalizado</em>.</h2>
-        <p class="hero-sub">Para que tu negocio atienda, venda y trabaje mejor, con herramientas hechas a tu medida.</p>
-        <div class="hero-cta">
-          <a class="btn btn-lg" href="https://wa.me/5491130270119?text=Hola!%20Vi%20la%20p%C3%A1gina%20de%20ExplosIA%20y%20quiero%20hacer%20una%20consulta." target="_blank" rel="noopener noreferrer" aria-label="Escribinos por WhatsApp">
-            <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>
-            Escribinos por WhatsApp
-          </a>
-          <a class="btn-play btn-bajar" href="#servicios">
-            <span class="play-circ"><svg class="ico" aria-hidden="true"><use href="#i-flecha"/></svg></span>
-            <span>Ver lo que hacemos<small>cuatro servicios</small></span>
-          </a>
-        </div>
-        <ul class="hero-trust">
-          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Sin compromiso</li>
-          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Primera charla sin costo</li>
-          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Mart&iacute;nez, San Isidro</li>
-        </ul>
+<!-- ===================== PORTADA =====================
+     Texto al centro y, abajo, el logo con el anillo 3D (js/visual.js lo
+     busca por .hero-visual y .hero-logo: no cambiar esos nombres). -->
+  <section class="portada" id="inicio">
+    <div class="portada-texto">
+      <p class="insignia" data-intro><span class="insignia-punto" aria-hidden="true"></span>Soluciones digitales con IA</p>
+      <h1 class="portada-h1" data-intro>Desarrollo de Software, Agentes de IA y P&aacute;ginas Web en Buenos Aires</h1>
+      <h2 class="portada-titulo" data-intro>Creamos agentes de IA, asistentes de WhatsApp, p&aacute;ginas web y <em>software personalizado</em>.</h2>
+      <p class="portada-bajada" data-intro>Para que tu negocio atienda, venda y trabaje mejor, con herramientas hechas a tu medida.</p>
+      <div class="portada-cta" data-intro>
+        <a class="btn btn-grande" href="https://wa.me/5491130270119?text=Hola!%20Vi%20la%20p%C3%A1gina%20de%20ExplosIA%20y%20quiero%20hacer%20una%20consulta." target="_blank" rel="noopener noreferrer" aria-label="Escribinos por WhatsApp">
+          <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>
+          Escribinos por WhatsApp
+        </a>
+        <a class="link-mas" href="#servicios">Ver lo que hacemos <svg class="ico" aria-hidden="true"><use href="#i-chev"/></svg></a>
       </div>
+      <ul class="portada-confianza" data-intro>
+        <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Sin compromiso</li>
+        <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Primera charla sin costo</li>
+        <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Mart&iacute;nez, San Isidro</li>
+      </ul>
+    </div>
+
+    <div class="portada-escena">
       <div class="hero-visual">
         <img class="hero-logo" src="img/logo-hero.webp" width="360" height="360" fetchpriority="high" alt="ExplosIA, soluciones digitales con IA en Buenos Aires">
       </div>
+      <!-- Lo que pasa en un negocio con cada servicio. Decorado: no son datos reales. -->
+      <div class="chip chip-1" data-vel="-70" aria-hidden="true"><div class="chip-in">
+        <span class="chip-ico"><svg class="ico"><use href="#i-doc"/></svg></span>
+        <span><b>Factura generada</b><small>Se hizo sola</small></span>
+      </div></div>
+      <div class="chip chip-2" data-vel="-130" aria-hidden="true"><div class="chip-in">
+        <span class="chip-ico verde"><svg class="ico"><use href="#i-wa"/></svg></span>
+        <span><b>Consulta respondida</b><small>23:41, con el local cerrado</small></span>
+      </div></div>
+      <div class="chip chip-3" data-vel="-40" aria-hidden="true"><div class="chip-in">
+        <span class="chip-ico celeste"><svg class="ico"><use href="#i-navegador"/></svg></span>
+        <span><b>P&aacute;gina publicada</b><small>Lista para que te encuentren</small></span>
+      </div></div>
+      <div class="chip chip-4" data-vel="-100" aria-hidden="true"><div class="chip-in">
+        <span class="chip-ico tinta"><svg class="ico"><use href="#i-grafico"/></svg></span>
+        <span><b>Panel al d&iacute;a</b><small>Pedidos, stock y clientes</small></span>
+      </div></div>
     </div>
   </section>
 
-<!-- ===================== SERVICIOS ===================== -->
-  <section id="servicios">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="eyebrow">Lo que hacemos</p>
-        <h2>Cuatro formas de hacer crecer tu negocio</h2>
-      </div>
-      <div class="explora servicios">
-        <a class="ir-card" href="agentes-de-ia/">
-          <span class="ir-ilus" aria-hidden="true"><i><svg class="ico"><use href="#i-chat"/></svg></i><i class="grande"><svg class="ico"><use href="#i-chispa"/></svg></i><i><svg class="ico"><use href="#i-doc"/></svg></i></span>
-          <b>Agentes de IA</b>
-          <span class="d">El trabajo repetitivo de tu negocio se hace solo: pedidos, facturas, planillas.</span>
-          <span class="ir-flecha">Ver agentes de IA <svg class="ico" aria-hidden="true"><use href="#i-flecha"/></svg></span>
-        </a>
-        <a class="ir-card" href="servicios/whatsapp-ia/">
-          <span class="ir-ilus" aria-hidden="true"><i><svg class="ico"><use href="#i-luna"/></svg></i><i class="grande"><svg class="ico"><use href="#i-wa"/></svg></i><i><svg class="ico"><use href="#i-check"/></svg></i></span>
-          <b>Asistentes de WhatsApp</b>
-          <span class="d">Tus clientes reciben respuesta a toda hora, aunque est&eacute;s cerrado.</span>
-          <span class="ir-flecha">Ver asistentes <svg class="ico" aria-hidden="true"><use href="#i-flecha"/></svg></span>
-        </a>
-        <a class="ir-card" href="paginas-web/">
-          <span class="ir-ilus" aria-hidden="true"><i><svg class="ico"><use href="#i-celular"/></svg></i><i class="grande"><svg class="ico"><use href="#i-navegador"/></svg></i><i><svg class="ico"><use href="#i-estrella"/></svg></i></span>
-          <b>P&aacute;ginas web</b>
-          <span class="d">Tu negocio en internet, y que te encuentren en Google y en Maps.</span>
-          <span class="ir-flecha">Ver p&aacute;ginas web <svg class="ico" aria-hidden="true"><use href="#i-flecha"/></svg></span>
-        </a>
-        <a class="ir-card" href="software-personalizado/">
-          <span class="ir-ilus" aria-hidden="true"><i><svg class="ico"><use href="#i-tabla"/></svg></i><i class="grande"><svg class="ico"><use href="#i-codigo"/></svg></i><i><svg class="ico"><use href="#i-herramienta"/></svg></i></span>
-          <b>Software personalizado</b>
-          <span class="d">Un programa hecho a la medida de c&oacute;mo trabaja tu empresa.</span>
-          <span class="ir-flecha">Ver software <svg class="ico" aria-hidden="true"><use href="#i-flecha"/></svg></span>
-        </a>
-      </div>
-    </div>
+<!-- ===================== LO QUE HACEMOS =====================
+     Las palabras se van prendiendo a medida que se baja (js/vitrina.js). -->
+  <section class="manifiesto" id="servicios">
+    <p class="eyebrow" data-entra>Lo que hacemos</p>
+    <h2 class="manifiesto-txt" data-palabras>Cuatro formas de hacer crecer tu negocio. Todas hechas a la medida de c&oacute;mo trabaj&aacute;s, y conectadas con lo que ya us&aacute;s.</h2>
   </section>
 
-<!-- ===================== COMO TRABAJAMOS ===================== -->
-  <section class="banda">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="eyebrow">C&oacute;mo trabajamos</p>
-        <h2>De la primera charla a tenerlo andando</h2>
+<!-- ===================== 1. AGENTES DE IA =====================
+     El primer ejemplo es puertas adentro (un pedido que termina en factura),
+     no el chat: la regla de no encasillar. -->
+  <section class="tile tile-pergamino" id="agentes" aria-labelledby="t-agentes">
+    <div class="tile-cabeza">
+      <p class="tile-nombre" data-entra><span class="tile-ico"><svg class="ico" aria-hidden="true"><use href="#i-chispa"/></svg></span>Agentes de IA</p>
+      <h2 class="tile-titulo" id="t-agentes" data-entra>El trabajo repetitivo de tu negocio se hace solo.</h2>
+      <p class="tile-bajada" data-entra>Pedidos, facturas y planillas que hoy hac&eacute;s a mano, resueltos por un agente hecho para c&oacute;mo trabaj&aacute;s.</p>
+      <div class="tile-cta" data-entra>
+        <a class="btn" href="agentes-de-ia/">Conoc&eacute; m&aacute;s</a>
+        <a class="btn btn-borde" href="https://wa.me/5491130270119?text=Hola!%20Vi%20la%20p%C3%A1gina%20de%20ExplosIA%20y%20quiero%20consultar%20por%20los%20agentes%20de%20IA." target="_blank" rel="noopener noreferrer" aria-label="Consultar por WhatsApp por los agentes de IA"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Consultar</a>
       </div>
-      <ol class="pasos">
-        <li class="paso">
-          <span class="paso-ico"><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg></span>
-          <span class="n">Paso 1</span>
-          <b>Charlamos</b>
-          <span class="d">Nos cont&aacute;s qu&eacute; necesit&aacute;s, sin costo y sin compromiso.</span>
-        </li>
-        <li class="paso">
-          <span class="paso-ico"><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg></span>
-          <span class="n">Paso 2</span>
-          <b>Propuesta a medida</b>
-          <span class="d">Qu&eacute; vamos a hacer, qu&eacute; no y c&oacute;mo se conecta con lo que ya us&aacute;s.</span>
-        </li>
-        <li class="paso">
-          <span class="paso-ico"><svg class="ico" aria-hidden="true"><use href="#i-herramienta"/></svg></span>
-          <span class="n">Paso 3</span>
-          <b>Lo armamos y probamos</b>
-          <span class="d">Vos lo prob&aacute;s antes de que lo use un solo cliente.</span>
-        </li>
-        <li class="paso">
-          <span class="paso-ico"><svg class="ico" aria-hidden="true"><use href="#i-equipo"/></svg></span>
-          <span class="n">Paso 4</span>
-          <b>Te acompa&ntilde;amos</b>
-          <span class="d">Lo ajustamos con el uso y le sumamos lo que aparezca.</span>
-        </li>
+    </div>
+
+    <figure class="render flujo" data-flujo>
+      <div class="flujo-escena" aria-hidden="true">
+        <div class="flujo-msj">
+          <div class="flujo-msj-cab"><span class="flujo-msj-ico"><svg class="ico"><use href="#i-chat"/></svg></span><b>Pedido nuevo</b><small>9:12</small></div>
+          <p>Hola! Mandame 3 cajas de alfajores para el jueves. Facturalo a nombre de Panader&iacute;a Sol, por favor.</p>
+        </div>
+        <div class="flujo-via"><span class="flujo-linea"></span><span class="flujo-luz"></span></div>
+        <div class="flujo-agente">
+          <span class="flujo-aro"><span class="flujo-anillo"></span><img src="img/logo-header.webp" width="96" height="96" alt="" loading="lazy" decoding="async"></span>
+          <b>Agente de IA</b>
+          <small class="flujo-estado"><span class="e-trab">Trabajando&hellip;</span><span class="e-listo">Listo</span></small>
+        </div>
+        <div class="flujo-via"><span class="flujo-linea"></span><span class="flujo-luz"></span></div>
+        <ul class="flujo-res">
+          <li><span class="res-ico"><svg class="ico"><use href="#i-tabla"/></svg></span><span class="res-txt">Pedido cargado en la planilla</span><span class="res-estado"><i class="res-espera"></i><span class="res-ok"><svg class="ico"><use href="#i-check"/></svg></span></span></li>
+          <li><span class="res-ico"><svg class="ico"><use href="#i-doc"/></svg></span><span class="res-txt">Factura generada</span><span class="res-estado"><i class="res-espera"></i><span class="res-ok"><svg class="ico"><use href="#i-check"/></svg></span></span></li>
+          <li><span class="res-ico"><svg class="ico"><use href="#i-caja"/></svg></span><span class="res-txt">Stock actualizado</span><span class="res-estado"><i class="res-espera"></i><span class="res-ok"><svg class="ico"><use href="#i-check"/></svg></span></span></li>
+          <li><span class="res-ico"><svg class="ico"><use href="#i-chat"/></svg></span><span class="res-txt">Confirmaci&oacute;n al cliente</span><span class="res-estado"><i class="res-espera"></i><span class="res-ok"><svg class="ico"><use href="#i-check"/></svg></span></span></li>
+        </ul>
+      </div>
+      <figcaption class="rotulo">Ejemplo ilustrativo: un pedido escrito como sale termina cargado, facturado y confirmado.</figcaption>
+    </figure>
+  </section>
+
+<!-- ===================== 2. ASISTENTES DE WHATSAPP =====================
+     De noche a proposito: es cuando el negocio esta cerrado. -->
+  <section class="tile tile-noche" id="whatsapp" aria-labelledby="t-whatsapp">
+    <div class="tile-cabeza">
+      <p class="tile-nombre" data-entra><span class="tile-ico verde"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg></span>Asistentes de WhatsApp</p>
+      <h2 class="tile-titulo" id="t-whatsapp" data-entra>Tus clientes reciben respuesta a toda hora.</h2>
+      <p class="tile-bajada" data-entra>Aunque est&eacute;s cerrado, tu asistente contesta, filtra las consultas y te pasa las que necesitan a una persona.</p>
+      <div class="tile-cta" data-entra>
+        <a class="btn" href="servicios/whatsapp-ia/">Conoc&eacute; m&aacute;s</a>
+        <a class="btn btn-borde" href="https://wa.me/5491130270119?text=Hola!%20Vi%20la%20p%C3%A1gina%20de%20ExplosIA%20y%20quiero%20consultar%20por%20un%20asistente%20de%20WhatsApp." target="_blank" rel="noopener noreferrer" aria-label="Consultar por WhatsApp por un asistente de WhatsApp"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Consultar</a>
+      </div>
+    </div>
+
+    <figure class="render telefono-escena" data-chat>
+      <div class="telefono-caja">
+      <div class="telefono" aria-hidden="true">
+        <div class="tel-pantalla">
+          <span class="tel-isla"></span>
+          <div class="tel-estado"><b>23:41</b><span class="tel-iconos"><i></i><i></i><i></i><i></i><span class="tel-bat"></span></span></div>
+          <div class="wa-cab">
+            <svg class="ico wa-volver"><use href="#i-volver"/></svg>
+            <span class="wa-avatar"><svg class="ico"><use href="#i-casa"/></svg></span>
+            <span class="wa-quien"><b>Tu inmobiliaria</b><small class="wa-linea">en l&iacute;nea</small></span>
+          </div>
+          <div class="wa-chat">
+            <span class="wa-dia">Hoy</span>
+            <p class="burbuja entra">Hola! Vi el depto de 2 ambientes en Mart&iacute;nez. &iquest;Sigue disponible?<time>23:41</time></p>
+            <p class="burbuja sale">&iexcl;Hola! S&iacute;, sigue disponible &#x1F60A; &iquest;Quer&eacute;s que coordinemos una visita?<time>23:41</time></p>
+            <p class="burbuja entra">Dale. &iquest;Puede ser el s&aacute;bado a la ma&ntilde;ana?<time>23:42</time></p>
+            <p class="burbuja sale">Anotado: s&aacute;bado a la ma&ntilde;ana. Un asesor te escribe temprano para confirmar el horario &#x1F44D;<time>23:42</time></p>
+            <p class="escribiendo" hidden><i></i><i></i><i></i></p>
+          </div>
+          <div class="wa-barra"><span class="wa-input">Mensaje</span><span class="wa-mic"><svg class="ico"><use href="#i-mic"/></svg></span></div>
+        </div>
+      </div>
+      <div class="chip chip-noche ct-1" aria-hidden="true"><div class="chip-in">
+        <span class="chip-ico tinta"><svg class="ico"><use href="#i-luna"/></svg></span>
+        <span><b>23:41</b><small>El local est&aacute; cerrado</small></span>
+      </div></div>
+      <div class="chip chip-noche ct-2" aria-hidden="true"><div class="chip-in">
+        <span class="chip-ico verde"><svg class="ico"><use href="#i-check"/></svg></span>
+        <span><b>Consulta respondida</b><small>Sin que nadie atienda</small></span>
+      </div></div>
+      <div class="chip chip-noche ct-3" aria-hidden="true"><div class="chip-in">
+        <span class="chip-ico"><svg class="ico"><use href="#i-persona"/></svg></span>
+        <span><b>Pasa a un asesor</b><small>Con toda la charla a mano</small></span>
+      </div></div>
+      </div>
+      <figcaption class="rotulo">Ejemplo ilustrativo: una consulta que llega de noche y queda lista para que la siga una persona.</figcaption>
+    </figure>
+  </section>
+
+<!-- ===================== 3. PAGINAS WEB ===================== -->
+  <section class="tile tile-lienzo" id="paginas" aria-labelledby="t-paginas">
+    <div class="tile-cabeza">
+      <p class="tile-nombre" data-entra><span class="tile-ico celeste"><svg class="ico" aria-hidden="true"><use href="#i-navegador"/></svg></span>P&aacute;ginas web</p>
+      <h2 class="tile-titulo" id="t-paginas" data-entra>Tu negocio en internet, listo para que te encuentren.</h2>
+      <p class="tile-bajada" data-entra>Una p&aacute;gina linda y r&aacute;pida en el celular, que aparece en Google y en Maps.</p>
+      <div class="tile-cta" data-entra>
+        <a class="btn" href="paginas-web/">Conoc&eacute; m&aacute;s</a>
+        <a class="btn btn-borde" href="https://wa.me/5491130270119?text=Hola!%20Vi%20la%20p%C3%A1gina%20de%20ExplosIA%20y%20quiero%20consultar%20por%20una%20p%C3%A1gina%20web." target="_blank" rel="noopener noreferrer" aria-label="Consultar por WhatsApp por una p&aacute;gina web"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Consultar</a>
+      </div>
+    </div>
+
+    <figure class="render equipos" data-equipos>
+      <div class="equipos-caja">
+      <div class="notebook" aria-hidden="true">
+        <div class="nb-tapa">
+          <span class="nb-camara"></span>
+          <div class="nb-pantalla">
+            <div class="sitio">
+              <div class="s-nav"><span class="s-logo"><i></i>Tu inmobiliaria</span><span class="s-links"><span>Comprar</span><span>Alquilar</span><span>Tasar</span><span class="s-btn">Contacto</span></span></div>
+              <div class="s-hero">
+                <svg class="s-ciudad" viewBox="0 0 400 120" preserveAspectRatio="xMidYMax slice"><use href="#ilus-ciudad"/></svg>
+                <div class="s-hero-txt"><b>Encontr&aacute; tu pr&oacute;ximo hogar</b><span>Casas, departamentos y PH en zona norte</span></div>
+                <div class="s-busca"><span>Barrio o tipo de propiedad</span><i>Buscar</i></div>
+              </div>
+              <div class="s-titulo">Destacadas</div>
+              <div class="s-cards">
+                <div class="s-card"><span class="s-foto f-1"><svg viewBox="0 0 120 80"><use href="#ilus-depto"/></svg></span><b>Depto 2 ambientes</b><span>Mart&iacute;nez</span></div>
+                <div class="s-card"><span class="s-foto f-2"><svg viewBox="0 0 120 80"><use href="#ilus-casa"/></svg></span><b>Casa con jard&iacute;n</b><span>San Isidro</span></div>
+                <div class="s-card"><span class="s-foto f-3"><svg viewBox="0 0 120 80"><use href="#ilus-ph"/></svg></span><b>PH reciclado</b><span>Vicente L&oacute;pez</span></div>
+              </div>
+              <div class="s-banda"><span><b>&iquest;Quer&eacute;s vender o alquilar?</b>Te acompa&ntilde;amos de principio a fin.</span><i>Escribinos</i></div>
+              <div class="s-titulo">Reci&eacute;n publicadas</div>
+              <div class="s-cards">
+                <div class="s-card"><span class="s-foto f-2"><svg viewBox="0 0 120 80"><use href="#ilus-ph"/></svg></span><b>PH con terraza</b><span>Olivos</span></div>
+                <div class="s-card"><span class="s-foto f-3"><svg viewBox="0 0 120 80"><use href="#ilus-depto"/></svg></span><b>Monoambiente</b><span>San Isidro</span></div>
+                <div class="s-card"><span class="s-foto f-1"><svg viewBox="0 0 120 80"><use href="#ilus-casa"/></svg></span><b>Casa en lote propio</b><span>San Fernando</span></div>
+              </div>
+              <div class="s-pie"><span class="s-logo"><i></i>Tu inmobiliaria</span><span>Mart&iacute;nez &middot; Buenos Aires</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="nb-base"><span></span></div>
+      </div>
+      <div class="celu" aria-hidden="true">
+        <div class="celu-pantalla">
+          <div class="sitio sitio-celu">
+            <div class="s-nav"><span class="s-logo"><i></i>Tu inmobiliaria</span><span class="s-menu"><i></i><i></i></span></div>
+            <div class="s-hero">
+              <svg class="s-ciudad" viewBox="0 0 400 120" preserveAspectRatio="xMidYMax slice"><use href="#ilus-ciudad"/></svg>
+              <div class="s-hero-txt"><b>Encontr&aacute; tu pr&oacute;ximo hogar</b></div>
+            </div>
+            <div class="s-busca"><span>Barrio o tipo</span><i>Buscar</i></div>
+            <div class="s-card"><span class="s-foto f-1"><svg viewBox="0 0 120 80"><use href="#ilus-depto"/></svg></span><b>Depto 2 ambientes</b><span>Mart&iacute;nez</span></div>
+            <div class="s-card"><span class="s-foto f-2"><svg viewBox="0 0 120 80"><use href="#ilus-casa"/></svg></span><b>Casa con jard&iacute;n</b><span>San Isidro</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="chip ce-1" aria-hidden="true"><div class="chip-in">
+        <span class="chip-ico"><svg class="ico"><use href="#i-lupa"/></svg></span>
+        <span><b>Te encuentran en Google</b><small>Cuando buscan lo que hac&eacute;s</small></span>
+      </div></div>
+      <div class="chip ce-2" aria-hidden="true"><div class="chip-in">
+        <span class="chip-ico rojo"><svg class="ico"><use href="#i-pin"/></svg></span>
+        <span><b>Tu negocio en Maps</b><small>C&oacute;mo llegar &middot; Llamar &middot; Sitio web</small></span>
+      </div></div>
+      </div>
+      <figcaption class="rotulo">Ejemplo ilustrativo: la misma p&aacute;gina en la computadora y en el celular.</figcaption>
+    </figure>
+  </section>
+
+<!-- ===================== 4. SOFTWARE PERSONALIZADO =====================
+     Los numeros del panel son de muestra, no resultados de nadie. -->
+  <section class="tile tile-pergamino" id="software" aria-labelledby="t-software">
+    <div class="tile-cabeza">
+      <p class="tile-nombre" data-entra><span class="tile-ico tinta"><svg class="ico" aria-hidden="true"><use href="#i-codigo"/></svg></span>Software personalizado</p>
+      <h2 class="tile-titulo" id="t-software" data-entra>Un programa hecho a la medida de c&oacute;mo trabaja tu empresa.</h2>
+      <p class="tile-bajada" data-entra>Pedidos, clientes, stock y reportes en un solo lugar, con las pantallas que tu equipo necesita y nada que sobre.</p>
+      <div class="tile-cta" data-entra>
+        <a class="btn" href="software-personalizado/">Conoc&eacute; m&aacute;s</a>
+        <a class="btn btn-borde" href="https://wa.me/5491130270119?text=Hola!%20Vi%20la%20p%C3%A1gina%20de%20ExplosIA%20y%20quiero%20consultar%20por%20software%20personalizado." target="_blank" rel="noopener noreferrer" aria-label="Consultar por WhatsApp por software personalizado"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Consultar</a>
+      </div>
+    </div>
+
+    <figure class="render panel" data-panel>
+      <div class="ventana" aria-hidden="true">
+        <div class="v-barra"><i></i><i></i><i></i><span>Panel de gesti&oacute;n</span></div>
+        <div class="v-cuerpo">
+          <div class="v-lado">
+            <span class="v-marca"><i></i>Tu empresa</span>
+            <span class="v-item activo"><svg class="ico"><use href="#i-tabla"/></svg>Pedidos</span>
+            <span class="v-item"><svg class="ico"><use href="#i-equipo"/></svg>Clientes</span>
+            <span class="v-item"><svg class="ico"><use href="#i-caja"/></svg>Stock</span>
+            <span class="v-item"><svg class="ico"><use href="#i-grafico"/></svg>Reportes</span>
+            <span class="v-item"><svg class="ico"><use href="#i-calendario"/></svg>Agenda</span>
+          </div>
+          <div class="v-main">
+            <div class="v-top"><b>Pedidos de hoy</b><span class="v-busca"><svg class="ico"><use href="#i-lupa"/></svg>Buscar</span></div>
+            <div class="v-kpis">
+              <div class="kpi"><small>Nuevos</small><b data-contar="12">12</b></div>
+              <div class="kpi"><small>Preparando</small><b data-contar="7">7</b></div>
+              <div class="kpi"><small>Entregados</small><b data-contar="31">31</b></div>
+            </div>
+            <div class="v-grid">
+              <div class="v-graf">
+                <small>Esta semana</small>
+                <div class="barras"><i></i><i></i><i></i><i></i><i></i><i></i><i class="hoy"></i></div>
+                <div class="dias"><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span></div>
+              </div>
+              <div class="v-tabla">
+                <div class="fila"><span class="av">MG</span><span class="quien"><b>Mar&iacute;a G.</b><small>3 productos</small></span><span class="estado e-nuevo">Nuevo</span></div>
+                <div class="fila"><span class="av">LP</span><span class="quien"><b>Lucas P.</b><small>1 producto</small></span><span class="estado e-prep">Preparando</span></div>
+                <div class="fila"><span class="av">AR</span><span class="quien"><b>Ana R.</b><small>5 productos</small></span><span class="estado e-ok">Entregado</span></div>
+                <div class="fila"><span class="av">JC</span><span class="quien"><b>Juan C.</b><small>2 productos</small></span><span class="estado e-ok">Entregado</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <figcaption class="rotulo">Ejemplo ilustrativo: un panel con lo que tu empresa mira todos los d&iacute;as.</figcaption>
+    </figure>
+  </section>
+
+<!-- ===================== HERRAMIENTAS DEL CLIENTE =====================
+     Solo herramientas del CLIENTE, nunca las internas. Las 19 a la vista, sin
+     carrusel: un carrusel esconde justo la que la persona busca. -->
+  <section class="marcas" aria-labelledby="t-marcas">
+    <p class="eyebrow" data-entra>Integraciones</p>
+    <h2 class="seccion-titulo" id="t-marcas" data-entra>Se integra con las herramientas que ya us&aacute;s.</h2>
+    <ul class="marcas-lista">
+      <li data-entra><img src="img/marcas/whatsapp.svg" width="22" height="22" alt="" decoding="async" loading="lazy">WhatsApp</li>
+      <li data-entra><img src="img/marcas/instagram.svg" width="22" height="22" alt="" decoding="async" loading="lazy">Instagram</li>
+      <li data-entra><img src="img/marcas/facebook.svg" width="22" height="22" alt="" decoding="async" loading="lazy">Facebook</li>
+      <li data-entra><img src="img/marcas/gmail.svg" width="22" height="22" alt="" decoding="async" loading="lazy">Gmail</li>
+      <li data-entra><img src="img/marcas/outlook.svg" width="22" height="22" alt="" decoding="async" loading="lazy">Outlook</li>
+      <li data-entra><img src="img/marcas/mercadolibre.svg" width="22" height="22" alt="" decoding="async" loading="lazy">Mercado Libre</li>
+      <li data-entra><img src="img/marcas/tiendanube.webp" width="22" height="22" alt="" decoding="async" loading="lazy">Tiendanube</li>
+      <li data-entra><img src="img/marcas/shopify.svg" width="22" height="22" alt="" decoding="async" loading="lazy">Shopify</li>
+      <li data-entra><img src="img/marcas/woocommerce.webp" width="22" height="22" alt="" decoding="async" loading="lazy">WooCommerce</li>
+      <li data-entra><img src="img/marcas/mercadopago.svg" width="22" height="22" alt="" decoding="async" loading="lazy">Mercado Pago</li>
+      <li data-entra><img src="img/marcas/arca.webp" width="22" height="22" alt="" decoding="async" loading="lazy">ARCA</li>
+      <li data-entra><img class="marca-palabra claro" src="img/marcas/tango.svg" width="52" height="11" alt="Tango" decoding="async" loading="lazy">Gesti&oacute;n</li>
+      <li data-entra><img src="img/marcas/contabilium.webp" width="22" height="22" alt="" decoding="async" loading="lazy">Contabilium</li>
+      <li data-entra><img class="claro" src="img/marcas/xubio.svg" width="22" height="22" alt="" decoding="async" loading="lazy">Xubio</li>
+      <li data-entra><img src="img/marcas/colppy.svg" width="22" height="22" alt="" decoding="async" loading="lazy">Colppy</li>
+      <li data-entra><img src="img/marcas/googlesheets.svg" width="22" height="22" alt="" decoding="async" loading="lazy">Google Sheets</li>
+      <li data-entra><img src="img/marcas/excel.svg" width="22" height="22" alt="" decoding="async" loading="lazy">Excel</li>
+      <li data-entra><img src="img/marcas/googledrive.svg" width="22" height="22" alt="" decoding="async" loading="lazy">Google Drive</li>
+      <li data-entra><img src="img/marcas/googlecalendar.svg" width="22" height="22" alt="" decoding="async" loading="lazy">Google Calendar</li>
+    </ul>
+    <p class="marcas-mas" data-entra><strong>&iquest;Tu sistema no est&aacute; en la lista? Tambi&eacute;n se puede automatizar.</strong>
+      <a class="btn btn-chico" href="https://wa.me/5491130270119?text=Hola!%20Vi%20la%20lista%20de%20herramientas%20en%20la%20p%C3%A1gina%20de%20ExplosIA.%20Uso%20otro%20sistema%20y%20quiero%20saber%20c%C3%B3mo%20se%20puede%20automatizar.%20El%20sistema%20es%3A%20" target="_blank" rel="noopener noreferrer" aria-label="Contanos por WhatsApp qu&eacute; sistema us&aacute;s"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Contanos cu&aacute;l us&aacute;s</a>
+    </p>
+  </section>
+
+<!-- ===================== COMO TRABAJAMOS =====================
+     Sin plazos, a proposito. La linea se dibuja al bajar y prende cada paso. -->
+  <section class="pasos-sec" aria-labelledby="t-pasos">
+    <p class="eyebrow" data-entra>C&oacute;mo trabajamos</p>
+    <h2 class="seccion-titulo" id="t-pasos" data-entra>De la primera charla a tenerlo andando.</h2>
+    <div class="recorrido-caja">
+      <span class="recorrido-linea" aria-hidden="true"><span></span></span>
+      <ol class="recorrido">
+        <li class="etapa activa" data-entra><span class="etapa-n" aria-hidden="true">1</span><b>Charlamos</b><span class="etapa-d">Nos cont&aacute;s qu&eacute; necesit&aacute;s, sin costo y sin compromiso.</span></li>
+        <li class="etapa activa" data-entra><span class="etapa-n" aria-hidden="true">2</span><b>Propuesta a medida</b><span class="etapa-d">Qu&eacute; vamos a hacer, qu&eacute; no y c&oacute;mo se conecta con lo que ya us&aacute;s.</span></li>
+        <li class="etapa activa" data-entra><span class="etapa-n" aria-hidden="true">3</span><b>Lo armamos y probamos</b><span class="etapa-d">Vos lo prob&aacute;s antes de que lo use un solo cliente.</span></li>
+        <li class="etapa activa" data-entra><span class="etapa-n" aria-hidden="true">4</span><b>Te acompa&ntilde;amos</b><span class="etapa-d">Lo ajustamos con el uso y le sumamos lo que aparezca.</span></li>
       </ol>
     </div>
   </section>
@@ -276,40 +512,36 @@
      Solo opiniones de clientes reales, copiadas de Google (solo se corrigio
      la ortografia). Las de familia no van aca (pedido de Rodrigo, 6/10/2026).
      El apellido va abreviado hasta que ella diga que se puede poner entero. -->
-  <section class="banda">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="eyebrow">Opiniones</p>
-        <h2>Lo que dice una inmobiliaria que ya lo usa</h2>
-      </div>
-      <figure class="opinion">
-        <span class="opinion-estrellas" role="img" aria-label="5 de 5 estrellas">
-          <svg class="ico" aria-hidden="true"><use href="#i-estrella"/></svg><svg class="ico" aria-hidden="true"><use href="#i-estrella"/></svg><svg class="ico" aria-hidden="true"><use href="#i-estrella"/></svg><svg class="ico" aria-hidden="true"><use href="#i-estrella"/></svg><svg class="ico" aria-hidden="true"><use href="#i-estrella"/></svg>
-        </span>
-        <blockquote>
-          <p>Excelente servicio y atenci&oacute;n de 10. Contratamos la automatizaci&oacute;n para la inmobiliaria y la verdad es que super&oacute; nuestras expectativas: nos simplific&oacute; much&iacute;simo la respuesta a consultas y el filtro de clientes en el d&iacute;a a d&iacute;a. S&uacute;per recomendable si busc&aacute;s optimizar tiempos en tu negocio.</p>
-        </blockquote>
-        <figcaption>
-          <span class="opinion-avatar" aria-hidden="true">C</span>
-          <span class="opinion-quien"><b>Camila R.</b><span class="d">Inmobiliaria &middot; Opini&oacute;n en Google</span></span>
-        </figcaption>
-      </figure>
-      <a class="opinion-google" href="https://www.google.com/maps?cid=1498326324350000248" target="_blank" rel="noopener noreferrer">Ver la opini&oacute;n en Google <svg class="ico" aria-hidden="true"><use href="#i-flecha"/></svg></a>
-    </div>
+  <section class="opinion-sec" aria-labelledby="t-opinion">
+    <p class="eyebrow eyebrow-neon" data-entra>Opiniones</p>
+    <h2 class="opinion-titulo" id="t-opinion" data-entra>Lo que dice una inmobiliaria que ya lo usa</h2>
+    <figure class="cita" data-entra>
+      <span class="estrellas" role="img" aria-label="5 de 5 estrellas">
+        <svg class="ico" aria-hidden="true"><use href="#i-estrella"/></svg><svg class="ico" aria-hidden="true"><use href="#i-estrella"/></svg><svg class="ico" aria-hidden="true"><use href="#i-estrella"/></svg><svg class="ico" aria-hidden="true"><use href="#i-estrella"/></svg><svg class="ico" aria-hidden="true"><use href="#i-estrella"/></svg>
+      </span>
+      <blockquote>
+        <p>&ldquo;Excelente servicio y atenci&oacute;n de 10. Contratamos la automatizaci&oacute;n para la inmobiliaria y la verdad es que <em>super&oacute; nuestras expectativas</em>: nos simplific&oacute; much&iacute;simo la respuesta a consultas y el filtro de clientes en el d&iacute;a a d&iacute;a. S&uacute;per recomendable si busc&aacute;s optimizar tiempos en tu negocio.&rdquo;</p>
+      </blockquote>
+      <figcaption>
+        <span class="cita-avatar" aria-hidden="true">C</span>
+        <span class="cita-quien"><b>Camila R.</b><small>Inmobiliaria &middot; Opini&oacute;n en Google</small></span>
+      </figcaption>
+    </figure>
+    <a class="link-mas link-neon" href="https://www.google.com/maps?cid=1498326324350000248" target="_blank" rel="noopener noreferrer" data-entra>Ver la opini&oacute;n en Google <svg class="ico" aria-hidden="true"><use href="#i-chev"/></svg></a>
   </section>
 
-<!-- ===================== CIERRE CORTO ===================== -->
-  <section class="cierre cierre-corto">
-    <div class="wrap">
-      <h2>Contanos qu&eacute; necesita tu negocio y te decimos c&oacute;mo lo resolvemos</h2>
-      <a class="btn btn-lg btn-blanco" href="https://wa.me/5491130270119?text=Hola!%20Vi%20la%20p%C3%A1gina%20de%20ExplosIA%20y%20quiero%20hacer%20una%20consulta." target="_blank" rel="noopener noreferrer" aria-label="Escribinos por WhatsApp">
+<!-- ===================== CIERRE =====================
+     Un solo boton: los datos de contacto van una sola vez, en el pie. -->
+  <section class="cierre">
+    <img class="cierre-logo" src="img/logo-hero.webp" width="360" height="360" alt="" loading="lazy" decoding="async" data-entra>
+    <h2 data-entra>Contanos qu&eacute; necesita tu negocio y te decimos c&oacute;mo lo resolvemos.</h2>
+    <div data-entra>
+      <a class="btn btn-grande" href="https://wa.me/5491130270119?text=Hola!%20Vi%20la%20p%C3%A1gina%20de%20ExplosIA%20y%20quiero%20hacer%20una%20consulta." target="_blank" rel="noopener noreferrer" aria-label="Escribinos por WhatsApp">
         <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>
         Escribinos por WhatsApp
       </a>
     </div>
   </section>
-
-</div><!-- /inicio -->
 
 </main>
 
@@ -319,36 +551,38 @@
       <p class="pie-contacto-tit">Escribinos por donde te quede c&oacute;modo</p>
       <div class="pie-redes">
         <a class="pie-red pie-red-wa" href="https://wa.me/5491130270119?text=Hola!%20Vi%20la%20p%C3%A1gina%20de%20ExplosIA%20y%20quiero%20hacer%20una%20consulta." target="_blank" rel="noopener noreferrer" aria-label="Escribinos por WhatsApp al +54 9 11 3027-0119">
-          <span class="pie-red-ico"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.23 8.23 0 0 1 8.24 8.24c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.78.97-.14.16-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg></span>
+          <span class="pie-red-ico"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><use href="#i-wa"/></svg></span>
           <span class="pie-red-txt"><small>WhatsApp</small><b>+54 9 11 3027-0119</b></span>
         </a>
         <a class="pie-red pie-red-ig" href="https://instagram.com/explosia.automatizacion" target="_blank" rel="noopener noreferrer" aria-label="Segu&iacute;nos en Instagram, arroba explosia punto automatizacion">
           <span class="pie-red-ico"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16Zm0 1.98c-3.15 0-3.5.01-4.74.07-1.14.05-1.76.24-2.17.4-.55.21-.94.47-1.35.88-.41.41-.67.8-.88 1.35-.16.41-.35 1.03-.4 2.17-.06 1.24-.07 1.59-.07 4.74s.01 3.5.07 4.74c.05 1.14.24 1.76.4 2.17.21.55.47.94.88 1.35.41.41.8.67 1.35.88.41.16 1.03.35 2.17.4 1.24.06 1.6.07 4.74.07s3.5-.01 4.74-.07c1.14-.05 1.76-.24 2.17-.4.55-.21.94-.47 1.35-.88.41-.41.67-.8.88-1.35.16-.41.35-1.03.4-2.17.06-1.24.07-1.59.07-4.74s-.01-3.5-.07-4.74c-.05-1.14-.24-1.76-.4-2.17a3.64 3.64 0 0 0-.88-1.35 3.64 3.64 0 0 0-1.35-.88c-.41-.16-1.03-.35-2.17-.4-1.24-.06-1.59-.07-4.74-.07Zm0 3.37a5.49 5.49 0 1 1 0 10.98 5.49 5.49 0 0 1 0-10.98Zm0 1.98a3.51 3.51 0 1 0 0 7.02 3.51 3.51 0 0 0 0-7.02Zm5.71-3.53a1.28 1.28 0 1 1 0 2.57 1.28 1.28 0 0 1 0-2.57Z"/></svg></span>
-          <span class="pie-red-txt"><small>Instagram</small><b>@explosia.automatizacion</b></span>
+          <span class="pie-red-txt"><small>Instagram</small><b>@explosia.<wbr>automatizacion</b></span>
         </a>
         <a class="pie-red pie-red-fb" href="https://www.facebook.com/explosia.automatizacion" target="_blank" rel="noopener noreferrer" aria-label="Segu&iacute;nos en Facebook">
           <span class="pie-red-ico"><svg viewBox="0 0 320 512" width="13" height="20" aria-hidden="true"><path fill="currentColor" d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg></span>
-          <span class="pie-red-txt"><small>Facebook</small><b>Explosia.automatizacion</b></span>
+          <span class="pie-red-txt"><small>Facebook</small><b>Explosia.<wbr>automatizacion</b></span>
         </a>
         <a class="pie-red pie-red-mail" href="mailto:explosia.automatizacion@gmail.com" aria-label="Mandanos un mail a explosia.automatizacion@gmail.com">
           <span class="pie-red-ico"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3 7 8.2 6.1a1.4 1.4 0 0 0 1.6 0L21 7"/></svg></span>
-          <span class="pie-red-txt"><small>Mail</small><b>explosia.automatizacion@gmail.com</b></span>
+          <span class="pie-red-txt"><small>Mail</small><b>explosia.automatizacion<wbr>@gmail.com</b></span>
         </a>
       </div>
     </div>
-    <span>ExplosIA &middot; Soluciones digitales con IA &middot; Mart&iacute;nez, San Isidro, Buenos Aires</span>
-    <span class="legal-links">
-      <a href="agentes-de-ia/">Agentes de IA</a>
-      <a href="servicios/whatsapp-ia/">Asistentes de WhatsApp</a>
-      <a href="paginas-web/">P&aacute;ginas web</a>
-      <a href="software-personalizado/">Software personalizado</a>
-      <a href="blog/">Recursos</a>
-    </span>
-    <span class="legal-links">
-      <a href="privacidad.html" target="_blank" rel="noopener noreferrer">Privacidad</a>
-      <a href="terminos.html" target="_blank" rel="noopener noreferrer">T&eacute;rminos</a>
-      <a href="eliminacion-de-datos.html" target="_blank" rel="noopener noreferrer">Eliminaci&oacute;n de datos</a>
-    </span>
+    <div class="pie-abajo">
+      <span class="pie-firma"><img src="img/logo-header.webp" width="96" height="96" alt="" loading="lazy" decoding="async">ExplosIA &middot; Soluciones digitales con IA &middot; Mart&iacute;nez, San Isidro, Buenos Aires</span>
+      <span class="legal-links">
+        <a href="agentes-de-ia/">Agentes de IA</a>
+        <a href="servicios/whatsapp-ia/">Asistentes de WhatsApp</a>
+        <a href="paginas-web/">P&aacute;ginas web</a>
+        <a href="software-personalizado/">Software personalizado</a>
+        <a href="blog/">Recursos</a>
+      </span>
+      <span class="legal-links">
+        <a href="privacidad.html" target="_blank" rel="noopener noreferrer">Privacidad</a>
+        <a href="terminos.html" target="_blank" rel="noopener noreferrer">T&eacute;rminos</a>
+        <a href="eliminacion-de-datos.html" target="_blank" rel="noopener noreferrer">Eliminaci&oacute;n de datos</a>
+      </span>
+    </div>
   </div>
 </footer>
 
@@ -357,8 +591,6 @@
   <span class="wa-flotante-txt">Escribinos por WhatsApp</span>
   <span class="wa-flotante-ico"><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-wa"/></svg></span>
 </a>
-
-<script src="js/inicio.js?v=26"></script>
 
 </body>
 </html>

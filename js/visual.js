@@ -21,7 +21,7 @@
      que en esos casos ni siquiera se pide el archivo.
      ============================================================ */
 
-  var forzado = /[?&]3d=si/.test(location.search);
+  var forzado = /[?&](3d|movimiento)=si/.test(location.search);
 
   // Devuelve null si se puede, o el motivo por el que no. Guardar el
   // motivo importa: sin el, "no se ve el 3D" es un misterio que se
