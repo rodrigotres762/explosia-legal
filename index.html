@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; worker-src 'none'; connect-src 'self'; upgrade-insecure-requests; script-src 'self' 'inline-speculation-rules'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="js/redirigir.js?v=29"></script>
+<script src="js/redirigir.js?v=30"></script>
 <title>Agentes de IA, WhatsApp, P&aacute;ginas Web y Software | ExplosIA</title>
 <meta name="description" content="Creamos agentes de IA, asistentes de WhatsApp, p&aacute;ginas web y software personalizado para empresas y PyMEs de Mart&iacute;nez, San Isidro y Buenos Aires, Argentina.">
 <link rel="canonical" href="https://explosia.com.ar/">
@@ -88,15 +88,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..800&display=swap">
-<link rel="stylesheet" href="css/visual.css?v=29">
-<link rel="stylesheet" href="css/comun.css?v=29">
-<link rel="stylesheet" href="css/vitrina.css?v=29">
+<link rel="stylesheet" href="css/visual.css?v=30">
+<link rel="stylesheet" href="css/comun.css?v=30">
+<link rel="stylesheet" href="css/vitrina.css?v=30">
 <script src="vendor/gsap.min.js"></script>
 <script src="vendor/ScrollTrigger.min.js"></script>
 <!-- Va en el head y sin defer a proposito: marca la pagina antes del primer
      dibujo, asi lo que entra animado no aparece y desaparece. -->
-<script src="js/vitrina.js?v=29"></script>
-<script src="js/visual.js?v=29" defer></script>
+<script src="js/vitrina.js?v=30"></script>
 <script type="speculationrules">
 {
   "prerender": [
@@ -169,8 +168,6 @@
   </symbol>
 </svg>
 
-<canvas id="escena" aria-hidden="true"></canvas>
-
 <header class="barra">
   <div class="barra-in">
     <a class="marca" href="./" aria-label="ExplosIA, inicio">
@@ -194,8 +191,7 @@
 <main>
 
 <!-- ===================== PORTADA =====================
-     Texto al centro y, abajo, el logo con el anillo 3D (js/visual.js lo
-     busca por .hero-visual y .hero-logo: no cambiar esos nombres). -->
+     Texto al centro y, abajo, el logo con las tarjetitas alrededor. -->
   <section class="portada" id="inicio">
     <div class="portada-texto">
       <p class="insignia" data-intro><span class="insignia-punto" aria-hidden="true"></span>Soluciones digitales con IA</p>
