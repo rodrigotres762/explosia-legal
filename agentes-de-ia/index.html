@@ -95,10 +95,10 @@
 <script type="speculationrules">
 {
   "prerender": [
-    { "where": { "or": [ { "href_matches": "/servicios/*" }, { "href_matches": "/blog/*" } ] }, "eagerness": "moderate" }
+    { "where": { "selector_matches": "a[href*='servicios']:not([href^='http']):not([href^='mailto:']):not([href^='tel:']):not([href^='#']), a[href*='blog']:not([href^='http']):not([href^='mailto:']):not([href^='tel:']):not([href^='#'])" }, "eagerness": "moderate" }
   ],
   "prefetch": [
-    { "where": { "href_matches": "/*" }, "eagerness": "moderate" }
+    { "where": { "selector_matches": "a:not([href^='http']):not([href^='mailto:']):not([href^='tel:']):not([href^='#'])" }, "eagerness": "moderate" }
   ]
 }
 </script>
